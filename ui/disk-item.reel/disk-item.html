@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="disk-item.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "image1": {
+            "prototype": "digit/ui/image.reel",
+            "properties": {
+                "element": {"#": "image1"},
+                "contenteditable": "true",
+                "crossOrigin": null,
+                "dir": "ltr",
+                "draggable": "true"
+            },
+            "bindings": {
+                "src": {
+                    "<-": "@owner.disk.status.is-ssd ? \"ssd.png\" : \"hdd.png\""
+                }
+            }
+        },
+        "mediasize": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "mediasize"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true",
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.disk.mediasize", "converter": {"@": "mediaSizeConverter"}}
+            }
+        },
+        "mediaSizeConverter": {
+            "prototype": "montage/core/converter/bytes-converter[BytesConverter]",
+            "properties": {
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true"
+            }
+        },
+        "path": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "path"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true",
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.disk.path"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="DiskItem">
+        <img data-montage-id="image1" src="ssd.png">
+        <strong data-montage-id="mediasize">14.91GB</strong>
+        <span data-montage-id="path" class="secondary-text">/dev/da0</span>
+    </div>
+</body>
+</html>
