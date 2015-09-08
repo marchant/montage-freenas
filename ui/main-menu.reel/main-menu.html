@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "selected": {"<->": "@repetition.selection.0"}
+            }
+        },
+        "repetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "repetition"},
+                "isSelectionEnabled": true,
+                "content": [
+                    {
+                        "value": "dashboard",
+                        "label": "Dashboard",
+                        "icon": ""
+                    },
+                    {
+                        "value": "storage",
+                        "label": "Storage",
+                        "icon": ""
+                    },
+                                        {
+                        "value": "network",
+                        "label": "Network",
+                        "icon": ""
+                    },
+                    {
+                        "value": "accounts",
+                        "label": "Accounts",
+                        "icon": "",
+                        "isSelected": true
+                    },
+                    {
+                        "value": "calendar",
+                        "label": "Calendar",
+                        "icon": ""
+                    },
+                    {
+                        "value": "hardware",
+                        "label": "Hardware",
+                        "icon": ""
+                    },
+                    {
+                        "value": "appcafe",
+                        "label": "Appcafe",
+                        "icon": "",
+                        "isDisabled": true
+                    },
+                    {
+                        "value": "settings",
+                        "label": "Settings",
+                        "icon": "f"
+                    }
+                ]
+            }
+        },
+        "option": {
+            "prototype": "ui/main-menu-item.reel",
+            "properties": {
+                "element": {"#": "option"}
+            },
+            "bindings": {
+                "iteration": {"<-": "@repetition:iteration"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner">
+        <div data-montage-id="repetition">
+            <div data-montage-id="option"></div>
+        </div>
+    </div>
+</body>
+</html>

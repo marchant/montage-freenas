@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="table.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "headerRepetition": {"@": "headerRepetition"},
+                "rowRepetition": {"@": "rowRepetition"}
+            },
+            "bindings": {
+                "clickedColumn": {"<-": "@headerRepetition.selection.0"}
+            }
+        },
+        "headerRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "headerRepetition"},
+                "isSelectionEnabled": true
+            },
+            "bindings": {
+                "content": {"<-": "@owner.columns"}
+            }
+        },
+        "label": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "label"}
+            },
+            "bindings": {
+                "value": {"<-": "@headerRepetition:iteration.object.label"}
+            }
+        },
+        "rowRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "rowRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.content"}
+            }
+        },
+        "cellRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "cellRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.columns.map{@rowRepetition:iteration.object.path(expression)}"}
+            }
+        },
+        "cell": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cell"}
+            },
+            "bindings": {
+                "value": {"<-": "@cellRepetition:iteration.object"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Table">
+        <div data-montage-id="headerRepetition" class="Table-header">
+            <div data-montage-id="label" class="Table-label"></div>
+        </div>
+        <div data-montage-id="rowRepetition">
+            <div data-montage-id="cellRepetition" class="Table-row">
+                <div data-montage-id="cell" class="Table-cell"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

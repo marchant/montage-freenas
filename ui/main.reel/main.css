@@ -1,5 +1,64 @@
-.Main .DiskItem {
+.Main-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 165px;
+    overflow: auto;
+    background-image: linear-gradient(to bottom, #3d3d3d, #242424);
+}
 
-    min-width: 300px;
-    
+.Main-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-image: url(../../assets/images/freenas-logo.png);
+    background-size: 136px 31px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.Main-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Main-body {
+    position: absolute;
+    top: 0;
+    left: 165px;
+    right: 0;
+    bottom: 0;
+}
+
+.Main-notificationBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+
+.Main-contextualPanel {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 280px;
+    bottom: 0;
+}
+
+.Main-substitution {
+    position: absolute;
+    top: 50px;
+    right: 280px;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
 }

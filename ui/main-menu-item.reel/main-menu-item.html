@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main-menu-item.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('MainMenuItem--isDisabled')": {"<-": "iteration.object.isDisabled"},
+                "iteration.selected": {"<->": "iteration.object.isSelected"}
+            }
+        },
+        "icon": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "icon"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.iteration.object.icon"}
+            }
+        },
+        "label": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "label"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.iteration.object.label"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="MainMenuItem">
+        <div data-montage-id="icon" class="MainMenuItem-icon"></div>
+        <div data-montage-id="label"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="accounts-users.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "table": {
+            "prototype": "ui/table.reel",
+            "properties": {
+                "element": {"#": "table"},
+                "columns": [
+                    {
+                        "label": "Name",
+                        "expression": "name"
+                    },
+                    {
+                        "label": "Surname",
+                        "expression": "surname"
+                    },
+                    {
+                        "label": "Phone Number",
+                        "expression": "phone"
+                    },
+                    {
+                        "label": "Full Name",
+                        "expression": "surname + ', ' + name"
+                    }
+                ],
+                "content": [
+                    {
+                        "name": "Javier",
+                        "surname": "Roman Cortes",
+                        "phone": "872634876"
+                    },
+                    {
+                        "name": "Benoit",
+                        "surname": "Marchant",
+                        "phone": "+1230402304"
+                    },
+                    {
+                        "name": "Thibault",
+                        "surname": "Zanini",
+                        "phone": "23452345"
+                    },
+                    {
+                        "name": "John",
+                        "surname": "Doe",
+                        "phone": "123456789"
+                    }
+                ]
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="AccountsUsers">
+        <div data-montage-id="table"></div>
+    </div>
+</body>
+</html>

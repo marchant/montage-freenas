@@ -1,7 +1,7 @@
 var Component = require("montage/ui/component").Component;
 
 /**
- * @class Main
+ * @class Hardware
  * @extends Component
  */
-exports.Main = Component.specialize({});
+exports.Hardware = Component.specialize({});

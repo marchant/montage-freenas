@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "ElegantIcons";
+    src: url(../fonts/elegant-icons/ElegantIcons-d72ad3f702b9f23540e8ed78b4b65749.eot);
+    src: url(../fonts/elegant-icons/ElegantIcons-d72ad3f702b9f23540e8ed78b4b65749.eot?#iefix) format("embedded-opentype"), url(../fonts/elegant-icons/ElegantIcons-fdd9e757bf61675343dcf55100422b84.woff) format("woff"), url(../fonts/elegant-icons/ElegantIcons-f9d179f59b0878ffcd32a5b3c8ae9c62.ttf) format("truetype"), url(../fonts/elegant-icons/ElegantIcons-907b74de12b89805612e69cd9ece33f6.svg#ElegantIcons) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}

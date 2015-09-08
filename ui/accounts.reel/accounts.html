@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="accounts.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "accountTypeRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "accountTypeRepetition"},
+                "isSelectionEnabled": true,
+                "content": [
+                    {
+                        "value": "users",
+                        "label": "Users",
+                        "isSelected": true
+                    },
+                    {
+                        "value": "groups",
+                        "label": "Groups"
+                    }
+                ]
+            }
+        },
+        "accountType": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "accountType"}
+            },
+            "bindings": {
+                "iteration": {"<-": "@accountTypeRepetition:iteration"},
+                "value": {"<-": "iteration.object.label"},
+                "iteration.selected": {"<->": "iteration.object.isSelected"}
+            }
+        },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@accountTypeRepetition.selection.0.value"}
+            }
+        },
+        "users": {
+            "prototype": "ui/accounts-users.reel",
+            "properties": {
+                "element": {"#": "users"}
+            }
+        },
+        "groups": {
+            "prototype": "ui/accounts-groups.reel",
+            "properties": {
+                "element": {"#": "groups"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Accounts">
+        <div data-montage-id="accountTypeRepetition" class="Accounts-accountTypeRepetition">
+            <div data-montage-id="accountType" class="Accounts-accountType"></div>
+        </div>
+        <div data-montage-id="substitution" class="Accounts-substitution">
+            <div data-montage-id="users" data-arg="users"></div>
+            <div data-montage-id="groups" data-arg="groups"></div>
+        </div>
+    </div>
+</body>
+</html>

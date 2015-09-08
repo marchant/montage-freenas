@@ -2,9 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>
-        Main
-    </title>
+    <title>Main</title>
     <link rel="stylesheet" href="main.css">
     <script type="text/montage-serialization">
     {
@@ -13,121 +11,96 @@
                 "element": {"#": "main"}
             }
         },
-        "diskItem": {
-            "prototype": "ui/disk-item.reel",
+        "menu": {
+            "prototype": "ui/main-menu.reel",
             "properties": {
-                "element": {"#": "diskItem"},
-                "contenteditable": "true",
-                "dir": "ltr",
-                "draggable": "true"
-            },
-            "bindings": {
-                "disk": {"<-": "@flow:iteration.object"}
+                "element": {"#": "menu"}
             }
         },
-        "flow": {
-            "prototype": "montage/ui/flow.reel",
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
             "properties": {
-                "element": {"#": "flow"},
-                "cameraFov": 50,
-                "cameraPosition": [
-                    0,
-                    0,
-                    1500
-                ],
-                "cameraTargetPoint": [
-                    0,
-                    0,
-                    0
-                ],
-                "contenteditable": "true",
-                "dir": "ltr",
-                "draggable": "true",
-                "flowEditorMetadata": {
-                    "flowEditorVersion": 0.1,
-                    "shapes": [
-                        {
-                            "type": "FlowSpline",
-                            "name": "Spline 1",
-                            "pathIndex": 0
-                        }
-                    ]
-                },
-                "hasSelectedIndexScrolling": false,
-                "isSelectionEnabled": false,
-                "linearScrollingVector": [
-                    -300,
-                    0
-                ],
-                "paths": [
-                    {
-                        "knots": [
-                            {
-                                "previousHandlerPosition": [],
-                                "nextDensity": 10,
-                                "previousDensity": 10,
-                                "knotPosition": [
-                                    -2400,
-                                    0,
-                                    -1
-                                ],
-                                "rotateX": 0,
-                                "rotateY": 0,
-                                "rotateZ": 0,
-                                "opacity": 1,
-                                "nextHandlerPosition": [
-                                    -800,
-                                    0,
-                                    -1
-                                ]
-                            },
-                            {
-                                "knotPosition": [
-                                    2400,
-                                    0,
-                                    -1
-                                ],
-                                "nextHandlerPosition": [],
-                                "previousHandlerPosition": [
-                                    800,
-                                    0,
-                                    -1
-                                ],
-                                "nextDensity": 10,
-                                "previousDensity": 10,
-                                "rotateX": 0,
-                                "rotateY": 0,
-                                "rotateZ": 0,
-                                "opacity": 1
-                            }
-                        ],
-                        "units": {
-                            "rotateX": "",
-                            "rotateY": "",
-                            "rotateZ": "",
-                            "opacity": ""
-                        },
-                        "headOffset": 0,
-                        "tailOffset": 0
-                    }
-                ],
-                "scrollingTransitionDuration": 500,
-                "scrollingTransitionTimingFunction": "ease",
-                "scrollVectorX": true,
-                "scrollVectorY": true,
-                "selectedIndexScrollingOffset": 0
+                "element": {"#": "substitution"}
             },
             "bindings": {
-                "content": {"<-": "@owner.disks"}
+                "switchValue": {"<-": "@menu.selected.value"}
+            }
+        },
+        "dashboard": {
+            "prototype": "ui/dashboard.reel",
+            "properties": {
+                "element": {"#": "dashboard"}
+            }
+        },
+        "storage": {
+            "prototype": "ui/storage.reel",
+            "properties": {
+                "element": {"#": "storage"}
+            }
+        },
+        "network": {
+            "prototype": "ui/network.reel",
+            "properties": {
+                "element": {"#": "network"}
+            }
+        },
+        "accounts": {
+            "prototype": "ui/accounts.reel",
+            "properties": {
+                "element": {"#": "accounts"}
+            }
+        },
+        "calendar": {
+            "prototype": "ui/calendar.reel",
+            "properties": {
+                "element": {"#": "calendar"}
+            }
+        },
+        "hardware": {
+            "prototype": "ui/hardware.reel",
+            "properties": {
+                "element": {"#": "hardware"}
+            }
+        },
+        "settings": {
+            "prototype": "ui/settings.reel",
+            "properties": {
+                "element": {"#": "settings"}
+            }
+        },
+        "notificationBar": {
+            "prototype": "ui/notification-bar.reel",
+            "properties": {
+                "element": {"#": "notificationBar"}
+            }
+        },
+        "contextualPanel": {
+            "prototype": "ui/contextual-panel.reel",
+            "properties": {
+                "element": {"#": "contextualPanel"}
             }
         }
     }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0" data-montage-id="flow">
-            <div data-montage-id="diskItem" class="NAS"></div>
+    <div data-montage-id="main" class="Main">
+        <div class="Main-sidebar">
+            <div class="Main-logo"></div>
+            <div data-montage-id="menu" class="Main-menu"></div>
+        </div>
+        <div class="Main-body">
+            <div data-montage-id="notificationBar" class="Main-notificationBar"></div>
+            <div data-montage-id="substitution" class="Main-substitution">
+                <div data-montage-id="dashboard" data-arg="dashboard"></div>
+                <div data-montage-id="storage" data-arg="storage"></div>
+                <div data-montage-id="network" data-arg="network"></div>
+                <div data-montage-id="accounts" data-arg="accounts"></div>
+                <div data-montage-id="calendar" data-arg="calendar"></div>
+                <div data-montage-id="hardware" data-arg="hardware"></div>
+                <div data-montage-id="settings" data-arg="settings"></div>
+            </div>
+            <div data-montage-id="contextualPanel" class="Main-contextualPanel"></div>
         </div>
     </div>
 </body>

@@ -1,7 +1,7 @@
 var Component = require("montage/ui/component").Component;
 
 /**
- * @class Main
+ * @class NotificationBar
  * @extends Component
  */
-exports.Main = Component.specialize({});
+exports.NotificationBar = Component.specialize({});
