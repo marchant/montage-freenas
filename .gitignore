@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+console.log
+npm-cache
+npm-debug.log
+/node_modules
+/builds
