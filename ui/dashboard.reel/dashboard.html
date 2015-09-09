@@ -9,13 +9,33 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "cpuUsage": {
+            "prototype": "ui/cpu-usage-widget.reel",
+            "properties": {
+                "element": {"#": "cpuUsage"}
+            }
+        },
+        "networkTraffic": {
+            "prototype": "ui/network-traffic-widget.reel",
+            "properties": {
+                "element": {"#": "networkTraffic"}
+            }
+        },
+        "memoryAllocation": {
+            "prototype": "ui/memory-allocation-widget.reel",
+            "properties": {
+                "element": {"#": "memoryAllocation"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="Dashboard">
-        Dashboard
+        <div data-montage-id="cpuUsage"></div>
+        <div data-montage-id="networkTraffic"></div>
+        <div data-montage-id="memoryAllocation"></div>
     </div>
 </body>
 </html>
