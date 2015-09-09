@@ -9,13 +9,19 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "calendarWidget": {
+            "prototype": "ui/calendar-widget.reel",
+            "properties": {
+                "element": {"#": "calendarWidget"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="Calendar">
-        Calendar
+        <table data-montage-id="calendarWidget"></table>
     </div>
 </body>
 </html>
