@@ -9,13 +9,52 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "tabsRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "tabsRepetition"},
+                "isSelectionEnabled": true,
+                "content": [
+                    {
+                        "value": "dashboard",
+                        "icon": "",
+                        "isSelected": true
+                    },
+                    {
+                        "value": "storage",
+                        "icon": "v"
+                    },
+                                        {
+                        "value": "network",
+                        "icon": ""
+                    }
+                ]
+            }
+        },
+        "tab": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "tab"}
+            },
+            "bindings": {
+                "iteration": {"<-": "@tabsRepetition:iteration"},
+                "iteration.selected": {"<-": "iteration.object.isSelected"},
+                "value": {"<-": "iteration.object.icon"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="ContextualPanel">
-        Contextual Panel
+        <div data-montage-id="tabsRepetition" class="ContextualPanel-tabsRepetition">
+            <div data-montage-id="tab" class="ContextualPanel-tab"></div>
+        </div>
+        <h1 style="clear: both; margin: 0; padding: 12px 12px 8px 12px; opacity: .25;">PLACEHOLDER</h1>
+        <p style="margin: 0; padding: 0 12px; opacity: .25;">
+            As of September 8th, the master branch of <a href="https://github.com/freenas/gui">github.com/freenas/gui</a> had no content in this area, so we have added this placeholder.
+        </p>
     </div>
 </body>
 </html>

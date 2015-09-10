@@ -50,14 +50,14 @@
     position: absolute;
     top: 50px;
     right: 0;
-    width: 280px;
+    width: 279px;
     bottom: 0;
 }
 
 .Main-substitution {
     position: absolute;
     top: 50px;
-    right: 280px;
+    right: 279px;
     left: 0;
     bottom: 0;
     overflow: auto;

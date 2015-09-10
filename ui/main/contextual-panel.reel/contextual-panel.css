@@ -1,3 +1,47 @@
 .ContextualPanel {
     background-color: #f8f8f8;
 }
+
+.ContextualPanel-tab {
+    float: left;
+    width: 93px;
+    height: 40px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .05);
+    color: #0196d8;
+    font-family: "ElegantIcons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    font-size: 14px;
+    line-height: 37px;
+    text-align: center;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    border-bottom: 5px solid transparent;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ContextualPanel-tab:hover {
+    background-color: transparent;
+}
+
+.ContextualPanel-tab.selected:hover {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.ContextualPanel-tab.active {
+    background-color: white;
+}
+
+.ContextualPanel-tab.selected {
+    color: #3d3d3d;
+    border-bottom: 5px solid #0196d8;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .05), rgba(1, 150, 216, .4));
+    cursor: default;
+    pointer-events: none;
+}
