@@ -10,20 +10,26 @@
                 "element": {"#": "owner"}
             }
         },
+        "systemInfo": {
+            "prototype": "../system-info-widget.reel",
+            "properties": {
+                "element": {"#": "systemInfo"}
+            }
+        },
         "cpuUsage": {
-            "prototype": "ui/cpu-usage-widget.reel",
+            "prototype": "../cpu-usage-widget.reel",
             "properties": {
                 "element": {"#": "cpuUsage"}
             }
         },
         "networkTraffic": {
-            "prototype": "ui/network-traffic-widget.reel",
+            "prototype": "../network-traffic-widget.reel",
             "properties": {
                 "element": {"#": "networkTraffic"}
             }
         },
         "memoryAllocation": {
-            "prototype": "ui/memory-allocation-widget.reel",
+            "prototype": "../memory-allocation-widget.reel",
             "properties": {
                 "element": {"#": "memoryAllocation"}
             }
@@ -33,6 +39,7 @@
 </head>
 <body>
     <div data-montage-id="owner" class="Dashboard">
+        <div data-montage-id="systemInfo"></div>
         <div data-montage-id="cpuUsage"></div>
         <div data-montage-id="networkTraffic"></div>
         <div data-montage-id="memoryAllocation"></div>

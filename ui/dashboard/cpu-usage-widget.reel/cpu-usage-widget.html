@@ -2,7 +2,7 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="memory-allocation-widget.css">
+    <link rel="stylesheet" type="text/css" href="cpu-usage-widget.css">
     <script type="text/montage-serialization">
     {
         "owner": {
@@ -12,18 +12,29 @@
             }
         },
         "chart": {
-            "prototype": "ui/chart.reel",
+            "prototype": "ui/shared/chart.reel",
             "properties": {
                 "element": {"#": "chart"},
                 "data": {
-                    "type": "area-step"
+                    "type": "area",
+                    "groups": [
+                        ["User", "System"]
+                    ]
                 },
                 "axis": {
                     "x": {
                         "show": false
                     },
                     "y": {
-                        "tick": {}
+                        "max": 100,
+                        "min": 0,
+                        "padding": {
+                            "top": 0,
+                            "bottom": 0
+                        },
+                        "tick": {
+                            "values": [0, 25, 50, 75, 100]
+                        }
                     }
                 },
                 "point": {
@@ -34,8 +45,8 @@
                 }
             },
             "bindings": {
-                "tooltip.format.value": {"<-": "@owner.humanize"},
-                "axis.y.tick.format": {"<-": "@owner.humanizeRounding"}
+                "tooltip.format.value": {"<-": "@owner.percentageToString"},
+                "axis.y.tick.format": {"<-": "@owner.percentageToString"}
             }
         }
     }
