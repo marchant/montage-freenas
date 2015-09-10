@@ -237,7 +237,7 @@ Object.defineProperties(User.prototype, {
         configurable: true
     },
 
-    sudo: {
+    canSudo: {
         set: function (_sudo) {
             _sudo = !!_sudo;
 

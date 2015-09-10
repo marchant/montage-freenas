@@ -21,8 +21,8 @@ ApplicationDelegate.prototype.willFinishLoading = function (_app) {
     var backendBridge = new BackEndBridge();
 
     backendBridge.connect().then(function () {
-        _app.controller = new FreeNasController().initWithBackendBridge(backendBridge);
         _app.service = new FreeNasService().initWithBackendBridge(backendBridge);
+        _app.controller = new FreeNasController().initWithBackendBridgeAndApplication(backendBridge, _app);
 
         // demo purpose
         _app.controller.login("userpass", ["root", "Montage"]).then(function (response) {

@@ -10,50 +10,71 @@
                 "element": {"#": "owner"}
             }
         },
+
         "table": {
             "prototype": "ui/shared/table.reel",
             "properties": {
                 "element": {"#": "table"},
                 "columns": [
                     {
-                        "label": "Name",
-                        "expression": "name"
+                        "label": "User ID",
+                        "expression": "id",
+                        "type": "number"
                     },
                     {
-                        "label": "Surname",
-                        "expression": "surname"
+                        "label": "Username",
+                        "expression": "username",
+                        "type": "string"
                     },
                     {
-                        "label": "Phone Number",
-                        "expression": "phone"
+                        "label": "Primary Group ID",
+                        "expression": "group",
+                        "type": "number"
+                    },
+                    {
+                        "label": "Home Directory",
+                        "expression": "home",
+                        "type": "string"
+                    },
+                    {
+                        "label": "Shell",
+                        "expression": "shell",
+                        "type": "string"
                     },
                     {
                         "label": "Full Name",
-                        "expression": "surname + ', ' + name"
-                    }
-                ],
-                "content": [
-                    {
-                        "name": "Javier",
-                        "surname": "Roman Cortes",
-                        "phone": "872634876"
+                        "expression": "fullName",
+                        "type": "string"
                     },
                     {
-                        "name": "Benoit",
-                        "surname": "Marchant",
-                        "phone": "+1230402304"
+                        "label": "Built-in User",
+                        "expression": "isBuiltIn",
+                        "type": "boolean"
                     },
                     {
-                        "name": "Thibault",
-                        "surname": "Zanini",
-                        "phone": "23452345"
+                        "label": "E-mail",
+                        "expression": "email",
+                        "type": "string"
                     },
                     {
-                        "name": "John",
-                        "surname": "Doe",
-                        "phone": "123456789"
+                        "label": "Disable Password Login",
+                        "expression": "isPasswordDisabled",
+                        "type": "boolean"
+                    },
+                    {
+                        "label": "Lock User",
+                        "expression": "isLocked",
+                        "type": "boolean"
+                    },
+                    {
+                        "label": "Permit Sudo",
+                        "expression": "canSudo",
+                        "type": "boolean"
                     }
                 ]
+            },
+            "bindings": {
+                "content": {"<-": "@owner.userDataSource.data"}
             }
         }
     }

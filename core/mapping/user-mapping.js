@@ -24,7 +24,7 @@ exports.UserMapping = DataMapping.specialize({
             user.smbHash = rawObject.smbhash;
             user.shell = rawObject.shell;
             user.sshPublicKey = rawObject.sshpubkey;
-            user.sudo = rawObject.sudo;
+            user.canSudo = rawObject.sudo;
             user.unixHash = rawObject.unixhash;
             user.dateUpdated = rawObject["updated-at"];
 

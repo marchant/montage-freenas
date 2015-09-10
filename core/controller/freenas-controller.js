@@ -1,10 +1,13 @@
-var MessageCommand = require("core/backend/message-command").MessageCommand;
+var MessageCommand = require("core/backend/message-command").MessageCommand,
+    UserControllerDescriptor = require("core/controller/user-controller").UserController;
 
 var FreeNasController = exports.FreeNasController = function FreeNasController () {};
 
 
-FreeNasController.prototype.initWithBackendBridge = function (_backendBridge) {
+FreeNasController.prototype.initWithBackendBridgeAndApplication = function (_backendBridge, _app) {
     this._backend = _backendBridge;
+    this._application = _app;
+    this._service = _app.service;
 
     return this;
 };
@@ -43,3 +46,6 @@ FreeNasController.prototype.loginWithCredentials = function (_username, _passwor
 FreeNasController.prototype.loginWithToken = function (_token) {
     return this._backend.send(new MessageCommand("rpc", "auth_token", {token: _token}));
 };
+
+
+Object.defineProperties(FreeNasController.prototype, UserControllerDescriptor);
