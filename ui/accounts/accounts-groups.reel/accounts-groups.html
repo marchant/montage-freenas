@@ -9,13 +9,45 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+
+        "table": {
+            "prototype": "ui/shared/table.reel",
+            "properties": {
+                "element": {"#": "table"},
+                "columns": [
+                    {
+                        "label": "Group ID",
+                        "expression": "id",
+                        "type": "number"
+                    },
+                    {
+                        "label": "Group Name",
+                        "expression": "name",
+                        "type": "string"
+                    },
+                    {
+                        "label": "Built-in Group",
+                        "expression": "isBuiltIn",
+                        "type": "boolean"
+                    },
+                    {
+                        "label": "Permit Sudo",
+                        "expression": "canSudo",
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "bindings": {
+                "content": {"<-": "@owner.groupDataSource.data"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="AccountsGroups">
-        Accounts - Groups
+        <div data-montage-id="table"></div>
     </div>
 </body>
 </html>

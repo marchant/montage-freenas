@@ -1,5 +1,6 @@
 var MessageCommand = require("core/backend/message-command").MessageCommand,
-    UserControllerDescriptor = require("core/controller/user-controller").UserController;
+    UserControllerDescriptor = require("core/controller/user-controller").UserController,
+    GroupControllerDescriptor = require("core/controller/group-controller").GroupController;
 
 var FreeNasController = exports.FreeNasController = function FreeNasController () {};
 
@@ -49,3 +50,4 @@ FreeNasController.prototype.loginWithToken = function (_token) {
 
 
 Object.defineProperties(FreeNasController.prototype, UserControllerDescriptor);
+Object.defineProperties(FreeNasController.prototype, GroupControllerDescriptor);
