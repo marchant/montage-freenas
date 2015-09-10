@@ -24,6 +24,17 @@
             "properties": {
                 "mainModule": "ui/main/main.reel"
             }
+        },
+
+        "applicationDelegate": {
+            "prototype": "core/delegate/application-delegate"
+        },
+
+        "application": {
+            "prototype": "montage/core/application",
+            "properties": {
+                "delegate": {"@": "applicationDelegate"}
+            }
         }
     }
     </script>
