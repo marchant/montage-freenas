@@ -7,7 +7,97 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"}
+                "element": {"#": "owner"},
+                "hostname": "freenas.local",
+                "platform": "iXsystems FreeNAS Mini",
+                "osVersion": "FreeNAS X v0.1",
+                "cpuSpeed": "2.40GHz",
+                "cpuDetails": "8 Cores",
+                "memorySize": "17 GB",
+                "memoryDetails": "1866MHz ECC",
+                "drivesSize": "20 x 4 TB",
+                "drivesDetails": "7200rpm STA"
+            }
+        },
+        "hostname": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "hostname"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.hostname"}
+            }
+        },
+        "platform": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "platform"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.platform"}
+            }
+        },
+        "osVersion": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "osVersion"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.osVersion"}
+            }
+        },
+        "cpuSpeed": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cpuSpeed"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.cpuSpeed"}
+            }
+        },
+        "cpuDetails": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cpuDetails"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.cpuDetails"}
+            }
+        },
+        "memorySize": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "memorySize"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.memorySize"}
+            }
+        },
+        "memoryDetails": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "memoryDetails"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.memoryDetails"}
+            }
+        },
+        "drivesSize": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "drivesSize"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.drivesSize"}
+            }
+        },
+        "drivesDetails": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "drivesDetails"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.drivesDetails"}
             }
         }
     }
@@ -15,7 +105,36 @@
 </head>
 <body>
     <div data-montage-id="owner" class="SystemInfoWidget">
-        System Info
+        <div class="SystemInfoWidget-software">
+            <div data-montage-id="hostname" class="SystemInfoWidget-hostname"></div>
+            <table class="SystemInfoWidget-table">
+                <tr>
+                    <td class="SystemInfoWidget-tableProperty">Platform</td>
+                    <td class="SystemInfoWidget-tableValue" data-montage-id="platform"></td>
+                </tr>
+                <tr>
+                    <td class="SystemInfoWidget-tableProperty">OS Version</td>
+                    <td class="SystemInfoWidget-tableValue" data-montage-id="osVersion"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="SystemInfoWidget-hardware">
+            <div class="SystemInfoWidget-cpu">
+                <span class="SystemInfoWidget-property">CPU</span>
+                <span data-montage-id="cpuSpeed" class="SystemInfoWidget-value"></span>
+                <span data-montage-id="cpuDetails" class="SystemInfoWidget-details"></span>
+            </div>
+            <div class="SystemInfoWidget-memory">
+                <span class="SystemInfoWidget-property">Memory</span>
+                <span data-montage-id="memorySize" class="SystemInfoWidget-value"></span>
+                <span data-montage-id="memoryDetails" class="SystemInfoWidget-details"></span>
+            </div>
+            <div class="SystemInfoWidget-drives">
+                <span class="SystemInfoWidget-property">Drives</span>
+                <span data-montage-id="drivesSize" class="SystemInfoWidget-value"></span>
+                <span data-montage-id="drivesDetails" class="SystemInfoWidget-details"></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>
