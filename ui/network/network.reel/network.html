@@ -7,7 +7,62 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"}
+                "element": {"#": "owner"},
+                "addDnsInput": {"#": "addDnsInput"},
+
+                "hostname": "freenas.local",
+                "ipV4defaultGateway": "10.5.0.1",
+                "ipV6defaultGateway": "0:0:0:0:0:ffff:a05:1",
+                "serverList": [
+                    "10.5.0.1",
+                    "8.8.8.8",
+                    "0:0:0:0:0:ffff:a05:1"
+                ]
+            }
+        },
+        "hostname": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "hostname"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.hostname"}
+            }
+        },
+        "ipV4defaultGateway": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "ipV4defaultGateway"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.ipV4defaultGateway"}
+            }
+        },
+        "ipV6defaultGateway": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "ipV6defaultGateway"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.ipV6defaultGateway"}
+            }
+        },
+        "serverList": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "serverList"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.serverList"}
+            }
+        },
+        "serverListItem": {
+            "prototype": "../dns-server-list-item.reel",
+            "properties": {
+                "element": {"#": "serverListItem"}
+            },
+            "bindings": {
+                "ip": {"<-": "@serverList:iteration.object"}
             }
         }
     }
@@ -15,7 +70,31 @@
 </head>
 <body>
     <div data-montage-id="owner" class="Network">
-        Network
+        <h3 class="Network-title">Network Configuration</h3>
+        <div class="Network-row">
+            <div class="Network-addresses">
+                <div>
+                    <div class="Network-addresses-label">Hostname</div>
+                    <div class="Network-addresses-value"><input data-montage-id="hostname"></div>
+                </div>
+                <div>
+                    <div class="Network-addresses-label">IPv4 Default Gateway</div>
+                    <div class="Network-addresses-value"><input data-montage-id="ipV4defaultGateway"></div>
+                </div>
+                <div>
+                    <div class="Network-addresses-label">IPv6 Default Gateway</div>
+                    <div class="Network-addresses-value"><input data-montage-id="ipV6defaultGateway"></div>
+                </div>
+            </div>
+            <div class="Network-dnsServers">
+                <h5 class="Network-dnsServers-title">DNS Servers</h5>
+                <div data-montage-id="serverList" class="Network-serverList">
+                    <div data-montage-id="serverListItem"></div>
+                </div>
+                <span class="Network-addDns-label">Enter new DNS server</span>
+                <input data-montage-id="addDnsInput" class="Network-addDns" required>
+            </div>
+        </div>
     </div>
 </body>
 </html>

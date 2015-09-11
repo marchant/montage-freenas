@@ -1,3 +1,131 @@
 .Network {
+    padding-top: 15px;
+}
 
+.Network input {
+    display: block;
+    width: 100%;
+    -webkit-appearance: textfield;
+    font-family: inherit;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    height: 30px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline: none;
+    -webkit-transition: all ease-in-out .15s;
+}
+
+.Network input:focus {
+    border-color: #0196d8;
+    box-shadow: 0 0 6px rgba(1, 150, 216, .5);
+}
+
+.Network-title {
+    color: #333;
+    font-size: 24px;
+    line-height: 26.4px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 200;
+}
+
+.Network-addresses {
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.Network-addresses:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+}
+
+.Network-addresses-label {
+    padding: 0 15px;
+    box-sizing: border-box;
+    color: #333;
+}
+
+.Network-addresses-value {
+    position: relative;
+    padding: 0 15px;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.Network-dnsServers {
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.Network-dnsServers-title {
+    padding: 10px 15px;
+    color: #333;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 15.4px;
+    margin: 0;
+}
+
+.Network-serverList {
+    padding: 0 15px;
+    height: 55px;
+    max-width: 300px;
+    overflow-y: scroll;
+}
+
+input.Network-addDns {
+    margin-left: 15px;
+    width: 75%;
+    max-width: 250px;
+    background: transparent;
+}
+
+.Network-addDns-label {
+    position: absolute;
+    z-index: -1;
+    margin-left: 28px;
+    line-height: 32px;
+    color: #aaa;
+}
+
+input.Network-addDns:valid,
+input.Network-addDns:focus {
+    background: white;
+}
+
+@media (min-width: 1200px) {
+    .Network-addresses,
+    .Network-dnsServers {
+        float: left;
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .Network-addresses-label {
+        float: left;
+        width: 33%;
+    }
+    .Network-addresses-value {
+        float: left;
+        width: 67%;
+    }
+}
+
+@media (min-width: 768px) {
+    .Network-addresses-label {
+        float: left;
+        width: 42%;
+    }
+    .Network-addresses-value {
+        float: left;
+        width: 58%;
+    }
 }

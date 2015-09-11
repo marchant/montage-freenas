@@ -1,0 +1,32 @@
+.DnsServerListItem {
+    height: 23px;
+    margin-bottom: 5px;
+}
+
+.DnsServerListItem-ip {
+    color: #333;
+    line-height: 17px;
+}
+
+.DnsServerListItem-delete {
+    float: right;
+    width: 23px;
+    height: 23px;
+    background: #b8252f;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+}
+
+.DnsServerListItem-delete:hover {
+    background: #a3212a;
+}
+
+.DnsServerListItem-delete:before {
+    content: "\d7";
+    color: white;
+    display: block;
+    line-height: 23px;
+    width: 23px;
+    text-align: center;
+}
