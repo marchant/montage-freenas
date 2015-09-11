@@ -17,6 +17,46 @@
                     "10.5.0.1",
                     "8.8.8.8",
                     "0:0:0:0:0:ffff:a05:1"
+                ],
+                "interfaces": [
+                    {
+                        "name": "igb2",
+                        "isActive": true,
+                        "staticIp": "10.5.5.231/16",
+                        "isDhcpEnabled": true,
+                        "ethernetAdapterSpeed": 10,
+                        "mac": "d0:50:99:50:45:41"
+                    },
+                    {
+                        "name": "igb1",
+                        "isActive": false,
+                        "staticIp": "10.5.5.230/16",
+                        "isDhcpEnabled": true,
+                        "ethernetAdapterSpeed": 1000,
+                        "mac": "d0:50:99:50:45:3a"
+                    },
+                    {
+                        "name": "igb0",
+                        "isActive": true,
+                        "staticIp": "10.5.5.229/16",
+                        "isDhcpEnabled": false,
+                        "ethernetAdapterSpeed": 100,
+                        "mac": "d0:50:99:50:45:39",
+                        "aliases": [
+                            {
+                                "alias": "IPv4",
+                                "ip": "10.5.0.241"
+                            },
+                            {
+                                "alias": "Netmask",
+                                "ip": "/16"
+                            },
+                            {
+                                "alias": "Broadcast",
+                                "ip": "10.5.255.255"
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -88,6 +128,24 @@
                     "listener": {"@": "owner"}
                 }
             ]
+        },
+        "interfaces": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "interfaces"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.interfaces"}
+            }
+        },
+        "interface": {
+            "prototype": "../interface.reel",
+            "properties": {
+                "element": {"#": "interface"}
+            },
+            "bindings": {
+                "interface": {"<-": "@interfaces:iteration.object"}
+            }
         }
     }
     </script>
@@ -123,8 +181,8 @@
             <div data-montage-id="apply" class="Network-applyButton">Apply</div>
             <div data-montage-id="reset" class="Network-resetButton">Reset</div>
         </div>
-        <div class="Network-interfaces">
-
+        <div data-montage-id="interfaces" class="Network-interfaces">
+            <div data-montage-id="interface"></div>
         </div>
     </div>
 </body>

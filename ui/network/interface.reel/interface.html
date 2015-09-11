@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="interface.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('Interface-isActive')": {"<-": "interface.isActive"},
+                "classList.has('Interface-ethernetAdapter10')":
+                    {"<-": "interface.ethernetAdapterSpeed == 10"},
+                "classList.has('Interface-ethernetAdapter100')":
+                    {"<-": "interface.ethernetAdapterSpeed == 100"},
+                "classList.has('Interface-ethernetAdapter1000')":
+                    {"<-": "interface.ethernetAdapterSpeed == 1000"}
+            }
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.interface.name"}
+            }
+        },
+        "toggle": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "toggle"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "staticIp": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "staticIp"},
+                "enabled": false
+            },
+            "bindings": {
+                "value": {"<->": "@owner.interface.staticIp"}
+            }
+        },
+        "enableDhcpCheckbox": {
+            "prototype": "montage/ui/checkbox.reel",
+            "properties": {
+                "element": {"#": "enableDhcpCheckbox"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.interface.isDhcpEnabled"},
+                "enabled": {"<-": "@owner.interface.isActive"}
+            }
+        },
+        "mac": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "mac"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.interface.mac"}
+            }
+        },
+        "aliases": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "aliases"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.interface.aliases"}
+            }
+        },
+        "alias": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "alias"}
+            },
+            "bindings": {
+                "value": {"<-": "@aliases:iteration.object.alias"}
+            }
+        },
+        "aliasIp": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "aliasIp"}
+            },
+            "bindings": {
+                "value": {"<-": "@aliases:iteration.object.ip"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <!--
+                        "name": "igb0",
+                        "isActive": true,
+                        "staticIp": "10.5.5.229/16",
+                        "isDhcpEnabled": false,
+                        "ethernetAdapterSpeed": 100,
+                        "mac": "d0:50:99:50:45:39",
+                        "aliases": [
+                            {
+                                "alias": "IPv4",
+                                "ip": "10.5.0.241"
+                            },
+                            {
+                                "alias": "Netmask",
+                                "ip": "/16"
+                            },
+                            {
+                                "alias": "Broadcast",
+                                "ip": "10.5.255.255"
+                            }
+                        }
+                    -->
+    <div data-montage-id="owner" class="Interface">
+        <div data-montage-id="name" class="Interface-name"></div>
+        <div data-montage-id="toggle" class="Interface-toggle"></div>
+        <div class="Interface-staticIpLabel">Static IP:</div>
+        <input data-montage-id="staticIp" class="Interface-staticIp">
+        <label class="Interface-enableDhcpLabel">
+            <input data-montage-id="enableDhcpCheckbox" type="checkbox">
+            Enable DHCP
+        </label>
+        <div class="Interface-ethernetAdapter">
+            <span class="Interface-10">10</span>/<!--
+         --><span class="Interface-100">100</span>/<!--
+         --><span class="Interface-1000">1000</span>
+            Ethernet Adapter
+        </div>
+        <span class="Interface-macLabel">MAC:</span>
+        <span data-montage-id="mac" class="Interface-mac"></span>
+        <div class="Interface-aliases-label">Aliases</div>
+        <div class="Interface-aliases" data-montage-id="aliases">
+            <div>
+                <span data-montage-id="alias" class="Interface-alias"></span>
+                <span data-montage-id="aliasIp" class="Interface-aliasIp"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

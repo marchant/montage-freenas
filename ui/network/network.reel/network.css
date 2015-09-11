@@ -2,7 +2,7 @@
     padding-top: 15px;
 }
 
-.Network input {
+.Network input:not([type]) {
     display: block;
     width: 100%;
     -webkit-appearance: textfield;
@@ -18,7 +18,7 @@
     -webkit-transition: all ease-in-out .15s;
 }
 
-.Network input:focus {
+.Network input:not([type]):focus {
     border-color: #0196d8;
     box-shadow: 0 0 6px rgba(1, 150, 216, .5);
 }
@@ -136,6 +136,8 @@ input.Network-addDns:focus {
 .Network-interfaces {
     clear: both;
     border-top: 1px solid #dedede;
+    padding-left: 14px;
+    padding-top: 14px;
 }
 
 @media (min-width: 1200px) {
