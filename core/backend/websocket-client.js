@@ -260,7 +260,7 @@ WebSocketClient.prototype.sendCommand = function (_messageCommand) {
             this._addPendingCommand(_messageCommand, deferred);
         } else {
             this._addPendingCommand(_messageCommand, deferred);
-            this.connect().catch(Function.noop).done();
+            this.connect().catch(Function.noop);
         }
     } else {
         deferred.reject("Sending a command requires a MessageCommand Object");
