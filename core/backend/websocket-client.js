@@ -135,7 +135,11 @@ WebSocketClient.prototype._handleMessage = function (_event) {
                 if (data.name === "response") { // maybe event ?
                     deferred.resolve(new ResponseCommand(data.args, data));
 
+                } else if (data.name === "error") {
+                    deferred.reject("Error Server, code:"+ data.args.code + " , message:" + data.args.message);
+
                 } else {
+                    debugger
                     deferred.reject("Need investigate");
                 }
             } else {
