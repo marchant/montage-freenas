@@ -57,7 +57,7 @@
                 "element": {"#": "cpuDetails"}
             },
             "bindings": {
-                "value": {"<-": "@owner.system.cpu.cores"}
+                "value": {"<-": "@owner.system.cpu.cores + (@owner.system.cpu.cores > 1 ? ' Cores' : ' Core')"}
             }
         },
         "memorySize": {
