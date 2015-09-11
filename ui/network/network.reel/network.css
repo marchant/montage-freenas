@@ -61,7 +61,7 @@
 
 .Network-dnsServers {
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 0 15px 15px 15px;
 }
 
 .Network-dnsServers-title {
@@ -98,6 +98,44 @@ input.Network-addDns {
 input.Network-addDns:valid,
 input.Network-addDns:focus {
     background: white;
+}
+
+.Network-applyButton,
+.Network-resetButton {
+    float: right;
+    margin-right: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 300;
+    line-height: 20px;
+    background-image: linear-gradient(to bottom, #0196d8, #0184bf);
+    outline: none;
+    cursor: pointer;
+}
+
+.Network-applyButton:hover {
+    background: #0079b7;
+}
+
+.Network-resetButton {
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    color: #333;
+    background-image: linear-gradient(to bottom, #fff, #f2f2f2);
+}
+
+.Network-resetButton:hover {
+    background: white;
+}
+
+.Network-interfaces {
+    clear: both;
+    border-top: 1px solid #dedede;
 }
 
 @media (min-width: 1200px) {

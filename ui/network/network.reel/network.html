@@ -64,6 +64,30 @@
             "bindings": {
                 "ip": {"<-": "@serverList:iteration.object"}
             }
+        },
+        "apply": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "apply"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "reset": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "reset"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         }
     }
     </script>
@@ -71,7 +95,7 @@
 <body>
     <div data-montage-id="owner" class="Network">
         <h3 class="Network-title">Network Configuration</h3>
-        <div class="Network-row">
+        <div>
             <div class="Network-addresses">
                 <div>
                     <div class="Network-addresses-label">Hostname</div>
@@ -94,6 +118,13 @@
                 <span class="Network-addDns-label">Enter new DNS server</span>
                 <input data-montage-id="addDnsInput" class="Network-addDns" required>
             </div>
+        </div>
+        <div>
+            <div data-montage-id="apply" class="Network-applyButton">Apply</div>
+            <div data-montage-id="reset" class="Network-resetButton">Reset</div>
+        </div>
+        <div class="Network-interfaces">
+
         </div>
     </div>
 </body>

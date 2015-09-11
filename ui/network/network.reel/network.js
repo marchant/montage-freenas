@@ -20,6 +20,18 @@ exports.Network = Component.specialize({
                 alert("user entered a new DNS");
             }
         }
+    },
+
+    handleResetAction: {
+        value: function () {
+            alert("reset");
+        }
+    },
+
+    handleApplyAction: {
+        value: function () {
+            alert("apply");
+        }
     }
 
 });
