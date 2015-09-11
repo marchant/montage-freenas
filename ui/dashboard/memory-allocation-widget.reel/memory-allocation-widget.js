@@ -1,5 +1,5 @@
 var Component = require("montage/ui/component").Component,
-    ByteCalc = require("core/ByteCalc");
+    ByteCalc = require("core/utility/ByteCalc");
 
 /**
  * @class MemoryAllocationWidget

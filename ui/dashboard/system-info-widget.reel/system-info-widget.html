@@ -8,12 +8,8 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"},
-                "hostname": "freenas.local",
                 "platform": "iXsystems FreeNAS Mini",
                 "osVersion": "FreeNAS X v0.1",
-                "cpuSpeed": "2.40GHz",
-                "cpuDetails": "8 Cores",
-                "memorySize": "17 GB",
                 "memoryDetails": "1866MHz ECC",
                 "drivesSize": "20 x 4 TB",
                 "drivesDetails": "7200rpm STA"
@@ -25,7 +21,7 @@
                 "element": {"#": "hostname"}
             },
             "bindings": {
-                "value": {"<-": "@owner.hostname"}
+                "value": {"<-": "@owner.system.hostname"}
             }
         },
         "platform": {
@@ -52,7 +48,7 @@
                 "element": {"#": "cpuSpeed"}
             },
             "bindings": {
-                "value": {"<-": "@owner.cpuSpeed"}
+                "value": {"<-": "@owner.system.cpu.frequency"}
             }
         },
         "cpuDetails": {
@@ -61,7 +57,7 @@
                 "element": {"#": "cpuDetails"}
             },
             "bindings": {
-                "value": {"<-": "@owner.cpuDetails"}
+                "value": {"<-": "@owner.system.cpu.cores"}
             }
         },
         "memorySize": {
@@ -70,7 +66,7 @@
                 "element": {"#": "memorySize"}
             },
             "bindings": {
-                "value": {"<-": "@owner.memorySize"}
+                "value": {"<-": "@owner.system.humanReadableMemorySize"}
             }
         },
         "memoryDetails": {
