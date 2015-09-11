@@ -10,33 +10,15 @@
                 "element": {"#": "owner"}
             }
         },
-        "accountTypeRepetition": {
-            "prototype": "montage/ui/repetition.reel",
+        "typeButtonGroup": {
+            "prototype": "ui/shared/button-group.reel",
             "properties": {
-                "element": {"#": "accountTypeRepetition"},
-                "isSelectionEnabled": true,
-                "content": [
-                    {
-                        "value": "users",
-                        "label": "Users",
-                        "isSelected": true
-                    },
-                    {
-                        "value": "groups",
-                        "label": "Groups"
-                    }
-                ]
-            }
-        },
-        "accountType": {
-            "prototype": "montage/ui/text.reel",
-            "properties": {
-                "element": {"#": "accountType"}
-            },
-            "bindings": {
-                "iteration": {"<-": "@accountTypeRepetition:iteration"},
-                "value": {"<-": "iteration.object.label"},
-                "iteration.selected": {"<->": "iteration.object.isSelected"}
+                "element": {"#": "typeButtonGroup"},
+                "options": [
+                    {"value": "users", "label": "Users"},
+                    {"value": "groups", "label": "Groups"}
+                ],
+                "selectedValue": "users"
             }
         },
         "substitution": {
@@ -45,7 +27,7 @@
                 "element": {"#": "substitution"}
             },
             "bindings": {
-                "switchValue": {"<-": "@accountTypeRepetition.selection.0.value"}
+                "switchValue": {"<-": "@typeButtonGroup.selectedValue"}
             }
         },
         "users": {
@@ -65,9 +47,7 @@
 </head>
 <body>
     <div data-montage-id="owner" class="Accounts">
-        <div data-montage-id="accountTypeRepetition" class="Accounts-accountTypeRepetition">
-            <div data-montage-id="accountType" class="Accounts-accountType"></div>
-        </div>
+        <div data-montage-id="typeButtonGroup" class="Accounts-typeButtonGroup"></div>
         <div data-montage-id="substitution" class="Accounts-substitution">
             <div data-montage-id="users" data-arg="users"></div>
             <div data-montage-id="groups" data-arg="groups"></div>

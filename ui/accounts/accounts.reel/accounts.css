@@ -1,44 +1,4 @@
-.Accounts {
-    text-align: center;
+.Accounts-typeButtonGroup {
+    text-align: center
 }
 
-.Accounts-accountTypeRepetition {
-    display: inline-block;
-}
-
-.Accounts-accountType {
-    background-color: white;
-    background-image: linear-gradient(to bottom, white, #f2f2f2);
-    border: 1px solid #ccc;
-    color: #333;
-    font-weight: 300;
-    text-align: center;
-    white-space: nowrap;
-    cursor: pointer;
-    box-sizing: border-box;
-    font-size: 18px;
-    line-height: 1.33;
-    padding: 10px 16px;
-    float: left;
-}
-
-.Accounts-accountType:first-child {
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-}
-
-.Accounts-accountType:last-child {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
-
-.Accounts-accountType.selected {
-    background-color: #59378d;
-    background-image: none;
-    border-color: #492d74;
-    color: white;
-}
-
-.Accounts-substitution {
-    text-align: left;
-}

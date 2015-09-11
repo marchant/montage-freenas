@@ -9,13 +9,27 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "sectionButtonGroup": {
+            "prototype": "ui/shared/button-group.reel",
+            "properties": {
+                "element": {"#": "sectionButtonGroup"},
+                "options": [
+                    {"value": "system", "label": "System"},
+                    {"value": "updates", "label": "Updates"},
+                    {"value": "security", "label": "Security"},
+                    {"value": "alerts", "label": "Alerts"},
+                    {"value": "support", "label": "Support"}
+                ],
+                "selectedValue": "system"
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="Settings">
-        Settings
+        <div data-montage-id="sectionButtonGroup" class="Settings-sectionButtonGroup"></div>
     </div>
 </body>
 </html>
