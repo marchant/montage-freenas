@@ -14,7 +14,7 @@ exports.Table = Component.specialize({
         value: false
     },
 
-    clickedColumn: {
+    activeColumn: {
         set: function (value) {
             var self;
 
@@ -27,10 +27,6 @@ exports.Table = Component.specialize({
                     this.reversed = !this.reversed;
                 }
                 this.rowRepetition.contentController.reversed = this.reversed;
-                self = this;
-                setTimeout(function () {
-                    self.headerRepetition.contentController.selection = [];
-                }, 0);
             }
         }
     }

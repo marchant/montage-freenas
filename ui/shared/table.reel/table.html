@@ -8,11 +8,10 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"},
-                "headerRepetition": {"@": "headerRepetition"},
                 "rowRepetition": {"@": "rowRepetition"}
             },
             "bindings": {
-                "clickedColumn": {"<-": "@headerRepetition.selection.0"}
+                "activeColumn": {"<-": "@headerRepetition.activeIterations.0.object"}
             }
         },
         "headerRepetition": {
