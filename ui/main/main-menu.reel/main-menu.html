@@ -6,10 +6,8 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"}
-            },
-            "bindings": {
-                "selected": {"<->": "@repetition.selection.0"}
+                "element": {"#": "owner"},
+                "selectedValue": "dashboard"
             }
         },
         "repetition": {
@@ -21,8 +19,7 @@
                     {
                         "value": "dashboard",
                         "label": "Dashboard",
-                        "icon": "",
-                        "isSelected": true
+                        "icon": ""
                     },
                     {
                         "value": "storage",
@@ -69,7 +66,8 @@
                 "element": {"#": "option"}
             },
             "bindings": {
-                "iteration": {"<-": "@repetition:iteration"}
+                "iteration": {"<-": "@repetition:iteration"},
+                "iteration.selected": {"<->": "@owner.selectedValue == iteration.object.value"}
             }
         }
     }

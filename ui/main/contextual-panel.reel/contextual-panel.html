@@ -7,7 +7,8 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"}
+                "element": {"#": "owner"},
+                "selectedValue": "dashboard"
             }
         },
         "tabsRepetition": {
@@ -18,8 +19,7 @@
                 "content": [
                     {
                         "value": "dashboard",
-                        "icon": "",
-                        "isSelected": true
+                        "icon": ""
                     },
                     {
                         "value": "storage",
@@ -39,7 +39,7 @@
             },
             "bindings": {
                 "iteration": {"<-": "@tabsRepetition:iteration"},
-                "iteration.selected": {"<-": "iteration.object.isSelected"},
+                "iteration.selected": {"<->": "@owner.selectedValue == iteration.object.value"},
                 "value": {"<-": "iteration.object.icon"}
             }
         }
