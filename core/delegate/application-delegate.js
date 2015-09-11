@@ -6,7 +6,7 @@ var BackEndBridge = require("core/backend/backend-bridge").BackEndBridge,
 
 
 // development purpose
-window["__DEVELOPMENT_CONNECTION__"] = "172.16.64.128";
+window["__DEVELOPMENT_CONNECTION__"] = "freenas.local";
 
 
 /**
