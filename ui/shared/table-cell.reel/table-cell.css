@@ -1,0 +1,4 @@
+.TableCell-true:before {
+    content: "✓";
+    color: #0dc92e;
+}

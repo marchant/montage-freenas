@@ -4,6 +4,11 @@
 
 .Table-header {
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .Table-row,
@@ -37,6 +42,7 @@
     padding: 5px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    height: 19px;
 }
 
 .Table-label {
@@ -51,4 +57,16 @@
 
 .Table-label:hover {
     background: #555;
+}
+
+.Table-label-orderBy:before {
+    content: "▲";
+    font-size: 9px;
+    line-height: 20px;
+    padding-right: 6px;
+    opacity: .6;
+}
+
+.Table-reverseSorting .Table-label-orderBy:before {
+    content: "▼";
 }

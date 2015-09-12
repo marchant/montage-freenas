@@ -8,10 +8,11 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"},
-                "rowRepetition": {"@": "rowRepetition"}
+                "rowRepetitionController": {"@": "rowRepetitionController"}
             },
             "bindings": {
-                "activeColumn": {"<-": "@headerRepetition.activeIterations.0.object"}
+                "activeColumn": {"<-": "@headerRepetition.activeIterations.0.object"},
+                "classList.has('Table-reverseSorting')": {"<-": "@owner._reversed"}
             }
         },
         "headerRepetition": {
@@ -30,16 +31,21 @@
                 "element": {"#": "label"}
             },
             "bindings": {
-                "value": {"<-": "@headerRepetition:iteration.object.label"}
+                "value": {"<-": "@headerRepetition:iteration.object.label"},
+                "classList.has('Table-label-orderBy')": {"<-": "@headerRepetition:iteration.object.expression == @owner._orderBy"}
+            }
+        },
+        "rowRepetitionController": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.content"}
             }
         },
         "rowRepetition": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
-                "element": {"#": "rowRepetition"}
-            },
-            "bindings": {
-                "content": {"<-": "@owner.content"}
+                "element": {"#": "rowRepetition"},
+                "contentController": {"@": "rowRepetitionController"}
             }
         },
         "cellRepetition": {
@@ -52,12 +58,13 @@
             }
         },
         "cell": {
-            "prototype": "montage/ui/text.reel",
+            "prototype": "../table-cell.reel",
             "properties": {
                 "element": {"#": "cell"}
             },
             "bindings": {
-                "value": {"<-": "@cellRepetition:iteration.object"}
+                "value": {"<-": "@cellRepetition:iteration.object"},
+                "type": {"<-": "@owner.columns[@cellRepetition:iteration.index].type"}
             }
         }
     }

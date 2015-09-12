@@ -6,11 +6,48 @@ var Component = require("montage/ui/component").Component;
  */
 exports.Table = Component.specialize({
 
-    orderBy: {
+    _initOrderBy: {
+        value: function () {
+            if (this._rowRepetitionController && this._columns && this._columns[0]) {
+                this._orderBy = this._columns[0].expression;
+                this._rowRepetitionController.sortPath = this._orderBy;
+            }
+        }
+    },
+
+    _columns: {
         value: null
     },
 
-    reversed: {
+    columns: {
+        get: function () {
+            return this._columns;
+        },
+        set: function (value) {
+            this._columns = value;
+            this._initOrderBy();
+        }
+    },
+
+    _rowRepetitionController: {
+        value: null
+    },
+
+    rowRepetitionController: {
+        get: function () {
+            return this._rowRepetitionController;
+        },
+        set: function (value) {
+            this._rowRepetitionController = value;
+            this._initOrderBy();
+        }
+    },
+
+    _orderBy: {
+        value: null
+    },
+
+    _reversed: {
         value: false
     },
 
@@ -19,14 +56,14 @@ exports.Table = Component.specialize({
             var self;
 
             if (value) {
-                if (this.orderBy !== value.expression) {
-                    this.orderBy = value.expression;
-                    this.rowRepetition.contentController.sortPath = this.orderBy;
-                    this.reversed = false;
+                if (this._orderBy !== value.expression) {
+                    this._orderBy = value.expression;
+                    this.rowRepetitionController.sortPath = this._orderBy;
+                    this._reversed = false;
                 } else {
-                    this.reversed = !this.reversed;
+                    this._reversed = !this._reversed;
                 }
-                this.rowRepetition.contentController.reversed = this.reversed;
+                this.rowRepetitionController.reversed = this._reversed;
             }
         }
     }
