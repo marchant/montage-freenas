@@ -22,7 +22,6 @@ exports.Main = Component.specialize({
     //fixme: need to be removed, just waiting for connection UI
     handleConnectionEstablished: {
         value: function () {
-            console.log("yeah")
             this.blockDrawGate.setField("connectionEstablished", true);
         }
     }
