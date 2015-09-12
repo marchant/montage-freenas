@@ -17,6 +17,7 @@ var ApplicationDelegate = exports.ApplicationDelegate = function ApplicationDele
 
 ApplicationDelegate.prototype.willFinishLoading = function (_app) {
     _app.configuration = new Configuration().init();
+    _app.isReady = false;
 
     var backendBridge = new BackEndBridge();
 
@@ -24,9 +25,11 @@ ApplicationDelegate.prototype.willFinishLoading = function (_app) {
         _app.service = new FreeNasService().initWithBackendBridge(backendBridge);
         _app.controller = new FreeNasController().initWithBackendBridgeAndApplication(backendBridge, _app);
 
+        //fixme: need to be removed, just waiting for connection UI
         // demo purpose
         _app.controller.login("userpass", ["root", "Montage"]).then(function (response) {
-            console.log("root logged!");
+            _app.isReady = true;
+            _app.dispatchEventNamed("connectionEstablished", true, true);
         });
 
     }, function (error) {
