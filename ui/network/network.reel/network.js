@@ -6,10 +6,21 @@ var Component = require("montage/ui/component").Component;
  */
 exports.Network = Component.specialize({
 
+    networkConfigProxy: {
+        value: null
+    },
+
+    serverListComponent: {
+        value: null
+    },
+
     enterDocument: {
         value: function (isFirstTime) {
             if (isFirstTime) {
+                // fixme: -> need to use a montage text-input component
+                // hitting the key enter raise an action event.
                 this.addDnsInput.addEventListener("keydown", this, false);
+                this._getNetworkConfig();
             }
         }
     },
@@ -17,7 +28,9 @@ exports.Network = Component.specialize({
     handleKeydown: {
         value: function (event) {
             if (event.keyCode === 13) {
-                alert("user entered a new DNS");
+                if (this._addDnsAddress(this.addDnsInput.value)) {
+                    this.addDnsInput.value = ""; //fixme: [need discussion] do we need to reset the field?
+                }
             }
         }
     },
@@ -31,6 +44,38 @@ exports.Network = Component.specialize({
     handleApplyAction: {
         value: function () {
             alert("apply");
+        }
+    },
+
+    handleDeleteDnsAddressAction: {
+        value: function (event) {
+            var iteration = this.serverListComponent._findIterationContainingElement(event.target.element);
+
+            if (iteration) {
+                this._removeDnsAddress(iteration.object);
+            }
+        }
+    },
+
+    _addDnsAddress: {
+        value: function (_dnsAddress) {
+            return this.networkConfigProxy.addDNSAddress(_dnsAddress);
+        }
+    },
+
+    _removeDnsAddress: {
+        value: function (_dnsAddress) {
+            return this.networkConfigProxy.removeDNSAddress(_dnsAddress);
+        }
+    },
+
+    _getNetworkConfig: {
+        value: function () {
+            var self = this;
+
+            return this.application.controller.getNetworkConfig().then(function (_networkConfigProxy) {
+                self.networkConfigProxy = _networkConfigProxy;
+            });
         }
     }
 

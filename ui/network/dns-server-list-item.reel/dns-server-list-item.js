@@ -6,10 +6,8 @@ var Component = require("montage/ui/component").Component;
  */
 exports.DnsServerListItem = Component.specialize({
 
-    handleDeleteAction: {
-        value: function () {
-            alert("User wants to delete " + this.ip);
-        }
+    ip: {
+        value: null
     }
 
 });

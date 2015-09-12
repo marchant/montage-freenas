@@ -10,6 +10,7 @@
                 "element": {"#": "owner"}
             }
         },
+
         "ip": {
             "prototype": "montage/ui/text.reel",
             "properties": {
@@ -19,24 +20,19 @@
                 "value": {"<-": "@owner.ip"}
             }
         },
-        "delete": {
+
+        "deleteDnsAddress": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "delete"}
-            },
-            "listeners": [
-                {
-                    "type": "action",
-                    "listener": {"@": "owner"}
-                }
-            ]
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="DnsServerListItem">
-        <span data-montage-id="ip" class="DnsServerListItem-ip">10.5.0.1</span>
+        <span data-montage-id="ip" class="DnsServerListItem-ip"></span>
         <div data-montage-id="delete" class="DnsServerListItem-delete"></div>
     </div>
 </body>

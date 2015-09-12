@@ -9,15 +9,9 @@
             "properties": {
                 "element": {"#": "owner"},
                 "addDnsInput": {"#": "addDnsInput"},
+                "serverListComponent": {"@": "serverList"},
 
                 "hostname": "freenas.local",
-                "ipV4defaultGateway": "10.5.0.1",
-                "ipV6defaultGateway": "0:0:0:0:0:ffff:a05:1",
-                "serverList": [
-                    "10.5.0.1",
-                    "8.8.8.8",
-                    "0:0:0:0:0:ffff:a05:1"
-                ],
                 "interfaces": [
                     {
                         "name": "igb2",
@@ -58,7 +52,13 @@
                         ]
                     }
                 ]
-            }
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         },
         "hostname": {
             "prototype": "montage/ui/text-field.reel",
@@ -75,7 +75,7 @@
                 "element": {"#": "ipV4defaultGateway"}
             },
             "bindings": {
-                "value": {"<-": "@owner.ipV4defaultGateway"}
+                "value": {"<->": "@owner.networkConfigProxy.ipV4Gateway"}
             }
         },
         "ipV6defaultGateway": {
@@ -84,7 +84,7 @@
                 "element": {"#": "ipV6defaultGateway"}
             },
             "bindings": {
-                "value": {"<-": "@owner.ipV6defaultGateway"}
+                "value": {"<->": "@owner.networkConfigProxy.ipV6Gateway"}
             }
         },
         "serverList": {
@@ -93,7 +93,7 @@
                 "element": {"#": "serverList"}
             },
             "bindings": {
-                "content": {"<-": "@owner.serverList"}
+                "content": {"<-": "@owner.networkConfigProxy.dnsAddresses"}
             }
         },
         "serverListItem": {
@@ -109,25 +109,14 @@
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "apply"}
-            },
-            "listeners": [
-                {
-                    "type": "action",
-                    "listener": {"@": "owner"}
-                }
-            ]
+            }
         },
+
         "reset": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "reset"}
-            },
-            "listeners": [
-                {
-                    "type": "action",
-                    "listener": {"@": "owner"}
-                }
-            ]
+            }
         },
         "interfaces": {
             "prototype": "montage/ui/repetition.reel",
