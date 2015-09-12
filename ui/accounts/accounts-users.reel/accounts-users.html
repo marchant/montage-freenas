@@ -24,6 +24,15 @@
                 "content": {"<-": "@owner.userDataSource.data"}
             }
         },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@viewMode.type"}
+            }
+        },
         "table": {
             "prototype": "ui/shared/table.reel",
             "properties": {
@@ -59,7 +68,9 @@
 <body>
     <div data-montage-id="owner" class="AccountsUsers">
         <div data-montage-id="viewMode"></div>
-        <div data-montage-id="table"></div>
+        <div data-montage-id="substitution">
+            <div data-arg="table" data-montage-id="table"></div>
+        </div>
     </div>
 </body>
 </html>

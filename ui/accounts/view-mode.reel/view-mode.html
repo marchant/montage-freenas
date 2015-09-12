@@ -9,6 +9,21 @@
             "properties": {
                 "element": {"#": "owner"},
                 "searchField": {"#": "searchField"}
+            },
+            "bindings": {
+                "type": {"<-": "@selector.selectedValue"}
+            }
+        },
+        "selector": {
+            "prototype": "ui/shared/button-group.reel",
+            "properties": {
+                "element": {"#": "selector"},
+                "options": [
+                    {"value": "list", "label": "h"},
+                    {"value": "grid", "label": ""},
+                    {"value": "table", "label": ""}
+                ],
+                "selectedValue": "list"
             }
         }
     }
@@ -16,7 +31,9 @@
 </head>
 <body>
     <div data-montage-id="owner" class="ViewMode">
-        <input data-montage-id="searchField">
+        <input data-montage-id="searchField" class="ViewMode-searchField" required>
+        <span class="ViewMode-searchField-label">Search</span>
+        <div data-montage-id="selector" class="ViewMode-selector"></div>
     </div>
 </body>
 </html>
