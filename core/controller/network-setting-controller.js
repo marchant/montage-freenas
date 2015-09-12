@@ -25,15 +25,19 @@ exports.NetworkSettingController = {
     },
 
     updateNetworkConfig: {
-        value: function (_networkSettings) {
-            var messageCommand = new MessageCommand("rpc", "call", {
-                method: "task.submit",
-                args: [ "network.configure", [_networkSettings] ]
-            });
+        value: function (_networkSettingProxy) {
+            if (_networkSettingProxy instanceof NetworkSettingProxy) {
+                var messageCommand = new MessageCommand("rpc", "call", {
+                    method: "task.submit",
+                    args: [ "network.configure", [_networkSettingProxy.toNetworkSettingRawObject()]]
+                });
 
-            return this._backend.send(messageCommand).then((function (response) {
-                debugger
-            }));
+                return this._backend.send(messageCommand).then((function (response) {
+                    debugger
+                }));
+            }
+
+            return Promise.reject("wrong parameters given");
         }
     }
 

@@ -43,7 +43,7 @@ exports.Network = Component.specialize({
 
     handleApplyAction: {
         value: function () {
-            alert("apply");
+            this.application.controller.updateNetworkConfig(this.networkConfigProxy);
         }
     },
 

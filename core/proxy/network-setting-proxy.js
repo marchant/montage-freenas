@@ -1,3 +1,5 @@
+var NetworkSetting = require("core/model/network-setting").NetworkSetting;
+
 /**
  * @class NetworkSettingProxy
  */
@@ -10,6 +12,9 @@ NetworkSettingProxy.createFromNetworkSetting = function (_networkSetting) {
 
     networkSettingProxy.ipV4Gateway = _networkSetting.ipV4Gateway;
     networkSettingProxy.ipV6Gateway = _networkSetting.ipV6Gateway;
+    networkSettingProxy.isAutoConfigEnabled = _networkSetting.isAutoConfigEnabled;
+    networkSettingProxy.httpProxy = _networkSetting.httpProxy;
+    networkSettingProxy.dhcp = _networkSetting.dhcp;
 
     for (var i = 0, length = dnsAddresses.length; i < length; i++) {
         dnsAddressesProxy.push(dnsAddresses[i]);
@@ -23,6 +28,9 @@ NetworkSettingProxy.prototype._ipV4Gateway = null;
 NetworkSettingProxy.prototype._dnsAddresses = null;
 NetworkSettingProxy.prototype._ipV6Gateway = null;
 NetworkSettingProxy.prototype._hostname = null;
+NetworkSettingProxy.prototype.httpProxy = null;
+NetworkSettingProxy.prototype.isAutoConfigEnabled = false;
+NetworkSettingProxy.prototype.dhcp = null;
 
 
 Object.defineProperties(NetworkSettingProxy.prototype, {
@@ -98,4 +106,25 @@ NetworkSettingProxy.prototype.removeDNSAddress = function (_dnsAddress) {
     }
 
     return false;
+};
+
+NetworkSettingProxy.prototype.toNetworkSettingRawObject = function () {
+    return {
+        dhcp: this.dhcp,
+
+        gateway: {
+            ipv4: this._ipV4Gateway,
+            ipv6: this._ipV6Gateway
+        },
+
+        autoconfigure: this.isAutoConfigEnabled,
+
+        dns: {
+            addresses: this._dnsAddresses,
+            search: []
+        },
+
+        http_proxy: this.httpProxy
+
+    };
 };
