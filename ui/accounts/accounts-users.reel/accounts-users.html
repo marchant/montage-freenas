@@ -10,11 +10,25 @@
                 "element": {"#": "owner"}
             }
         },
-
+        "viewMode": {
+            "prototype": "../view-mode.reel",
+            "properties": {
+                "element": {"#": "viewMode"},
+                "dataController": {"@": "dataController"},
+                "searchFields": ["id", "username", "fullName"]
+            }
+        },
+        "dataController": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.userDataSource.data"}
+            }
+        },
         "table": {
             "prototype": "ui/shared/table.reel",
             "properties": {
                 "element": {"#": "table"},
+                "dataController": {"@": "dataController"},
                 "columns": [
                     {
                         "label": "User ID",
@@ -37,9 +51,6 @@
                         "type": "string"
                     }
                 ]
-            },
-            "bindings": {
-                "content": {"<-": "@owner.userDataSource.data"}
             }
         }
     }
@@ -47,6 +58,7 @@
 </head>
 <body>
     <div data-montage-id="owner" class="AccountsUsers">
+        <div data-montage-id="viewMode"></div>
         <div data-montage-id="table"></div>
     </div>
 </body>

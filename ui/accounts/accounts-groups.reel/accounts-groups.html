@@ -10,11 +10,25 @@
                 "element": {"#": "owner"}
             }
         },
-
+        "viewMode": {
+            "prototype": "../view-mode.reel",
+            "properties": {
+                "element": {"#": "viewMode"},
+                "dataController": {"@": "dataController"},
+                "searchFields": ["id", "name"]
+            }
+        },
+        "dataController": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.groupDataSource.data"}
+            }
+        },
         "table": {
             "prototype": "ui/shared/table.reel",
             "properties": {
                 "element": {"#": "table"},
+                "dataController": {"@": "dataController"},
                 "columns": [
                     {
                         "label": "Group ID",
@@ -32,9 +46,6 @@
                         "type": "boolean"
                     }
                 ]
-            },
-            "bindings": {
-                "content": {"<-": "@owner.groupDataSource.data"}
             }
         }
     }
@@ -42,6 +53,7 @@
 </head>
 <body>
     <div data-montage-id="owner" class="AccountsGroups">
+        <div data-montage-id="viewMode"></div>
         <div data-montage-id="table"></div>
     </div>
 </body>

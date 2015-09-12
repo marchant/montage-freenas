@@ -8,9 +8,9 @@ exports.Table = Component.specialize({
 
     _initOrderBy: {
         value: function () {
-            if (this._rowRepetitionController && this._columns && this._columns[0]) {
+            if (this._dataController && this._columns && this._columns[0]) {
                 this._orderBy = this._columns[0].expression;
-                this._rowRepetitionController.sortPath = this._orderBy;
+                this._dataController.sortPath = this._orderBy;
             }
         }
     },
@@ -29,16 +29,16 @@ exports.Table = Component.specialize({
         }
     },
 
-    _rowRepetitionController: {
+    _dataController: {
         value: null
     },
 
-    rowRepetitionController: {
+    dataController: {
         get: function () {
-            return this._rowRepetitionController;
+            return this._dataController;
         },
         set: function (value) {
-            this._rowRepetitionController = value;
+            this._dataController = value;
             this._initOrderBy();
         }
     },
@@ -58,12 +58,12 @@ exports.Table = Component.specialize({
             if (value) {
                 if (this._orderBy !== value.expression) {
                     this._orderBy = value.expression;
-                    this.rowRepetitionController.sortPath = this._orderBy;
+                    this._dataController.sortPath = this._orderBy;
                     this._reversed = false;
                 } else {
                     this._reversed = !this._reversed;
                 }
-                this.rowRepetitionController.reversed = this._reversed;
+                this._dataController.reversed = this._reversed;
             }
         }
     }

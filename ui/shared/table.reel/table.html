@@ -7,8 +7,7 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"},
-                "rowRepetitionController": {"@": "rowRepetitionController"}
+                "element": {"#": "owner"}
             },
             "bindings": {
                 "activeColumn": {"<-": "@headerRepetition.activeIterations.0.object"},
@@ -35,17 +34,13 @@
                 "classList.has('Table-label-orderBy')": {"<-": "@headerRepetition:iteration.object.expression == @owner._orderBy"}
             }
         },
-        "rowRepetitionController": {
-            "prototype": "montage/core/range-controller",
-            "bindings": {
-                "content": {"<-": "@owner.content"}
-            }
-        },
         "rowRepetition": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
-                "element": {"#": "rowRepetition"},
-                "contentController": {"@": "rowRepetitionController"}
+                "element": {"#": "rowRepetition"}
+            },
+            "bindings": {
+                "contentController": {"<-": "@owner.dataController"}
             }
         },
         "cellRepetition": {
