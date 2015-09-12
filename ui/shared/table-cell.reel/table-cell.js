@@ -46,12 +46,14 @@ exports.TableCell = Component.specialize({
                         this._typeClass = "TableCell-true";
                         this._element.classList.add(this._typeClass);
                         this._element.textContent = "";
+                        this.title = "";
                     }
                 } else {
                     if (this._typeClass !== "TableCell-false") {
                         this._typeClass = "TableCell-false";
                         this._element.classList.add(this._typeClass);
                         this._element.textContent = "";
+                        this.title = "";
                     }
                 }
             } else {
@@ -60,6 +62,7 @@ exports.TableCell = Component.specialize({
                     this._typeClass = null;
                 }
                 this._element.textContent = this._value;
+                this.title = this._value;
             }
         }
     }
