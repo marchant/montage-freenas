@@ -91,6 +91,10 @@
 }
 
 .Interface-staticIp {
+    background: white;
+}
+
+.Interface-staticIp.montage--disabled {
     background: #eee;
 }
 

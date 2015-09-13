@@ -14,6 +14,10 @@ exports.Network = Component.specialize({
         value: null
     },
 
+    networkInterfaces: {
+        value: null
+    },
+
     enterDocument: {
         value: function (isFirstTime) {
             if (isFirstTime) {
@@ -21,6 +25,7 @@ exports.Network = Component.specialize({
                 // hitting the key enter raise an action event.
                 this.addDnsInput.addEventListener("keydown", this, false);
                 this._getNetworkConfig();
+                this._getNetworkInterface();
             }
         }
     },
@@ -75,6 +80,16 @@ exports.Network = Component.specialize({
 
             return this.application.controller.getNetworkConfig().then(function (_networkConfigProxy) {
                 self.networkConfigProxy = _networkConfigProxy;
+            });
+        }
+    },
+
+    _getNetworkInterface: {
+        value: function () {
+            var self = this;
+
+            return this.application.controller.getNetworkInterfaceList().then(function (_networkInterfaces) {
+                self.networkInterfaces = _networkInterfaces;
             });
         }
     }

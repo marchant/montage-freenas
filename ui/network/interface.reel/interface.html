@@ -10,7 +10,7 @@
                 "element": {"#": "owner"}
             },
             "bindings": {
-                "classList.has('Interface-isActive')": {"<-": "interface.isActive"},
+                "classList.has('Interface-isActive')": {"<-": "interface.isEnabled"},
                 "classList.has('Interface-ethernetAdapter10')":
                     {"<-": "interface.ethernetAdapterSpeed == 10"},
                 "classList.has('Interface-ethernetAdapter100')":
@@ -19,15 +19,17 @@
                     {"<-": "interface.ethernetAdapterSpeed == 1000"}
             }
         },
+
         "name": {
             "prototype": "montage/ui/text.reel",
             "properties": {
                 "element": {"#": "name"}
             },
             "bindings": {
-                "value": {"<-": "@owner.interface.name"}
+                "value": {"<-": "@owner.interface.id"}
             }
         },
+
         "toggle": {
             "prototype": "montage/ui/button.reel",
             "properties": {
@@ -40,14 +42,15 @@
                 }
             ]
         },
+
         "staticIp": {
             "prototype": "montage/ui/text-field.reel",
             "properties": {
-                "element": {"#": "staticIp"},
-                "enabled": false
+                "element": {"#": "staticIp"}
             },
             "bindings": {
-                "value": {"<->": "@owner.interface.staticIp"}
+                "value": {"<->": "@owner.interface.staticIpAddress"},
+                "enabled": {"<-": "!@owner.interface.isDhcpEnabled"}
             }
         },
         "enableDhcpCheckbox": {
@@ -57,7 +60,7 @@
             },
             "bindings": {
                 "checked": {"<->": "@owner.interface.isDhcpEnabled"},
-                "enabled": {"<-": "@owner.interface.isActive"}
+                "enabled": {"<-": "@owner.interface.isEnabled"}
             }
         },
         "mac": {
@@ -66,7 +69,7 @@
                 "element": {"#": "mac"}
             },
             "bindings": {
-                "value": {"<-": "@owner.interface.mac"}
+                "value": {"<-": "@owner.interface.macAddress"}
             }
         },
         "aliases": {
@@ -78,50 +81,50 @@
                 "content": {"<-": "@owner.interface.aliases"}
             }
         },
-        "alias": {
+
+        "ipAddressType": {
             "prototype": "montage/ui/text.reel",
             "properties": {
-                "element": {"#": "alias"}
+                "element": {"#": "ip-address-type"}
             },
             "bindings": {
-                "value": {"<-": "@aliases:iteration.object.alias"}
+                "value": {"<-": "@aliases:iteration.object.isIPv4 ? 'IPv4' : 'IPv6'"}
             }
         },
-        "aliasIp": {
+
+        "ipAddress": {
             "prototype": "montage/ui/text.reel",
             "properties": {
-                "element": {"#": "aliasIp"}
+                "element": {"#": "ip-address"}
             },
             "bindings": {
-                "value": {"<-": "@aliases:iteration.object.ip"}
+                "value": {"<-": "@aliases:iteration.object.ipAddress"}
+            }
+        },
+
+        "broadcast": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "broadcast"}
+            },
+            "bindings": {
+                "value": {"<-": "@aliases:iteration.object.broadcast"}
+            }
+        },
+
+        "netmask": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "netmask"}
+            },
+            "bindings": {
+                "value": {"<-": "@aliases:iteration.object.netmask"}
             }
         }
     }
     </script>
 </head>
 <body>
-    <!--
-                        "name": "igb0",
-                        "isActive": true,
-                        "staticIp": "10.5.5.229/16",
-                        "isDhcpEnabled": false,
-                        "ethernetAdapterSpeed": 100,
-                        "mac": "d0:50:99:50:45:39",
-                        "aliases": [
-                            {
-                                "alias": "IPv4",
-                                "ip": "10.5.0.241"
-                            },
-                            {
-                                "alias": "Netmask",
-                                "ip": "/16"
-                            },
-                            {
-                                "alias": "Broadcast",
-                                "ip": "10.5.255.255"
-                            }
-                        }
-                    -->
     <div data-montage-id="owner" class="Interface">
         <div data-montage-id="name" class="Interface-name"></div>
         <div data-montage-id="toggle" class="Interface-toggle"></div>
@@ -142,8 +145,18 @@
         <div class="Interface-aliases-label">Aliases</div>
         <div class="Interface-aliases" data-montage-id="aliases">
             <div>
-                <span data-montage-id="alias" class="Interface-alias"></span>
-                <span data-montage-id="aliasIp" class="Interface-aliasIp"></span>
+                <div>
+                    <span data-montage-id="ip-address-type" class="Interface-alias"></span>
+                    <span data-montage-id="ip-address" class="Interface-aliasIp"></span>
+                </div>
+                <div>
+                    <span class="Interface-alias">Broadcast</span>
+                    <span data-montage-id="broadcast" class="Interface-aliasIp"></span>
+                </div>
+                <div>
+                    <span class="Interface-alias">Netmask</span>
+                    <span data-montage-id="netmask" class="Interface-aliasIp"></span>
+                </div>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ exports.Interface = Component.specialize({
 
     handleToggleAction: {
         value: function () {
-            this.interface.isActive = !this.interface.isActive;
+            this.interface.isEnabled = !this.interface.isEnabled;
         }
     }
 
