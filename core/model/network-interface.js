@@ -43,6 +43,8 @@ NetworkInterface.prototype._id = null;
 NetworkInterface.prototype._mac = null;
 NetworkInterface.prototype._allowedLinkSpeeds = null;
 NetworkInterface.prototype._state = null;
+NetworkInterface.prototype._aliases = null;
+NetworkInterface.prototype._staticIpAddress = null;
 
 
 Object.defineProperties(NetworkInterface.prototype, {
