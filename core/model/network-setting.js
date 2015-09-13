@@ -1,4 +1,5 @@
-var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor;
+var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
+    AbstractModel = require("core/model/abstract-model").AbstractModel;
 
 /**
  * @class NetworkSetting
@@ -29,6 +30,7 @@ Object.defineProperty(NetworkSetting, "TYPE", {
     }
 });
 
+NetworkSetting.prototype= new AbstractModel();
 
 NetworkSetting.prototype._gateway = null;
 NetworkSetting.prototype._dns = null;

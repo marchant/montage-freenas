@@ -1,16 +1,17 @@
-var DataStream = require("montage-data/logic/service/data-stream").DataStream,
-    Group = require("core/model/group").Group;
+var Group = require("core/model/group").Group;
 
 
 exports.GroupController = {
 
     getGroupList: {
-        value: function (_dataSource) {
-            if (!_dataSource) {
-                _dataSource = new DataStream();
-            }
+        value: function () {
+            return this._store.getModelObjectList(Group.TYPE);
+        }
+    },
 
-            return this._service.getData(Group.TYPE, _dataSource);
+    findGroupWithID: {
+        value: function (_groupID) {
+            return this._store.findModelObjectWithID(Group.Type, _groupID);
         }
     }
 

@@ -1,8 +1,6 @@
 var BackEndBridge = require("core/backend/backend-bridge").BackEndBridge,
     Configuration = require("core/configuration/configuration").Configuration,
-    FreeNasController = require("core/controller/freenas-controller").FreeNasController,
-    FreeNasService = require("core/service/freenas-service").FreeNasService,
-    User = require("core/model/user").User;
+    FreeNasController = require("core/controller/freenas-controller").FreeNasController;
 
 
 // development purpose
@@ -22,8 +20,7 @@ ApplicationDelegate.prototype.willFinishLoading = function (_app) {
     var backendBridge = new BackEndBridge();
 
     backendBridge.connect().then(function () {
-        _app.service = new FreeNasService().initWithBackendBridge(backendBridge);
-        _app.controller = new FreeNasController().initWithBackendBridgeAndApplication(backendBridge, _app);
+        _app.controller = new FreeNasController(backendBridge, _app);
 
         //fixme: need to be removed, just waiting for connection UI
         // demo purpose

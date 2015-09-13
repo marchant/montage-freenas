@@ -24,8 +24,8 @@ exports.Network = Component.specialize({
                 // fixme: -> need to use a montage text-input component
                 // hitting the key enter raise an action event.
                 this.addDnsInput.addEventListener("keydown", this, false);
-                this._getNetworkConfig();
-                this._getNetworkInterface();
+                this._populateNetworkConfig();
+                this._populateNetworkInterface();
             }
         }
     },
@@ -74,7 +74,7 @@ exports.Network = Component.specialize({
         }
     },
 
-    _getNetworkConfig: {
+    _populateNetworkConfig: {
         value: function () {
             var self = this;
 
@@ -84,7 +84,7 @@ exports.Network = Component.specialize({
         }
     },
 
-    _getNetworkInterface: {
+    _populateNetworkInterface: {
         value: function () {
             var self = this;
 

@@ -9,7 +9,7 @@ exports.SystemInfoWidget = Component.specialize({
     enterDocument: {
         value: function (firstTime) {
             if (firstTime) {
-                this.refreshSystemInfo();
+                this.populateSystemInfo();
             }
         }
     },
@@ -18,7 +18,7 @@ exports.SystemInfoWidget = Component.specialize({
         value: null
     },
 
-    refreshSystemInfo: {
+    populateSystemInfo: {
         value: function () {
             var self = this;
 

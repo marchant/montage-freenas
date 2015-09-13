@@ -1,4 +1,5 @@
 var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
+    AbstractModel = require("core/model/abstract-model").AbstractModel,
     ByteCalc = require("core/utility/ByteCalc");
 
 /**
@@ -20,6 +21,7 @@ Object.defineProperty(System, "TYPE", {
     }
 });
 
+System.prototype= new AbstractModel();
 
 System.prototype._memory = 0;
 System.prototype._cpu = null;

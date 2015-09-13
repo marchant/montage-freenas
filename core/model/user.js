@@ -1,4 +1,6 @@
-var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor;
+var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
+    AbstractModel = require("core/model/abstract-model").AbstractModel,
+    Group = require("core/model/group").Group;
 
 /**
  * @class User
@@ -18,6 +20,9 @@ Object.defineProperty(User, "TYPE", {
         return this._type;
     }
 });
+
+
+User.prototype = new AbstractModel();
 
 User.prototype._username = null;
 
@@ -60,6 +65,10 @@ User.prototype._sudo = false;
 User.prototype.unixHash = null;
 
 User.prototype._updated = null;
+
+User.prototype.groupID = null;
+
+User.prototype._fetchGroupPromise= null;
 
 
 Object.defineProperties(User.prototype, {
@@ -130,13 +139,18 @@ Object.defineProperties(User.prototype, {
 
     group: {
         set: function (_group) {
-            _group = +_group;
-
-            if (!isNaN(_group) && this._group !== _group) {
-                this._group = _group;
-            }
+            this._group = _group;
         },
         get: function () {
+            if (!this._group && !this._fetchGroupPromise) {
+                var self = this;
+
+                this._fetchGroupPromise = this._store.findModelObjectWithID(Group.TYPE, this.groupID).then(function (_group) {
+                    self.group = _group;
+                    self._fetchGroupPromise = null;
+                });
+            }
+
             return this._group;
         },
         configurable: true

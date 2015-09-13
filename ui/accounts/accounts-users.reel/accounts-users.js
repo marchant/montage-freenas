@@ -9,18 +9,22 @@ exports.AccountsUsers = Component.specialize({
     enterDocument: {
         value: function (firstTime) {
             if (firstTime) {
-                this.refreshUserList();
+                this.populateUserList();
             }
         }
     },
 
-    userDataSource: {
+    userList: {
         value: null
     },
 
-    refreshUserList: {
+    populateUserList: {
         value: function () {
-            this.userDataSource = this.application.controller.getUserList(this.userDataSource);
+            var self = this;
+
+            this.application.controller.getUserList().then(function (_userList) {
+                self.userList = _userList;
+            });
         }
     }
 

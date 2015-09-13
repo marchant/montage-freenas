@@ -1,4 +1,5 @@
-var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor;
+var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
+    AbstractModel = require("core/model/abstract-model").AbstractModel;
 
 /**
  * @class Group
@@ -19,6 +20,8 @@ Object.defineProperty(Group, "TYPE", {
     }
 });
 
+
+Group.prototype = new AbstractModel();
 
 Group.prototype._name = null;
 

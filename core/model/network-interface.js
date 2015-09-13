@@ -1,5 +1,6 @@
 var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
-    NetworkUtility = require("core/utility/network-utility.js").NetworkUtility;
+    NetworkUtility = require("core/utility/network-utility.js").NetworkUtility,
+    AbstractModel = require("core/model/abstract-model").AbstractModel;
 
 /**
  * @class InterfaceNetwork
@@ -35,6 +36,8 @@ Object.defineProperty(NetworkInterface, "TYPE", {
     }
 });
 
+
+NetworkInterface.prototype= new AbstractModel();
 
 NetworkInterface.prototype._enabled = true;
 NetworkInterface.prototype._dhcp = true;

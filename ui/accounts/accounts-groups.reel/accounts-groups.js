@@ -9,18 +9,22 @@ exports.AccountsGroups = Component.specialize({
     enterDocument: {
         value: function (firstTime) {
             if (firstTime) {
-                this.refreshGroupList();
+                this.populateGroupList();
             }
         }
     },
 
-    userDataSource: {
+    groupList: {
         value: null
     },
 
-    refreshGroupList: {
+    populateGroupList: {
         value: function () {
-            this.groupDataSource = this.application.controller.getGroupList(this.groupDataSource);
+            var self = this;
+
+            this.application.controller.getGroupList().then(function (_groupList) {
+                self.groupList = _groupList;
+            });
         }
     }
 
