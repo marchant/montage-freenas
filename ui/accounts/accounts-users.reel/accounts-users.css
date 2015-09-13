@@ -5,3 +5,28 @@
     right: 0;
     bottom: 0;
 }
+
+.AccountsUsers-isListView .AccountsUsers-substitution {
+    width: 12%;
+    padding-left: 130px;
+    margin: 9px;
+}
+
+.AccountsUsers-details {
+    position: absolute;
+    left: 0;
+    top: 95px;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    display: none;
+}
+
+.AccountsUsers-isListView .AccountsUsers-details {
+    margin-left: 139px;
+    left: 12%;
+}
+
+.AccountsUsers-userSelected .AccountsUsers-details {
+    display: block;
+}

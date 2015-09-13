@@ -5,3 +5,28 @@
     right: 0;
     bottom: 0;
 }
+
+.AccountsGroups-isListView .AccountsGroups-substitution {
+    width: 12%;
+    padding-left: 130px;
+    margin: 9px;
+}
+
+.AccountsGroups-details {
+    position: absolute;
+    left: 0;
+    top: 95px;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    display: none;
+}
+
+.AccountsGroups-isListView .AccountsGroups-details {
+    margin-left: 139px;
+    left: 12%;
+}
+
+.AccountsGroups-userSelected .AccountsGroups-details {
+    display: block;
+}

@@ -9,13 +9,163 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "close": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "close"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "icon": {
+            "prototype": "../icon.reel",
+            "properties": {
+                "element": {"#": "icon"}
+            },
+            "bindings": {
+                "data": {"<-": "@owner.data"}
+            }
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.username"}
+            }
+        },
+        "description": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "description"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.fullName"}
+            }
+        },
+        "userId": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "userId"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.id"}
+            }
+        },
+        "primaryGroup": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "primaryGroup"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.groups.0"}
+            }
+        },
+        "shell": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "shell"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.shell"}
+            }
+        },
+        "lockedAccount": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "lockedAccount"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.isLocked ? '✓' : '×'"}
+            }
+        },
+        "sudoAccess": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "sudoAccess"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.canSudo ? '✓' : '×'"}
+            }
+        },
+        "passwordDisabled": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "passwordDisabled"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.isPasswordDisabled ? '✓' : '×'"}
+            }
+        },
+        "homeDirectory": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "homeDirectory"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.home"}
+            }
+        },
+        "email": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "email"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.email"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="UserDetails">
-        UserDetails
+        <div data-montage-id="close" class="UserDetails-close">×</div>
+        <div data-montage-id="icon" class="UserDetails-icon"></div>
+        <div class="UserDetails-title">
+            <div data-montage-id="name" class="UserDetails-name"></div>
+            <div data-montage-id="description" class="UserDetails-description"></div>
+        </div>
+        <div class="UserDetails-properties">
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">User ID</span>
+                <span data-montage-id="userId" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Primary Group</span>
+                <span data-montage-id="primaryGroup" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Shell</span>
+                <span data-montage-id="shell" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Locked Account</span>
+                <span data-montage-id="lockedAccount" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Sudo Access</span>
+                <span data-montage-id="sudoAccess" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Password Disabled</span>
+                <span data-montage-id="passwordDisabled" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Home Directory</span>
+                <span data-montage-id="homeDirectory" class="UserDetails-property-value"></span>
+            </div>
+            <div class="UserDetails-property">
+                <span class="UserDetails-property-key">Email</span>
+                <span data-montage-id="email" class="UserDetails-property-value"></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>

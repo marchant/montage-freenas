@@ -14,6 +14,22 @@ exports.ViewMode = Component.specialize({
         }
     },
 
+    _type: {
+        value: null
+    },
+
+    type: {
+        get: function () {
+            return this._type;
+        },
+        set: function (value) {
+            this._type = value;
+            if (this._dataController) {
+                this._dataController.selection = [];
+            }
+        }
+    },
+
     _dataController: {
         value: null
     },

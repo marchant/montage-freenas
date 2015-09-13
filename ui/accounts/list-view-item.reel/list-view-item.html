@@ -11,6 +11,15 @@
                 "iconElement": {"#": "icon"}
             }
         },
+        "icon": {
+            "prototype": "../icon.reel",
+            "properties": {
+                "element": {"#": "icon"}
+            },
+            "bindings": {
+                "data": {"<-": "@owner.data"}
+            }
+        },
         "name": {
             "prototype": "montage/ui/text.reel",
             "properties": {

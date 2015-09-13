@@ -9,13 +9,101 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "close": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "close"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "icon": {
+            "prototype": "../icon.reel",
+            "properties": {
+                "element": {"#": "icon"}
+            },
+            "bindings": {
+                "data": {"<-": "@owner.data"}
+            }
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.name"}
+            }
+        },
+        "groupId": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "groupId"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.id"}
+            }
+        },
+        "sudoAccess": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "sudoAccess"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.canSudo ? '✓' : '×'"}
+            }
+        },
+        "created": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "created"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.dateCreated"}
+            }
+        },
+        "updated": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "updated"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.dateUpdated"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="GroupDetails">
-        GroupDetails
+        <div data-montage-id="close" class="GroupDetails-close">×</div>
+        <div data-montage-id="icon" class="GroupDetails-icon"></div>
+        <div class="GroupDetails-title">
+            <div data-montage-id="name" class="GroupDetails-name"></div>
+        </div>
+        <div class="GroupDetails-properties">
+            <div class="GroupDetails-property">
+                <span class="GroupDetails-property-key">Group ID</span>
+                <span data-montage-id="groupId" class="GroupDetails-property-value"></span>
+            </div>
+            <div class="GroupDetails-property">
+                <span class="GroupDetails-property-key">Sudo Access</span>
+                <span data-montage-id="sudoAccess" class="GroupDetails-property-value"></span>
+            </div>
+            <div class="GroupDetails-property">
+                <span class="GroupDetails-property-key">Created</span>
+                <span data-montage-id="created" class="GroupDetails-property-value"></span>
+            </div>
+            <div class="GroupDetails-property">
+                <span class="GroupDetails-property-key">Updated</span>
+                <span data-montage-id="updated" class="GroupDetails-property-value"></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>

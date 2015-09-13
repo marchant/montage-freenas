@@ -37,7 +37,8 @@
         "rowRepetition": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
-                "element": {"#": "rowRepetition"}
+                "element": {"#": "rowRepetition"},
+                "isSelectionEnabled": true
             },
             "bindings": {
                 "contentController": {"<-": "@owner.dataController"}
@@ -70,7 +71,7 @@
         <div data-montage-id="headerRepetition" class="Table-header">
             <div data-montage-id="label" class="Table-label"></div>
         </div>
-        <div data-montage-id="rowRepetition">
+        <div data-montage-id="rowRepetition" class="Table-rowRepetition">
             <div data-montage-id="cellRepetition" class="Table-row">
                 <div data-montage-id="cell" class="Table-cell"></div>
             </div>

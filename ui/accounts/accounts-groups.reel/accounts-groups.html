@@ -8,6 +8,10 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('AccountsGroups-isListView')": {"<-": "@viewMode.type == 'list'"},
+                "classList.has('AccountsGroups-userSelected')": {"<-": "!!@dataController.selection.0"}
             }
         },
         "viewMode": {
@@ -72,6 +76,16 @@
                     }
                 ]
             }
+        },
+        "details": {
+            "prototype": "../group-details.reel",
+            "properties": {
+                "element": {"#": "details"}
+            },
+            "bindings": {
+                "dataController": {"<-": "@dataController"},
+                "data": {"<-": "@dataController.selection.0"}
+            }
         }
     }
     </script>
@@ -84,6 +98,7 @@
             <div data-arg="grid" data-montage-id="gridView"></div>
             <div data-arg="table" data-montage-id="table"></div>
         </div>
+        <div data-montage-id="details" class="AccountsGroups-details"></div>
     </div>
 </body>
 </html>

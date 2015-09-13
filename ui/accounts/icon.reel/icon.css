@@ -1,0 +1,13 @@
+.Icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: 100;
+}
+
+.Icon-group {
+    border-radius: 18%;
+}

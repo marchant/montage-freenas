@@ -1,3 +1,83 @@
 .GroupDetails {
+    position: relative;
+    padding: 20px;
+    background: white;
+}
 
+.GroupDetails-close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    color: #bbb;
+    outline: none;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+    z-index: 2;
+    background: white;
+}
+
+.GroupDetails-icon.Icon-group {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-size: 48px;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.GroupDetails-title {
+    margin-top: 130px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.GroupDetails-name {
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 34px;
+    color: #333;
+}
+
+.GroupDetails-properties {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    max-width: 510px;
+}
+
+.GroupDetails-description {
+    color: #777;
+}
+
+.GroupDetails-property {
+    float: left;
+    padding: 10px 15px;
+    margin: 6px;
+    box-sizing: border-box;
+    width: 240px;
+    text-align: left;
+    border: 1px solid #e4e4e4;
+}
+
+.GroupDetails-property-key {
+    display: block;
+    font-size: 17px;
+    line-height: 22px;
+    color: #333;
+}
+
+.GroupDetails-property-value {
+    display: block;
+    font-weight: 200;
+    font-size: 17px;
+    line-height: 22px;
+    min-height: 22px;
+    color: #777;
 }

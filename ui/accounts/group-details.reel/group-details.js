@@ -5,4 +5,11 @@ var Component = require("montage/ui/component").Component;
  * @extends Component
  */
 exports.GroupDetails = Component.specialize({
+
+    handleCloseAction: {
+        value: function () {
+            this.dataController.selection = [];
+        }
+    }
+
 });

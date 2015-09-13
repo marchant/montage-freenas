@@ -1,7 +1,3 @@
-.Table {
-
-}
-
 .Table-header {
     cursor: pointer;
     -webkit-user-select: none;
@@ -9,6 +5,15 @@
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+
+.Table-rowRepetition {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
 }
 
 .Table-row,
