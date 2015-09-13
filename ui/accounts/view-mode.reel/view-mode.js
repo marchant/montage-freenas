@@ -30,6 +30,20 @@ exports.ViewMode = Component.specialize({
         }
     },
 
+    _filter: {
+        value: null
+    },
+
+    filter: {
+        get: function () {
+            return this._filter;
+        },
+        set: function (value) {
+            this._filter = value;
+            this.handleInput();
+        }
+    },
+
     _dataController: {
         value: null
     },
@@ -46,7 +60,7 @@ exports.ViewMode = Component.specialize({
 
     handleInput: {
         value: function () {
-            var filterPath,
+            var filterPath = "",
                 i;
 
             if (this._dataController) {
@@ -59,6 +73,16 @@ exports.ViewMode = Component.specialize({
                         filterPath += this.searchFields[i];
                     }
                     filterPath += ").toLowerCase().contains('" + this.searchField.value.toLowerCase() + "')";
+                    this._dataController.filterPath = filterPath;
+                }
+                if (this._filter === "Built-in") {
+                    filterPath += "&& !!isBuiltIn";
+                } else {
+                    if (this._filter === "Local") {
+                        filterPath += "&& !isBuiltIn";
+                    }
+                }
+                if (filterPath !== "") {
                     this._dataController.filterPath = filterPath;
                 } else {
                     this._dataController.filterPath = undefined;

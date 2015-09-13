@@ -41,16 +41,20 @@
             "prototype": "../list-view.reel",
             "properties": {
                 "element": {"#": "listView"},
-                "title": "Built-in System Groups",
                 "dataController": {"@": "dataController"}
+            },
+            "bindings": {
+                "title": {"<-": "@viewMode.filter + ' system groups'"}
             }
         },
         "gridView": {
             "prototype": "../grid-view.reel",
             "properties": {
                 "element": {"#": "gridView"},
-                "title": "Built-in System Groups",
                 "dataController": {"@": "dataController"}
+            },
+            "bindings": {
+                "title": {"<-": "@viewMode.filter + ' system groups'"}
             }
         },
         "table": {

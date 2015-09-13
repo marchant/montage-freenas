@@ -11,7 +11,8 @@
                 "searchField": {"#": "searchField"}
             },
             "bindings": {
-                "type": {"<-": "@selector.selectedValue"}
+                "type": {"<-": "@selector.selectedValue"},
+                "filter": {"<-": "@filters.selection.0"}
             }
         },
         "selector": {
@@ -25,6 +26,28 @@
                 ],
                 "selectedValue": "list"
             }
+        },
+        "filters": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "filters"},
+                "content": [
+                    "All",
+                    "Built-in",
+                    "Local"
+                ],
+                "selection": ["All"],
+                "isSelectionEnabled": true
+            }
+        },
+        "filter": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "filter"}
+            },
+            "bindings": {
+                "value": {"<-": "@filters:iteration.object"}
+            }
         }
     }
     </script>
@@ -33,6 +56,10 @@
     <div data-montage-id="owner" class="ViewMode">
         <input data-montage-id="searchField" class="ViewMode-searchField" required>
         <span class="ViewMode-searchField-label">Search</span>
+        <span class="ViewMode-filters-label">View:</span>
+        <div data-montage-id="filters" class="ViewMode-filters">
+            <div data-montage-id="filter" class="ViewMode-filter"></div>
+        </div>
         <div data-montage-id="selector" class="ViewMode-selector"></div>
     </div>
 </body>
