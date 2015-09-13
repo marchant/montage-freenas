@@ -9,13 +9,23 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+        "list": {
+            "prototype": "../list-view.reel",
+            "properties": {
+                "element": {"#": "list"}
+            },
+            "bindings": {
+                "title": {"<-": "@owner.title"},
+                "dataController": {"<-": "@owner.dataController"}
+            }
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="GridView">
-        GridView
+        <div data-montage-id="list"></div>
     </div>
 </body>
 </html>
