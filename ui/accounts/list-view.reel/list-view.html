@@ -10,6 +10,15 @@
                 "element": {"#": "owner"}
             }
         },
+        "title": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "title"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.title"}
+            }
+        },
         "repetition": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
@@ -34,7 +43,7 @@
 </head>
 <body>
     <div data-montage-id="owner" class="ListView">
-        <div class="ListView-title">Built-in System Accounts</div>
+        <div data-montage-id="title" class="ListView-title"></div>
         <div data-montage-id="repetition" class="ListView-repetition">
             <div data-montage-id="item" class="ListView-item"></div>
         </div>

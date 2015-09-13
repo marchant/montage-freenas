@@ -24,6 +24,30 @@
                 "content": {"<-": "@owner.groupDataSource.data"}
             }
         },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@viewMode.type"}
+            }
+        },
+        "listView": {
+            "prototype": "../list-view.reel",
+            "properties": {
+                "element": {"#": "listView"},
+                "title": "Built-in System Groups",
+                "dataController": {"@": "dataController"}
+            }
+        },
+        "gridView": {
+            "prototype": "../grid-view.reel",
+            "properties": {
+                "element": {"#": "gridView"},
+                "dataController": {"@": "dataController"}
+            }
+        },
         "table": {
             "prototype": "ui/shared/table.reel",
             "properties": {
@@ -54,7 +78,11 @@
 <body>
     <div data-montage-id="owner" class="AccountsGroups">
         <div data-montage-id="viewMode"></div>
-        <div data-montage-id="table"></div>
+        <div data-montage-id="substitution" class="AccountsUsers-substitution">
+            <div data-arg="list" data-montage-id="listView"></div>
+            <div data-arg="grid" data-montage-id="gridView"></div>
+            <div data-arg="table" data-montage-id="table"></div>
+        </div>
     </div>
 </body>
 </html>

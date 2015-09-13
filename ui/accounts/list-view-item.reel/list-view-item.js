@@ -32,7 +32,13 @@ exports.ListViewItem = Component.specialize({
                     this.needsDraw = true;
                 } else {
                     if (this._data instanceof Group) {
-
+                        this.name = this._data.name;
+                        this.description = this._data.id;
+                        this._iconText = this._getInitials(this.name);
+                        this._iconColor = this._getPastelColor(
+                            (this.description.toString().length + this.name.length) * 100 * Math.E
+                        );
+                        this.needsDraw = true;
                     }
                 }
             }
@@ -44,7 +50,11 @@ exports.ListViewItem = Component.specialize({
             var words = string.toString().trim().split(" ");
 
             if (words.length) {
-                return (words[0].charAt(0) + (words.length > 1 ? words[words.length - 1].charAt(0) : "")).toUpperCase();
+                return (words[0].charAt(0) + (
+                    words.length > 1 ?
+                    words[words.length - 1].charAt(0) :
+                    words[0].charAt(words[0].length - 1)
+                )).toUpperCase();
             }
             return null;
         }
