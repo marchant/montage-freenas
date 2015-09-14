@@ -1,5 +1,6 @@
-var ResponseCommand = exports.ResponseCommand = function (_data, _rawResponse) {
-    this.data = _data;
+var ResponseCommand = exports.ResponseCommand = function (_rawResponse) {
+    this.data = _rawResponse.args;
+    this.timestamp = _rawResponse.timestamp * 1000;
     this._rawResponse = _rawResponse;
 };
 

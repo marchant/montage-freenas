@@ -38,12 +38,15 @@ BackEndBridge.prototype.connect = function () {
  * @returns {Promise}
  */
 BackEndBridge.prototype.send = function (_messageCommand) {
-    //fixme: temporary
-    if (this._controller.currentLoggedUser) {
-        this._controller.updateToken();
-    }
+    var self = this;
 
-    return this._connection.sendCommand(_messageCommand);
+    return this._connection.sendCommand(_messageCommand).then(function (response) {
+        if (self._controller.currentLoggedUser) {
+            self._controller.updateSessionToken(response.timestamp);
+        }
+
+        return response;
+    });
 };
 
 

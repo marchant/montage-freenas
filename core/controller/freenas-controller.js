@@ -2,6 +2,7 @@ var UserControllerDescriptor = require("core/controller/user-controller").UserCo
     SystemControllerDescriptor = require("core/controller/system-controller").SystemController,
     NetworkSettingControllerDescriptor = require("core/controller/network-setting-controller").NetworkSettingController,
     NetworkInterfaceControllerDescriptor = require("core/controller/network-interface-controller").NetworkInterfaceController,
+    LoginControllerDescriptor = require("core/controller/login-controller").LoginController,
     GroupControllerDescriptor = require("core/controller/group-controller").GroupController,
     FreeNasService = require("core/service/freenas-service").FreeNasService,
     FreeNasStore = require("core/store/freenas-store").FreeNasStore,
@@ -15,6 +16,7 @@ var FreeNasController = exports.FreeNasController = function FreeNasController (
 };
 
 
+Object.defineProperties(FreeNasController.prototype, LoginControllerDescriptor);
 Object.defineProperties(FreeNasController.prototype, UserControllerDescriptor);
 Object.defineProperties(FreeNasController.prototype, GroupControllerDescriptor);
 Object.defineProperties(FreeNasController.prototype, SystemControllerDescriptor);
