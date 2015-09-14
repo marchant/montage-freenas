@@ -4,12 +4,13 @@ var UserControllerDescriptor = require("core/controller/user-controller").UserCo
     NetworkInterfaceControllerDescriptor = require("core/controller/network-interface-controller").NetworkInterfaceController,
     GroupControllerDescriptor = require("core/controller/group-controller").GroupController,
     FreeNasService = require("core/service/freenas-service").FreeNasService,
-    FreeNasStore = require("core/store/freenas-store").FreeNasStore;
+    FreeNasStore = require("core/store/freenas-store").FreeNasStore,
+    BackEndBridge = require("core/backend/backend-bridge").BackEndBridge;
 
-var FreeNasController = exports.FreeNasController = function FreeNasController (_backendBridge, _app) {
-    this._backend = _backendBridge;
+var FreeNasController = exports.FreeNasController = function FreeNasController (_app) {
+    this._backend = new BackEndBridge();
     this._application = _app;
-    this._service = new FreeNasService().initWithBackendBridge(_backendBridge);
+    this._service = new FreeNasService().initWithBackendBridge(this._backend);
     this._store = new FreeNasStore( this._service);
 };
 
