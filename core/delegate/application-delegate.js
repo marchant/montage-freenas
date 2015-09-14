@@ -21,13 +21,8 @@ ApplicationDelegate.prototype.willFinishLoading = function (_app) {
 
     backendBridge.connect().then(function () {
         _app.controller = new FreeNasController(backendBridge, _app);
-
-        //fixme: need to be removed, just waiting for connection UI
-        // demo purpose
-        _app.controller.login("userpass", ["root", "Montage"]).then(function (response) {
-            _app.isReady = true;
-            _app.dispatchEventNamed("connectionEstablished", true, true);
-        });
+        _app.isReady = true;
+        _app.dispatchEventNamed("connectionEstablished", true, true);
 
     }, function (error) {
         //todo

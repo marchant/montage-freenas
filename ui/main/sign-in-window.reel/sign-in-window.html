@@ -9,12 +9,56 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+
+        "usernameTextField": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "username"},
+                "placeholder": "Username"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.username"}
+            }
+        },
+
+        "passwordTextField": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "password"},
+                "placeholder": "Password"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.password"}
+            }
+        },
+
+        "signIn": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "sign-in-button"},
+                "label": "Sign In"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="SignInWindow">
+        <div data-montage-id="sing-in-window-content " class="SignInContent">
+            <h3>Welcome to FreeNas 10</h3>
+            <div class="SignInForm">
+                <input data-montage-id="username"/>
+                <input type="password" data-montage-id="password" />
+                <button data-montage-id="sign-in-button"></button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

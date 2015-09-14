@@ -1,5 +1,4 @@
-var MessageCommand = require("core/backend/message-command").MessageCommand,
-    UserControllerDescriptor = require("core/controller/user-controller").UserController,
+var UserControllerDescriptor = require("core/controller/user-controller").UserController,
     SystemControllerDescriptor = require("core/controller/system-controller").SystemController,
     NetworkSettingControllerDescriptor = require("core/controller/network-setting-controller").NetworkSettingController,
     NetworkInterfaceControllerDescriptor = require("core/controller/network-interface-controller").NetworkInterfaceController,
@@ -12,41 +11,6 @@ var FreeNasController = exports.FreeNasController = function FreeNasController (
     this._application = _app;
     this._service = new FreeNasService().initWithBackendBridge(_backendBridge);
     this._store = new FreeNasStore( this._service);
-};
-
-
-FreeNasController.prototype.login = function (_authType, _credentials) {
-    var promise;
-
-    if (typeof _authType === "string" && _credentials) {
-        if (_authType === "userpass" && _credentials.constructor === Array) {
-            promise = this.loginWithCredentials(_credentials[0], _credentials[1]); // 0 -> username, 1 -> password
-
-        } else if (_authType === "token" && typeof _credentials === "string") {
-            promise = this.loginWithToken(_credentials);
-        }
-    }
-
-    if (!promise) {
-        throw "wrong parameters given";
-    }
-
-    return promise;
-};
-
-
-FreeNasController.prototype.loginWithCredentials = function (_username, _password) {
-    var messageCommand = new MessageCommand("rpc", "auth", {
-        username : _username,
-        password : _password
-    });
-
-    return this._backend.send(messageCommand);
-};
-
-
-FreeNasController.prototype.loginWithToken = function (_token) {
-    return this._backend.send(new MessageCommand("rpc", "auth_token", {token: _token}));
 };
 
 

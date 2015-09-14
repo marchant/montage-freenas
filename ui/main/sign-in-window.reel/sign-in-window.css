@@ -1,3 +1,67 @@
 .SignInWindow {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: none;
+}
 
+.SignInWindow.montage-Overlay--visible {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(108, 108, 108, .5);
+}
+
+.SignInContent {
+    background: white;
+    min-width: 300px;
+    padding: 25px;
+    box-shadow: 0px 0px 8px #8E8D8D;
+}
+
+.SignInContent h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.SignInContent input {
+    display: block;
+    width: 100%;
+    -webkit-appearance: textfield;
+    font-family: inherit;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    height: 30px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline: none;
+    -webkit-transition: all ease-in-out .15s;
+    margin-bottom: 15px;
+}
+
+.SignInContent input:focus {
+    border-color: #0196d8;
+    box-shadow: 0 0 6px rgba(1, 150, 216, .5);
+}
+
+.SignInContent button {
+    margin-right: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 300;
+    line-height: 20px;
+    background-image: linear-gradient(to bottom, #0196d8, #0184bf);
+    outline: none;
+    cursor: pointer;
+    width: 100%;
 }

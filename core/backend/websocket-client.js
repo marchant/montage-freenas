@@ -136,7 +136,12 @@ WebSocketClient.prototype._handleMessage = function (_event) {
                     deferred.resolve(new ResponseCommand(data.args, data));
 
                 } else if (data.name === "error") {
-                    deferred.reject("Error Server, code:"+ data.args.code + " , message:" + data.args.message);
+                    if (data.args.code === 13) { //fixme: same code error when user not logged or wrong credentials...
+                        deferred.reject(data.args);
+
+                    } else {
+                        deferred.reject("Error Server, code:"+ data.args.code + " , message:" + data.args.message);
+                    }
 
                 } else {
                     debugger
