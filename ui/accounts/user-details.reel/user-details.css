@@ -50,6 +50,9 @@
     margin-right: auto;
     width: auto;
     max-width: 510px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .UserDetails-description {
@@ -57,7 +60,6 @@
 }
 
 .UserDetails-property {
-    float: left;
     padding: 10px 15px;
     margin: 6px;
     box-sizing: border-box;
