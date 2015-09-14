@@ -18,7 +18,12 @@ exports.SignInWindow = Overlay.specialize({
                 this._keyComposer.identifier = "enter";
                 this.addComposerForElement(this._keyComposer, window);
 
-                this.show();
+                var app = this.application;
+                app.controller.loginWindow = this;
+
+                if (!app.controller.currentLoggedUser) {
+                    this.show();
+                }
             }
         }
     },

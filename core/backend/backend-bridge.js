@@ -8,8 +8,9 @@ var WebSocketClient = require("core/backend/websocket-client").WebSocketClient;
  * it will be used for invoking commands and establishing the first connection.
  *
  */
-var BackEndBridge = exports.BackEndBridge = function BackEndBridge () {
+var BackEndBridge = exports.BackEndBridge = function BackEndBridge (_controller) {
     this._connection = new WebSocketClient();
+    this._controller = _controller;
 };
 
 
@@ -37,6 +38,11 @@ BackEndBridge.prototype.connect = function () {
  * @returns {Promise}
  */
 BackEndBridge.prototype.send = function (_messageCommand) {
+    //fixme: temporary
+    if (this._controller.currentLoggedUser) {
+        this._controller.updateToken();
+    }
+
     return this._connection.sendCommand(_messageCommand);
 };
 

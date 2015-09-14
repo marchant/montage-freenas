@@ -8,7 +8,7 @@ var UserControllerDescriptor = require("core/controller/user-controller").UserCo
     BackEndBridge = require("core/backend/backend-bridge").BackEndBridge;
 
 var FreeNasController = exports.FreeNasController = function FreeNasController (_app) {
-    this._backend = new BackEndBridge();
+    this._backend = new BackEndBridge(this);
     this._application = _app;
     this._service = new FreeNasService().initWithBackendBridge(this._backend);
     this._store = new FreeNasStore( this._service);

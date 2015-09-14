@@ -5,7 +5,8 @@ var MessageCommand = require("core/backend/message-command").MessageCommand,
 exports.UserController = {
 
     currentLoggedUser: {
-        value: null
+        value: null,
+        writable: true
     },
 
     getUserList: {
@@ -67,11 +68,20 @@ exports.UserController = {
         }
     },
 
+    updateToken: {
+        value: function () {
+            //fixme: temporary
+            this.currentLoggedUser.tokenTime = Date.now() + 600 * 1000;
+            sessionStorage.setItem('free_nas_logged_user', JSON.stringify(this.currentLoggedUser));
+        }
+    },
+
     _disconnectCurrentLoggedUser: {
         value: function () {
-
             if (this.currentLoggedUser) {
                 //this._backend.logout();
+                //fixme: temporary
+                sessionStorage.setItem('free_nas_logged_user', "");
                 this.currentLoggedUser = null;
             }
         }
@@ -81,9 +91,12 @@ exports.UserController = {
         value: function (_userData) {
             this.currentLoggedUser = {
                 token: _userData[0], // -> assuming
-                tokenTime: _userData[1], // -> assuming
+                tokenTime: Date.now() + _userData[1] * 1000, // -> assuming
                 name: _userData[2]
             };
+
+            //fixme: temporary
+            sessionStorage.setItem('free_nas_logged_user', JSON.stringify(this.currentLoggedUser));
         }
     }
 
