@@ -27,7 +27,7 @@ exports.NetworkInterfaceMapping = DataMapping.specialize({
                         alias = aliases[i];
 
                         //fixme: need investigating ->  multiple aliases ??
-                        if (alias.family === "INET" || alias.family === "INET6") {
+                        if (alias.type === "INET" || alias.type === "INET6") {
                             networkInterfaceAlias = new NetworkInterfaceAlias();
 
                             networkInterfaceAlias.ipAddress = alias.address;
