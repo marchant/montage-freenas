@@ -49,6 +49,9 @@ NetworkInterface.prototype._state = null;
 NetworkInterface.prototype._aliases = null;
 NetworkInterface.prototype._staticIpAddress = null;
 
+//fixme: Fake data, not provided by the server yet.
+NetworkInterface.prototype.ethernetAdapterSpeed = 1000;
+
 
 Object.defineProperties(NetworkInterface.prototype, {
 

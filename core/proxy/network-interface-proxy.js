@@ -18,6 +18,7 @@ NetworkInterfaceProxy.createFromNetworkInterface = function (_networkInterface) 
         networkInterfaceProxy.isDhcpEnabled = _networkInterface.isDhcpEnabled;
         networkInterfaceProxy.macAddress = _networkInterface.macAddress;
         networkInterfaceProxy.aliases = _networkInterface.aliases;
+        networkInterfaceProxy.ethernetAdapterSpeed = _networkInterface.ethernetAdapterSpeed;
 
         return networkInterfaceProxy;
     }
@@ -30,6 +31,7 @@ NetworkInterfaceProxy.prototype._staticIpAddress = null;
 NetworkInterfaceProxy.prototype.id = null;
 NetworkInterfaceProxy.prototype.macAddress = null;
 NetworkInterfaceProxy.prototype.aliases = null;
+NetworkInterfaceProxy.prototype.ethernetAdapterSpeed = null;
 
 
 Object.defineProperties(NetworkInterfaceProxy.prototype, {
