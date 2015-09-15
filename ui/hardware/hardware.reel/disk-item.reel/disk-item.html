@@ -17,7 +17,28 @@
                 "element": {"#": "vendorName"}
             },
             "bindings": {
-                "value": {"<-": "@owner.data.description"}
+                "value": {"<-": "@owner.data.description"},
+                "classList.has('isOnline')": {"<-": "@owner.data.isOnline"}
+            }
+        },
+
+        "diskPartitions": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "disk-partitions"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.data.partitions && @owner.data.partitions.length > 1 ? @owner.data.partitions : [@owner.data]"}
+            }
+        },
+
+        "partitionSize": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "partition-size"}
+            },
+            "bindings": {
+                "value": {"<-": "@diskPartitions:iteration.object.humanReadableSize"}
             }
         },
 
@@ -27,17 +48,7 @@
                 "element": {"#": "disk-path"}
             },
             "bindings": {
-                "value": {"<-": "@owner.data.path"}
-            }
-        },
-
-        "diskPartitions": {
-            "prototype": "montage/ui/repetition.reel",
-            "properties": {
-                "element": {"#": "diskPartitions"}
-            },
-            "bindings": {
-                "content": {"<-": "@owner.data.partitions"}
+                "value": {"<-": "@diskPartitions:iteration.object.path"}
             }
         }
     }
@@ -46,9 +57,12 @@
 <body>
     <div data-montage-id="owner" class="DiskItem">
         <span data-montage-id="vendorName" class="disk-item-title"></span><br />
-        <span data-montage-id="disk-path"></span>
-        <div data-montage-id="diskPartitions" class="disk-item-partitions well">
-            <div data-montage-id="diskItemPartition" class="disk-item-partition"></div>
+        <div data-montage-id="disk-partitions" class="disk-item-partitions well">
+            <div>
+                <div data-montage-id="disk-item-partition" class="disk-item-partition"></div>
+                <div data-montage-id="partition-size"></div>
+                <div data-montage-id="disk-path"></div>
+            </div>
         </div>
     </div>
 </body>

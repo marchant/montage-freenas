@@ -1,5 +1,6 @@
 var ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor,
-    AbstractModel = require("core/model/abstract-model").AbstractModel;
+    AbstractModel = require("core/model/abstract-model").AbstractModel,
+    ByteCalc = require("core/utility/ByteCalc");
 
 /**
  * @class Disk
@@ -24,6 +25,7 @@ Object.defineProperty(Disk, "TYPE", {
 Disk.prototype= new AbstractModel();
 
 Disk.prototype._size = 0;
+Disk.prototype.humanReadableSize = 0;
 Disk.prototype._path = null;
 Disk.prototype._online = true;
 Disk.prototype._description = null;
@@ -40,30 +42,6 @@ Object.defineProperties(Disk.prototype, {
         },
         get: function () {
             return this._description;
-        }
-    },
-
-    size: {
-        set: function (_size) {
-            _size = +_size;
-
-            if (!isNaN(_size) && this._size !== _size) {
-                this._size = _size;
-            }
-        },
-        get: function () {
-            return this._size;
-        }
-    },
-
-    path: {
-        set: function (_path) {
-            if (typeof _path === "string" && this._path !== _path) {
-                this._path = _path;
-            }
-        },
-        get: function () {
-            return this._path;
         }
     },
 
@@ -95,5 +73,49 @@ Object.defineProperties(Disk.prototype, {
         }
     }
 
-
 });
+
+
+var CommonDiskObjectDescriptor = {
+
+    size: {
+        set: function (_size) {
+            _size = +_size;
+
+            if (!isNaN(_size) && this._size !== _size) {
+                this._size = _size;
+                this.humanReadableSize = ByteCalc.humanize(_size, {roundMode: "whole"});
+            }
+        },
+        get: function () {
+            return this._size;
+        }
+    },
+
+    path: {
+        set: function (_path) {
+            if (typeof _path === "string" && this._path !== _path) {
+                this._path = _path;
+            }
+        },
+        get: function () {
+            return this._path;
+        }
+    }
+};
+
+
+Object.defineProperties(Disk.prototype, CommonDiskObjectDescriptor);
+
+
+/**
+ * @class DiskPartition
+ */
+var DiskPartition = exports.DiskPartition = function DiskPartition () {};
+
+
+DiskPartition.prototype._size = 0;
+DiskPartition.prototype.humanReadableSize = 0;
+DiskPartition.prototype._path = null;
+
+Object.defineProperties(DiskPartition.prototype, CommonDiskObjectDescriptor);

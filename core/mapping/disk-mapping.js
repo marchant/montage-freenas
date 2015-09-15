@@ -1,36 +1,44 @@
 var DataMapping = require("montage-data/logic/service/data-mapping").DataMapping,
-    Disk = require("core/model/disk").Disk;
+    DiskModel = require("core/model/disk"),
+    DiskPartition = DiskModel.DiskPartition,
+    Disk = DiskModel.Disk;
 
 exports.DiskMapping = DataMapping.specialize({
     mapRawData: {
         value: function (rawObject) {
-            var group = new Disk();
+            var disk = new Disk();
 
-            group.size = rawObject.mediasize;
-            group.path = rawObject.path;
-            group.isOnline = rawObject.online;
+            disk.size = rawObject.mediasize;
+            disk.path = rawObject.path;
+            disk.isOnline = rawObject.online;
 
             if (rawObject.status) {
-                group.description = rawObject.status.description;
-                group.partitions = rawObject.status.partitions;
+                disk.description = rawObject.status.description;
 
-                group.partitions = [ //dummy data
-                    {
-                        "size": 16,
-                        "path": "/dev/da20"
-                    },
-                    {
-                        "size": 8,
-                        "path": "/dev/da20"
-                    },
-                    {
-                        "size": 8,
-                        "path": "/dev/da20"
+                var partitions = rawObject.status.partitions,
+                    diskPartitions = [],
+                    diskPartition,
+                    partition;
+
+                if (partitions && partitions.constructor) {
+                    for (var i = 0, length = partitions.length; i < length; i++) {
+                        partition = partitions[i];
+
+                        if (partition) {
+                            diskPartition = new DiskPartition();
+
+                            diskPartition.size = partition.mediasize;
+                            diskPartition.path = partition.paths[0]; //fixme: need investigating.
+
+                            diskPartitions.push(diskPartition);
+                        }
                     }
-                ]
+
+                    disk.partitions = diskPartitions;
+                }
             }
 
-            return group;
+            return disk;
         }
     }
 });
