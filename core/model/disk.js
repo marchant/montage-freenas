@@ -30,6 +30,9 @@ Disk.prototype._path = null;
 Disk.prototype._online = true;
 Disk.prototype._description = null;
 Disk.prototype._partitions = null;
+Disk.prototype._manufacturer = null;
+Disk.prototype._maxRotation = null;
+Disk.prototype._isSSD = false;
 
 
 Object.defineProperties(Disk.prototype, {
@@ -58,6 +61,19 @@ Object.defineProperties(Disk.prototype, {
         }
     },
 
+    isSSD: {
+        set: function (_isSSD) {
+            _isSSD = !!_isSSD;
+
+            if (this._isSSD !== _isSSD) {
+                this._isSSD = _isSSD;
+            }
+        },
+        get: function () {
+            return this._isSSD;
+        }
+    },
+
     partitions: {
         set: function (_partitions) {
             if (_partitions && _partitions.constructor === Array) {
@@ -70,6 +86,40 @@ Object.defineProperties(Disk.prototype, {
             }
 
             return this._partitions;
+        }
+    },
+
+    manufacturer: {
+        set: function (_manufacturer) {
+            if (typeof _manufacturer === "string" && this._manufacturer !== _manufacturer) {
+                this._description = _manufacturer;
+            }
+        },
+        get: function () {
+            if (!this._manufacturer) {
+                // fixme: demo purpose
+                this._manufacturer = "VMware Disk";
+            }
+
+            return this._manufacturer;
+        }
+    },
+
+    maxRotation: {
+        set: function (_maxRotation) {
+            //fixme: need investigating -> number? string?
+            if (!this.isSSD && this._maxRotation !== _maxRotation) {
+                this._maxRotation = _maxRotation;
+            }
+        },
+        get: function () {
+            return this._maxRotation;
+        }
+    },
+
+    label: {
+        get: function () {
+            return (this.manufacturer || "") + " " + this.humanReadableSize + " " + (this.isSSD ? "" : this.maxRotation + "rpm");
         }
     }
 

@@ -17,8 +17,7 @@
                 "element": {"#": "vendorName"}
             },
             "bindings": {
-                "value": {"<-": "@owner.data.description"},
-                "classList.has('isOnline')": {"<-": "@owner.data.isOnline"}
+                "value": {"<-": "@owner.data.label"}
             }
         },
 
@@ -28,7 +27,7 @@
                 "element": {"#": "disk-partitions"}
             },
             "bindings": {
-                "content": {"<-": "@owner.data.partitions && @owner.data.partitions.length > 1 ? @owner.data.partitions : [@owner.data]"}
+                "content": {"<-": "@owner.data.disks"}
             }
         },
 

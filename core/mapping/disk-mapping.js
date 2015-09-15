@@ -14,6 +14,9 @@ exports.DiskMapping = DataMapping.specialize({
 
             if (rawObject.status) {
                 disk.description = rawObject.status.description;
+                disk.isSSD = rawObject.status.is_ssd;
+                disk.maxRotation = rawObject.status.max_rotation;
+                disk.manufacturer = rawObject.status.manufacturer;
 
                 var partitions = rawObject.status.partitions,
                     diskPartitions = [],

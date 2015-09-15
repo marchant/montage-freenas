@@ -19,7 +19,7 @@ exports.Hardware = Component.specialize({
         value: null
     },
 
-    disks: {
+    groupedDisks: {
         value: null
     },
 
@@ -37,8 +37,8 @@ exports.Hardware = Component.specialize({
         value: function () {
             var self = this;
 
-            this.application.controller.getDiskList().then(function (_disks) {
-                self.disks = _disks;
+            this.application.controller.getSimilarDiskList().then(function (_groupedDisks) {
+                self.groupedDisks = _groupedDisks;
             });
         }
     }
