@@ -1,0 +1,62 @@
+.StoragePanel {
+}
+
+.StoragePanel-title {
+    padding-top: 21px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 15px;
+}
+
+.StoragePanel-title span {
+    display: block;
+    float: left;
+    font-weight: 300;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #777;
+    padding-right: 11px;
+}
+
+.StoragePanel-title:after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    overflow: hidden;
+    margin-top: .5em;
+}
+
+.StoragePanel-reset {
+    margin: 15px 15px 0 15px;
+}
+
+.StoragePanel-preset {
+    margin: 0 15px 0 15px;
+    display: block;
+}
+
+.StoragePanel-preset .Select-selected {
+    width: 100%;
+    border: none;
+    background: linear-gradient(to bottom, #0196d8, #0184bf);
+    color: white;
+}
+
+.StoragePanel-preset .Select-selected:focus {
+    background: linear-gradient(to bottom, #0184bf, #0196d8);
+}
+
+.StoragePanel-preset .Select-selected:hover {
+    background: #0184bf;
+}
+
+.StoragePanel-preset .Select-selected:after {
+    text-shadow: none;
+    color: rgba(255, 255, 255, .5);
+}
+
+.StoragePanel-preset-descripition {
+    padding: 15px 30px;
+    font-weight: 300;
+}

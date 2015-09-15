@@ -75,9 +75,27 @@
             }
         },
         "contextualPanel": {
-            "prototype": "../contextual-panel.reel",
+            "prototype": "montage/ui/substitution.reel",
             "properties": {
                 "element": {"#": "contextualPanel"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@menu.selectedValue == 'storage' ? 'storagePanel' : 'placeholder'"}
+            }
+        },
+        "placeholder": {
+            "prototype": "../placeholder.reel",
+            "properties": {
+                "element": {"#": "placeholder"}
+            }
+        },
+        "storagePanel": {
+            "prototype": "ui/storage/storage-panel.reel",
+            "properties": {
+                "element": {"#": "storagePanel"}
+            },
+            "bindings": {
+                "topology": {"<-": "@storage.topology"}
             }
         }
     }
@@ -100,7 +118,10 @@
                 <div data-montage-id="hardware" data-arg="hardware"></div>
                 <div data-montage-id="settings" data-arg="settings"></div>
             </div>
-            <div data-montage-id="contextualPanel" class="Main-contextualPanel"></div>
+            <div data-montage-id="contextualPanel" class="Main-contextualPanel">
+                <div data-arg="placeholder" data-montage-id="placeholder"></div>
+                <div data-arg="storagePanel" data-montage-id="storagePanel"></div>
+            </div>
         </div>
     </div>
 </body>

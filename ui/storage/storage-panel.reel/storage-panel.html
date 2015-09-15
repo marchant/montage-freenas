@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="storage-panel.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "topologizer": {
+            "prototype": "../topologizer.reel",
+            "properties": {
+                "element": {"#": "topologizer"}
+            }
+        },
+        "reset": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "reset"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "preset": {
+            "prototype": "ui/shared/select.reel",
+            "properties": {
+                "element": {"#": "preset"},
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    },
+                    {
+                        "value": "optimal",
+                        "label": "Optimal"
+                    },
+                    {
+                        "value": "virtualization",
+                        "label": "Virtualization"
+                    },
+                    {
+                        "value": "backups",
+                        "label": "Backups"
+                    },
+                    {
+                        "value": "media",
+                        "label": "Media"
+                    }
+                ],
+                "selectedValue": "none"
+            }
+        },
+        "ssdGroupRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "ssdGroupRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.topology.availableDisks.ssds"}
+            }
+        },
+        "ssdGroupTitle": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "ssdGroupTitle"}
+            },
+            "bindings": {
+                "value": {"<-": "@ssdGroupRepetition:iteration.object.group"}
+            }
+        },
+        "ssdGroupDisks": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "ssdGroupDisks"}
+            },
+            "bindings": {
+                "disks": {"<-": "@ssdGroupRepetition:iteration.object.disks"}
+            }
+        },
+        "hddGroupRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "hddGroupRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.topology.availableDisks.hdds"}
+            }
+        },
+        "hddGroupTitle": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "hddGroupTitle"}
+            },
+            "bindings": {
+                "value": {"<-": "@hddGroupRepetition:iteration.object.group"}
+            }
+        },
+        "hddGroupDisks": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "hddGroupDisks"}
+            },
+            "bindings": {
+                "disks": {"<-": "@hddGroupRepetition:iteration.object.disks"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="StoragePanel">
+        <div class="StoragePanel-title">
+            <span>Modify Pool Topology</span>
+        </div>
+        <div data-montage-id="topologizer" class="StoragePanel-topologizer"></div>
+        <div data-montage-id="reset" class="Freenas-button StoragePanel-reset">Reset Pool Topology</div>
+        <div class="StoragePanel-title">
+            <span>Preset Configuration</span>
+        </div>
+        <div data-montage-id="preset" class="StoragePanel-preset"></div>
+        <div class="StoragePanel-preset-descripition">
+            Select a ZFS topology layout to automatically assign drives to your pool, or use the topologizer tool to customize your layout.
+        </div>
+        <div class="StoragePanel-title">
+            <span>Available SSDs</span>
+        </div>
+        <div data-montage-id="ssdGroupRepetition">
+            <div data-montage-id="ssdGroup">
+                <div data-montage-id="ssdGroupTitle"></div>
+                <div data-montage-id="ssdGroupDisks"></div>
+            </div>
+        </div>
+        <div class="StoragePanel-title">
+            <span>Available Disks</span>
+        </div>
+        <div data-montage-id="hddGroupRepetition">
+            <div data-montage-id="hddGroup">
+                <div data-montage-id="hddGroupTitle"></div>
+                <div data-montage-id="hddGroupDisks"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

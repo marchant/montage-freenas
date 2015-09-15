@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="disk.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('Disk-warning')": {"<-": "disk.smartStatus == 'WARN'"},
+                "classList.has('Disk-fail')": {"<-": "disk.smartStatus == 'FAIL'"},
+                "classList.has('Disk-isSsd')": {"<-": "disk.type == 'ssd'"},
+                "classList.has('Disk-isRemovable')": {"<-": "parentComponent != disk._originalParentComponent"},
+                "capacity": {"<-": "disk.capacity"}
+            }
+        },
+        "remove": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "remove"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "capacity": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "capacity"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.formattedCapacity"}
+            }
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.disk.name"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Disk">
+        <div class="Disk-icon"></div>
+        <div class="Disk-statusIndicator"></div>
+        <div data-montage-id="remove" class="Disk-remove">×</div>
+        <div data-montage-id="capacity" class="Disk-capacity"></div>
+        <div data-montage-id="name" class="Disk-name"></div>
+    </div>
+</body>
+</html>

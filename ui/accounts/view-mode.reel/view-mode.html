@@ -12,7 +12,7 @@
             },
             "bindings": {
                 "type": {"<-": "@selector.selectedValue"},
-                "filter": {"<-": "@filters.selection.0"}
+                "filter": {"<-": "@filters.selectedValue"}
             }
         },
         "selector": {
@@ -28,25 +28,24 @@
             }
         },
         "filters": {
-            "prototype": "montage/ui/repetition.reel",
+            "prototype": "ui/shared/select.reel",
             "properties": {
                 "element": {"#": "filters"},
-                "content": [
-                    "All",
-                    "Built-in",
-                    "Local"
+                "options": [
+                    {
+                        "label": "All",
+                        "value": "All"
+                    },
+                    {
+                        "label": "Built-in",
+                        "value": "Built-in"
+                    },
+                    {
+                        "label": "Local",
+                        "value": "Local"
+                    }
                 ],
-                "selection": ["All"],
-                "isSelectionEnabled": true
-            }
-        },
-        "filter": {
-            "prototype": "montage/ui/text.reel",
-            "properties": {
-                "element": {"#": "filter"}
-            },
-            "bindings": {
-                "value": {"<-": "@filters:iteration.object"}
+                "selectedValue": "All"
             }
         }
     }
@@ -57,9 +56,7 @@
         <input data-montage-id="searchField" class="ViewMode-searchField" required>
         <span class="ViewMode-searchField-label">Search</span>
         <span class="ViewMode-filters-label">View:</span>
-        <div data-montage-id="filters" class="ViewMode-filters">
-            <div data-montage-id="filter" class="ViewMode-filter"></div>
-        </div>
+        <div data-montage-id="filters" class="ViewMode-filters"></div>
         <div data-montage-id="selector" class="ViewMode-selector"></div>
     </div>
 </body>

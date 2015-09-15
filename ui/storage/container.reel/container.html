@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="container.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "repetition": {"@": "repetition"},
+                "typeSelect": {"@": "typeSelect"}
+            },
+            "bindings": {
+                "classList.has('Container-isHeaderVisible')": {"<-": "isHeaderVisible"},
+                "classList.has('Container-isSsdOnly')": {"<-": "isSsdOnly"},
+                "classList.has('Container-isEmpty')": {"<-": "!@repetition.contentController.content.length"},
+                "classList.has('Container-isShowingOptions')": {"<-": "@repetition.contentController.content.length > 1"},
+                "length": {"<-": "@repetition.contentController.content.length"},
+                "type": {"<-": "@typeSelect.selectedValue"}
+            }
+        },
+        "typeSelect": {
+            "prototype": "ui/shared/select.reel",
+            "properties": {
+                "element": {"#": "typeSelect"},
+                "options": []
+            }
+        },
+        "diskChart": {
+            "prototype": "../disk-chart.reel",
+            "properties": {
+                "element": {"#": "diskChart"}
+            },
+            "bindings": {
+                "usable": {"<-": "@owner.usable"},
+                "parity": {"<-": "@owner.parity"},
+                "isVisible": {"<-": "@owner.isChartVisible && @repetition.content.length > 1"}
+            }
+        },
+        "close": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "close"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "repetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "repetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.disks"}
+            }
+        },
+        "disk": {
+            "prototype": "ui/shared/disk.reel",
+            "properties": {
+                "element": {"#": "disk"}
+            },
+            "bindings": {
+                "disk": {"<-": "@repetition:iteration.object"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Container">
+        <div class="Container-header">
+            <div data-montage-id="typeSelect" class="Container-typeSelect"></div>
+            <div data-montage-id="diskChart"></div>
+            <div data-montage-id="close" class="Container-close">×</div>
+        </div>
+        <div data-montage-id="repetition" class="Container-repetition">
+            <div data-montage-id="disk" class="Container-disk"></div>
+        </div>
+    </div>
+</body>
+</html>

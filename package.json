@@ -3,7 +3,8 @@
     "version": "0.1.0",
     "dependencies": {
         "montage": "git+http://github.com:montagejs/montage.git#master",
-        "montage-data": "montagestudio/montage-data"
+        "montage-data": "montagestudio/montage-data",
+        "collections": "~1.2.2"
     },
     "devDependencies": {
         "montage-testing": "~0.4.0"

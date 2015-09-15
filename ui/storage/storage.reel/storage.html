@@ -8,6 +8,15 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"}
+            },
+            "bindings": {
+                "topology": {"<-": "@storageConfig.topology"}
+            }
+        },
+        "storageConfig": {
+            "prototype": "../storage-config.reel",
+            "properties": {
+                "element": {"#": "storageConfig"}
             }
         }
     }
@@ -15,7 +24,16 @@
 </head>
 <body>
     <div data-montage-id="owner" class="Storage">
-        Storage
+        <div class="Storage-title">ZFS Storage Pools</div>
+        <div class="Storage-body">
+            <div class="Storage-info">
+                <img class="Storage-info-image" src="../../../assets/images/hdd.png">
+                <div class="Storage-info-title">Creating Storage</div>
+                <div class="Storage-info-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
+                <div class="Freenas-submit-button Storage-createButton">Create new ZFS volume</div>
+            </div>
+            <div data-montage-id="storageConfig" class="Storage-config"></div>
+        <div>
     </div>
 </body>
 </html>
