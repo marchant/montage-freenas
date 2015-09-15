@@ -32,53 +32,6 @@ h4 {
     background-color: rgba(255,255,255,.5);
 }
 
-.btn {
-    padding: 4px 16px;
-    font-size: 14px;
-    font-weight: 300;
-    font-family: inherit;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: #ccc;
-    border-style: solid;
-    background-color: #fff;
-}
-
-.btn[disabled] {
-    cursor: not-allowed;
-    opacity: .65;
-    background-image: none;
-}
-
-.btn-default {
-    border-color: #ccc;
-    color: #333;
-    background-image: linear-gradient(to bottom, #FFF 0%, #f2f2f2 100%);
-}
-
-.btn-primary {
-    color: #ffffff;
-    background-color: #0196d8;
-    background-image: linear-gradient(to bottom, #0196d8 0%, #0184bf 100%);
-    background-repeat: repeat-x;
-    border-color: #0184bf;
-}
-
-.btn-default[disabled] {
-    background-color: #FFF;
-    border-color: #ccc;
-
-}
-
-.btn-primary[disabled] {
-    background-color: #0196d8;
-
-    border-color: #0184bf;
-}
-
-
-
 .checkbox {
     position: relative;
 }
@@ -104,15 +57,39 @@ input[type="checkbox"] {
 }
 
 .settings-content {
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
+.settings-col {
+    flex: 1 0 350px;
+    max-width: 400px;
+    align-self: center;
+}
+
+.settings-content h4 {
+    margin-top: 0;
+}
+
+.settings-col + .settings-col {
+
+}
+
 .settings-container {
-    flex: 1 0 300px;
+    box-sizing: border-box;
     padding: 20px;
+    margin: 20px 10px;
+    border: 1px solid #ccc;
 }
 
 .Settings .buttons {
-    float: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Settings .buttons .btn + .btn {
+    margin-left: 10px;
 }
