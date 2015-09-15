@@ -7,15 +7,137 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"}
+                "element": {"#": "owner"},
+                "content": [
+                    {
+                        "diskVendor": "disk vendor",
+                        "partitions": [
+                            {
+                                "size": 16,
+                                "path": "/dev/da20"
+                            },
+                            {
+                                "size": 8,
+                                "path": "/dev/da20"
+                            },
+                            {
+                                "size": 8,
+                                "path": "/dev/da20"
+                            }
+                        ]
+                    },
+                    {
+                        "diskVendor": "disk vendor 2",
+                        "partitions": [
+                            {
+                                "size": 16,
+                                "path": "/dev/da20"
+                            }
+                        ]
+                    },
+                    {
+                        "diskVendor": "disk vendor 3",
+                        "partitions": [
+                            {
+                                "size": 16,
+                                "path": "/dev/da20"
+                            },
+                            {
+                                "size": 16,
+                                "path": "/dev/da21"
+                            },
+                            {
+                                "size": 16,
+                                "path": "/dev/da22"
+                            },
+                            {
+                                "size": 16,
+                                "path": "/dev/da23"
+                            },
+                            {
+                                "size": 16,
+                                "path": "/dev/da24"
+                            },
+                            {
+                                "size": 16,
+                                "path": "/dev/da25"
+                            }
+
+                        ]
+                    }
+                ]
+            }
+        },
+
+        "cpuName": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cpuName"},
+                "value": "CPU NAME"
+            }
+        },
+
+        "cpuCores": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cpuCores"},
+                "value": "CPU Cores"
+            }
+        },
+
+        "cpuMemory": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cpuMemory"},
+                "value": "CPU Memory"
+            }
+        },
+
+        "diskItems": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "diskItems"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.content"}
+            }
+        },
+
+        "diskItem": {
+            "prototype": "./disk-item.reel",
+            "properties": {
+                "element": {"#": "diskItem"}
+            },
+            "bindings": {
+                "data": {"<-": "@diskItems:iteration.object"}
             }
         }
+
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="Hardware">
-        Hardware
+        <div class="panel">
+            <div class="panel-heading">System Information</div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    CPU:
+                    <span data-montage-id="cpuName"></span>
+                </li>
+                <li class="list-group-item">
+                    CPU Cores:
+                    <span data-montage-id="cpuCores"></span>
+                </li>
+                <li class="list-group-item">
+                    Memory:
+                    <span data-montage-id="cpuMemory"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="disk-items" data-montage-id="diskItems">
+            <div class="disk-item" data-montage-id="diskItem"></div>
+        </div>
     </div>
 </body>
 </html>

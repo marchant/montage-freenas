@@ -1,0 +1,16 @@
+.disk-items {
+    flex: 1;
+    padding: 20px;
+}
+
+.disk-item-partitions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.disk-item-partition {
+    height: 80px;
+    width:  80px;
+    margin: 5px;
+    background: grey;
+}

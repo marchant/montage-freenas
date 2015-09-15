@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="disk-item.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+
+        "vendorName": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "vendorName"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.diskVendor"}
+            }
+        },
+
+        "diskPartitions": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "diskPartitions"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.data.partitions"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="DiskItem">
+        <span data-montage-id="vendorName" class="disk-item-title"></span>
+        <div data-montage-id="diskPartitions" class="disk-item-partitions well">
+            <div data-montage-id="diskItemPartition" class="disk-item-partition"></div>
+        </div>
+    </div>
+</body>
+</html>
