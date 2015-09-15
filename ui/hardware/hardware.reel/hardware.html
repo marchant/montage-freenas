@@ -72,24 +72,30 @@
         "cpuName": {
             "prototype": "montage/ui/text.reel",
             "properties": {
-                "element": {"#": "cpuName"},
-                "value": "CPU NAME"
+                "element": {"#": "cpuName"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.system.cpu.model"}
             }
         },
 
         "cpuCores": {
             "prototype": "montage/ui/text.reel",
             "properties": {
-                "element": {"#": "cpuCores"},
-                "value": "CPU Cores"
+                "element": {"#": "cpuCores"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.system.cpu.cores + (@owner.system.cpu.cores > 1 ? ' Cores' : ' Core')"}
             }
         },
 
         "cpuMemory": {
             "prototype": "montage/ui/text.reel",
             "properties": {
-                "element": {"#": "cpuMemory"},
-                "value": "CPU Memory"
+                "element": {"#": "cpuMemory"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.system.humanReadableMemorySize"}
             }
         },
 
