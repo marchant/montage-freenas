@@ -75,6 +75,14 @@ exports.LoginController = {
         }
     },
 
+    logout: {
+        value: function () {
+            if (this.currentLoggedUser) {
+                this._disconnectCurrentLoggedUser();
+            }
+        }
+    },
+
     updateSessionToken: {
         value: function (_timestamp) {
             this.currentLoggedUser.tokenExpiredTime = _timestamp + this.currentLoggedUser.tokenValidTime * 1000;
@@ -84,8 +92,8 @@ exports.LoginController = {
 
     handleUserDisconnected: {
         value: function () {
-            this.hideCurrentView();
-            this.displaySignInWindow();
+            this._disconnectCurrentLoggedUser();
+            this.promptSignInWindow();
         }
     },
 
@@ -100,7 +108,7 @@ exports.LoginController = {
     _disconnectCurrentLoggedUser: {
         value: function () {
             if (this.currentLoggedUser) {
-                //this._backend.logout();
+                this._backend.disconnect(1000, "User logged out");
                 this._deleteSessionCookie();
                 this.currentLoggedUser = null;
             }

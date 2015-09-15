@@ -215,12 +215,16 @@ WebSocketClient.prototype._reset = function () {
 
 
 WebSocketClient.prototype._resetConnection = function () {
-    if (this._socket && this._socket.readyState !== WebSocket.CLOSED) {
-        this._socket.close(); //if already closed, will do nothing
-    }
-
+    this.close();
     this._socket = null;
     this._isConnecting = false;
+};
+
+
+WebSocketClient.prototype.close = function (code, reason) {
+    if (this._socket && this._socket.readyState !== WebSocket.CLOSED) {
+        this._socket.close(code, reason); //if already closed, will do nothing
+    }
 };
 
 /**

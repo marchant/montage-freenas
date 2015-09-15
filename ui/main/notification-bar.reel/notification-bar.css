@@ -1,3 +1,12 @@
 .NotificationBar {
     background-color: #1f1f1f;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.NotificationBar .LoggedUser {
+    color: white;
+    align-self: center;
+    margin-right: 20px;
+    font-size: 22px;
 }

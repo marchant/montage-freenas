@@ -9,13 +9,38 @@
             "properties": {
                 "element": {"#": "owner"}
             }
+        },
+
+        "loggedUser": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "logged-user"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.application.controller.currentLoggedUser.name"}
+            }
+        },
+
+        "logout": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "logout"},
+                "label": "Logout"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         }
     }
     </script>
 </head>
 <body>
     <div data-montage-id="owner" class="NotificationBar">
-        Notification Bar
+        <span data-montage-id="logged-user" class="LoggedUser"></span>
+        <button data-montage-id="logout"></button>
     </div>
 </body>
 </html>

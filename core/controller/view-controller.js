@@ -10,6 +10,13 @@ exports.ViewController = {
         writable: true
     },
 
+    promptSignInWindow: {
+        value: function () {
+            this.hideCurrentView();
+            this.displaySignInWindow();
+        }
+    },
+
     displayDashboard: {
         value: function () {
             this.displayView("dashboard");

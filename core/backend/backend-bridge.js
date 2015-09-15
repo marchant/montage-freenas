@@ -53,3 +53,8 @@ BackEndBridge.prototype.send = function (_messageCommand) {
 BackEndBridge.prototype.reConnect = function () {
     return this._connection.reConnect();
 };
+
+
+BackEndBridge.prototype.disconnect = function disconnect (code, reason) {
+    this._connection.close(code, reason);
+};
