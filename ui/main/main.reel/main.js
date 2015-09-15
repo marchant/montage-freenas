@@ -18,6 +18,23 @@ exports.Main = Component.specialize({
         }
     },
 
+    menuComponent: {
+        value: null
+    },
+
+    enterDocument: {
+        value: function (firstTime) {
+            if (firstTime) {
+                //fixme: temporary -> need a menu controller or something
+                this.application.controller.menuController = this.menuComponent;
+
+                if (this.application.controller.currentLoggedUser) {
+                    this.application.controller.displayDashboard();
+                }
+            }
+        }
+    },
+
     handleConnectionEstablished: {
         value: function () {
             this.blockDrawGate.setField("connectionEstablished", true);

@@ -19,7 +19,7 @@ exports.SignInWindow = Overlay.specialize({
                 this.addComposerForElement(this._keyComposer, window);
 
                 var app = this.application;
-                app.controller.loginWindow = this;
+                app.controller.signInWindow = this;
 
                 if (!app.controller.currentLoggedUser) {
                     this.show();
@@ -84,6 +84,7 @@ exports.SignInWindow = Overlay.specialize({
 
                 this._loginPromise = this.application.controller.loginWithCredentials(this.username, this.password).then(function () {
                     self._loginPromise = null;
+                    self.application.controller.displayDashboard();
                     self.hide();
 
                 }, function (error) {
