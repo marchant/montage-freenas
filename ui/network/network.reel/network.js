@@ -42,7 +42,8 @@ exports.Network = Component.specialize({
 
     handleResetAction: {
         value: function () {
-            alert("reset");
+            // get a new NetworkSettingProxy with the latest saved config.
+            this._populateNetworkConfig();
         }
     },
 
