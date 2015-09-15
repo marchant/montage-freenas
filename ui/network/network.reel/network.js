@@ -6,7 +6,7 @@ var Component = require("montage/ui/component").Component;
  */
 exports.Network = Component.specialize({
 
-    networkConfigProxy: {
+    networkSettingProxy: {
         value: null
     },
 
@@ -48,7 +48,7 @@ exports.Network = Component.specialize({
 
     handleApplyAction: {
         value: function () {
-            this.application.controller.updateNetworkConfig(this.networkConfigProxy);
+            this.application.controller.updateNetworkSetting(this.networkSettingProxy);
         }
     },
 
@@ -64,13 +64,13 @@ exports.Network = Component.specialize({
 
     _addDnsAddress: {
         value: function (_dnsAddress) {
-            return this.networkConfigProxy.addDNSAddress(_dnsAddress);
+            return this.networkSettingProxy.addDNSAddress(_dnsAddress);
         }
     },
 
     _removeDnsAddress: {
         value: function (_dnsAddress) {
-            return this.networkConfigProxy.removeDNSAddress(_dnsAddress);
+            return this.networkSettingProxy.removeDNSAddress(_dnsAddress);
         }
     },
 
@@ -78,8 +78,8 @@ exports.Network = Component.specialize({
         value: function () {
             var self = this;
 
-            return this.application.controller.getNetworkConfig().then(function (_networkConfigProxy) {
-                self.networkConfigProxy = _networkConfigProxy;
+            return this.application.controller.getNetworkSetting().then(function (_networkSettingProxy) {
+                self.networkSettingProxy = _networkSettingProxy;
             });
         }
     },

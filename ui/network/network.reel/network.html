@@ -34,7 +34,7 @@
                 "element": {"#": "ipV4defaultGateway"}
             },
             "bindings": {
-                "value": {"<->": "@owner.networkConfigProxy.ipV4Gateway"}
+                "value": {"<->": "@owner.networkSettingProxy.ipV4Gateway"}
             }
         },
         "ipV6defaultGateway": {
@@ -43,7 +43,7 @@
                 "element": {"#": "ipV6defaultGateway"}
             },
             "bindings": {
-                "value": {"<->": "@owner.networkConfigProxy.ipV6Gateway"}
+                "value": {"<->": "@owner.networkSettingProxy.ipV6Gateway"}
             }
         },
         "serverList": {
@@ -52,7 +52,7 @@
                 "element": {"#": "serverList"}
             },
             "bindings": {
-                "content": {"<-": "@owner.networkConfigProxy.dnsAddresses"}
+                "content": {"<-": "@owner.networkSettingProxy.dnsAddresses"}
             }
         },
         "serverListItem": {

@@ -12,9 +12,6 @@ NetworkSettingProxy.createFromNetworkSetting = function (_networkSetting) {
 
     networkSettingProxy.ipV4Gateway = _networkSetting.ipV4Gateway;
     networkSettingProxy.ipV6Gateway = _networkSetting.ipV6Gateway;
-    networkSettingProxy.isAutoConfigEnabled = _networkSetting.isAutoConfigEnabled;
-    networkSettingProxy.httpProxy = _networkSetting.httpProxy;
-    networkSettingProxy.dhcp = _networkSetting.dhcp;
 
     for (var i = 0, length = dnsAddresses.length; i < length; i++) {
         dnsAddressesProxy.push(dnsAddresses[i]);
@@ -27,30 +24,14 @@ NetworkSettingProxy.createFromNetworkSetting = function (_networkSetting) {
 NetworkSettingProxy.prototype._ipV4Gateway = null;
 NetworkSettingProxy.prototype._dnsAddresses = null;
 NetworkSettingProxy.prototype._ipV6Gateway = null;
-NetworkSettingProxy.prototype._hostname = null;
-NetworkSettingProxy.prototype.httpProxy = null;
-NetworkSettingProxy.prototype.isAutoConfigEnabled = false;
-NetworkSettingProxy.prototype.dhcp = null;
 
 
 Object.defineProperties(NetworkSettingProxy.prototype, {
 
-    hostname: {
-        set: function (_hostname) {
-            if (typeof _hostname === "string" && _hostname !== this._hostname) { //todo better checking
-                this._hostname = _hostname;
-            }
-        },
-        get: function () {
-            return this._hostname;
-        },
-        configurable: true
-    },
-
     ipV4Gateway: {
         set: function (_ipV4Gateway) {
             if (typeof _ipV4Gateway === "string" && _ipV4Gateway !== this._ipV4Gateway) { //todo better checking
-                this._ipV4Gateway = _ipV4Gateway;
+                this._ipV4Gateway = _ipV4Gateway || null;
             }
         },
         get: function () {
@@ -62,7 +43,7 @@ Object.defineProperties(NetworkSettingProxy.prototype, {
     ipV6Gateway: {
         set: function (_ipV6Gateway) {
             if (typeof _ipV6Gateway === "string" && _ipV6Gateway !== this._ipV6Gateway) { //todo better checking
-                this._ipV6Gateway = _ipV6Gateway;
+                this._ipV6Gateway = _ipV6Gateway || null;
             }
         },
         get: function () {
@@ -87,7 +68,7 @@ Object.defineProperties(NetworkSettingProxy.prototype, {
 
 NetworkSettingProxy.prototype.addDNSAddress = function (_dnsAddress) {
     if (typeof _dnsAddress === "string" && _dnsAddress.length && this._dnsAddresses.indexOf(_dnsAddress) === -1) { //todo better checking
-        this.dnsAddresses.push(_dnsAddress);
+        this._dnsAddresses.push(_dnsAddress);
 
         return true;
     }
@@ -109,22 +90,24 @@ NetworkSettingProxy.prototype.removeDNSAddress = function (_dnsAddress) {
 };
 
 NetworkSettingProxy.prototype.toNetworkSettingRawObject = function () {
-    return {
-        dhcp: this.dhcp,
+    var networkConfig = {};
 
-        gateway: {
-            ipv4: this._ipV4Gateway,
-            ipv6: this._ipV6Gateway
-        },
+    if (this._ipV4Gateway) {
+        networkConfig.gateway = {};
+        networkConfig.gateway.ipv4 = this._ipV4Gateway;
+    }
 
-        autoconfigure: this.isAutoConfigEnabled,
+    if (this._ipV6Gateway) {
+        if (!networkConfig.gateway) {
+            networkConfig.gateway = {};
+        }
 
-        dns: {
-            addresses: this._dnsAddresses,
-            search: []
-        },
+        networkConfig.gateway.ipv6 = this._ipV6Gateway;
+    }
 
-        http_proxy: this.httpProxy
+    if (this._dnsAddresses && this._dnsAddresses.length) {
+        networkConfig.dns = {addresses: this._dnsAddresses};
+    }
 
-    };
+    return networkConfig;
 };
