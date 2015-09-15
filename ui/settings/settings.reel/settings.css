@@ -44,6 +44,10 @@ h4 {
     cursor: pointer;
 }
 
+.checkbox span {
+    display: inline-block;
+}
+
 input[type="checkbox"] {
     display: block;
     position: absolute;
@@ -72,10 +76,6 @@ input[type="checkbox"] {
 
 .settings-content h4 {
     margin-top: 0;
-}
-
-.settings-col + .settings-col {
-
 }
 
 .settings-container {
