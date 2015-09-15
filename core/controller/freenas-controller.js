@@ -14,6 +14,8 @@ var FreeNasController = exports.FreeNasController = function FreeNasController (
     this._application = _app;
     this._service = new FreeNasService().initWithBackendBridge(this._backend);
     this._store = new FreeNasStore( this._service);
+
+    _app.addEventListener("userDisconnected", this, false);
 };
 
 

@@ -12,8 +12,8 @@ exports.Main = Component.specialize({
             this.super();
 
             if (!Application.isReady) {
-                this.blockDrawGate.setField("connectionEstablished", false);
-                Application.addEventListener("connectionEstablished", this, false);
+                this.blockDrawGate.setField("appReady", false);
+                Application.addEventListener("appReady", this, false);
             }
         }
     },
@@ -35,9 +35,9 @@ exports.Main = Component.specialize({
         }
     },
 
-    handleConnectionEstablished: {
+    handleAppReady: {
         value: function () {
-            this.blockDrawGate.setField("connectionEstablished", true);
+            this.blockDrawGate.setField("appReady", true);
         }
     }
 

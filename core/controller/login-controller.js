@@ -9,7 +9,7 @@ exports.LoginController = {
         writable: true
     },
 
-    tryReconnect: {
+    tryLoginWithToken: {
         value: function () {
             var token = this._getSessionCookie();
 
@@ -17,8 +17,7 @@ exports.LoginController = {
                 var app = this._application,
                     reconnectHandler = function () {
                         app.isReady = true;
-                        app.dispatchEventNamed("connectionEstablished", true, true);
-
+                        app.dispatchEventNamed("appReady", true, true);
                     };
 
                 app.isReady = false;
@@ -58,10 +57,8 @@ exports.LoginController = {
                 username : _username,
                 password : _password
 
-            })).then(function (response) {
-                self._saveCurrentLoggedUser(response.data);
-
-                return self.currentLoggedUser;
+            })).then(function (_response) {
+                return self._handleUserLogged(_response.data);
             });
         }
     },
@@ -72,10 +69,8 @@ exports.LoginController = {
 
             this._disconnectCurrentLoggedUser();
 
-            return this._backend.send(new MessageCommand("rpc", "auth_token", {token: _token})).then(function (response) {
-                self._saveCurrentLoggedUser(response.data);
-
-                return self.currentLoggedUser;
+            return this._backend.send(new MessageCommand("rpc", "auth_token", {token: _token})).then(function (_response) {
+                return self._handleUserLogged(_response.data);
             });
         }
     },
@@ -84,6 +79,21 @@ exports.LoginController = {
         value: function (_timestamp) {
             this.currentLoggedUser.tokenExpiredTime = _timestamp + this.currentLoggedUser.tokenValidTime * 1000;
             this._saveSessionCookie(this.currentLoggedUser.token, this.currentLoggedUser.tokenExpiredTime);
+        }
+    },
+
+    handleUserDisconnected: {
+        value: function () {
+            this.hideCurrentView();
+            this.displaySignInWindow();
+        }
+    },
+
+    _handleUserLogged: {
+        value: function (_userData) {
+            this._saveCurrentLoggedUser(_userData);
+
+            return this.currentLoggedUser;
         }
     },
 

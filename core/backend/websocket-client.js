@@ -137,6 +137,10 @@ WebSocketClient.prototype._handleMessage = function (_event) {
 
                 } else if (data.name === "error") {
                     if (data.args.code === 13) { //fixme: same code error when user not logged or wrong credentials...
+                        if (data.args.message === "Not logged in") {
+                            Application.dispatchEventNamed("userDisconnected", true, true);
+                        }
+
                         deferred.reject(data.args);
 
                     } else {

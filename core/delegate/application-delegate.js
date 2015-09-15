@@ -16,5 +16,5 @@ ApplicationDelegate.prototype.willFinishLoading = function (_app) {
     _app.isReady = true;
     _app.configuration = new Configuration().init();
     _app.controller = new FreeNasController(_app);
-    _app.controller.tryReconnect();
+    _app.controller.tryLoginWithToken();
 };
