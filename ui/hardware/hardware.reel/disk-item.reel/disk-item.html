@@ -17,7 +17,17 @@
                 "element": {"#": "vendorName"}
             },
             "bindings": {
-                "value": {"<-": "@owner.data.diskVendor"}
+                "value": {"<-": "@owner.data.description"}
+            }
+        },
+
+        "diskPath": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "disk-path"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.path"}
             }
         },
 
@@ -35,7 +45,8 @@
 </head>
 <body>
     <div data-montage-id="owner" class="DiskItem">
-        <span data-montage-id="vendorName" class="disk-item-title"></span>
+        <span data-montage-id="vendorName" class="disk-item-title"></span><br />
+        <span data-montage-id="disk-path"></span>
         <div data-montage-id="diskPartitions" class="disk-item-partitions well">
             <div data-montage-id="diskItemPartition" class="disk-item-partition"></div>
         </div>

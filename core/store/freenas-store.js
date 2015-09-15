@@ -1,5 +1,6 @@
 var GroupStore = require("core/store/group-store").GroupStore,
     UserStore = require("core/store/user-store").UserStore,
+    DiskStore = require("core/store/disk-store").DiskStore,
     SystemStore = require("core/store/system-store").SystemStore,
     NetworkInterfaceStore = require("core/store/network-interface-store").NetworkInterfaceStore,
     NetworkSettingStore = require("core/store/network-setting-store").NetworkSettingStore;
@@ -15,6 +16,7 @@ var FreeNasStore = exports.FreeNasStore = function FreeNasStore (_service) {
 FreeNasStore.STORES = {
     Group: GroupStore,
     User: UserStore,
+    Disk: DiskStore,
     System: SystemStore,
     NetworkInterface: NetworkInterfaceStore,
     NetworkSetting: NetworkSettingStore

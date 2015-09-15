@@ -7,65 +7,7 @@
     {
         "owner": {
             "properties": {
-                "element": {"#": "owner"},
-                "content": [
-                    {
-                        "diskVendor": "disk vendor",
-                        "partitions": [
-                            {
-                                "size": 16,
-                                "path": "/dev/da20"
-                            },
-                            {
-                                "size": 8,
-                                "path": "/dev/da20"
-                            },
-                            {
-                                "size": 8,
-                                "path": "/dev/da20"
-                            }
-                        ]
-                    },
-                    {
-                        "diskVendor": "disk vendor 2",
-                        "partitions": [
-                            {
-                                "size": 16,
-                                "path": "/dev/da20"
-                            }
-                        ]
-                    },
-                    {
-                        "diskVendor": "disk vendor 3",
-                        "partitions": [
-                            {
-                                "size": 16,
-                                "path": "/dev/da20"
-                            },
-                            {
-                                "size": 16,
-                                "path": "/dev/da21"
-                            },
-                            {
-                                "size": 16,
-                                "path": "/dev/da22"
-                            },
-                            {
-                                "size": 16,
-                                "path": "/dev/da23"
-                            },
-                            {
-                                "size": 16,
-                                "path": "/dev/da24"
-                            },
-                            {
-                                "size": 16,
-                                "path": "/dev/da25"
-                            }
-
-                        ]
-                    }
-                ]
+                "element": {"#": "owner"}
             }
         },
 
@@ -105,7 +47,7 @@
                 "element": {"#": "diskItems"}
             },
             "bindings": {
-                "content": {"<-": "@owner.content"}
+                "content": {"<-": "@owner.disks"}
             }
         },
 

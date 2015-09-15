@@ -10,11 +10,16 @@ exports.Hardware = Component.specialize({
         value: function (firstTime) {
             if (firstTime) {
                 this.populateSystemInfo();
+                this.populateDiskList();
             }
         }
     },
 
     system: {
+        value: null
+    },
+
+    disks: {
         value: null
     },
 
@@ -24,6 +29,16 @@ exports.Hardware = Component.specialize({
 
             this.application.controller.getSystemInfo().then(function (_system) {
                 self.system = _system;
+            });
+        }
+    },
+
+    populateDiskList: {
+        value: function () {
+            var self = this;
+
+            this.application.controller.getDiskList().then(function (_disks) {
+                self.disks = _disks;
             });
         }
     }
