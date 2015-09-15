@@ -12,9 +12,7 @@ exports.NetworkSettingMapping = DataMapping.specialize({
                 networkSetting.ipV6Gateway = rawObject.gateway.ipv6;
             }
 
-            networkSetting.isAutoConfigEnabled = rawObject.autoconfigure;
             networkSetting.dnsAddresses = rawObject.dns.addresses;
-            networkSetting.httpProxy = rawObject.http_proxy;
 
             return networkSetting;
         }
