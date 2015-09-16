@@ -1,4 +1,5 @@
-var NetworkSetting = require("core/model/network-setting").NetworkSetting;
+var AbstractProxy = require("core/proxy/abstract-proxy").AbstractProxy,
+    NetworkSetting = require("core/model/network-setting").NetworkSetting;
 
 /**
  * @class NetworkSettingProxy
@@ -20,34 +21,30 @@ NetworkSettingProxy.createFromNetworkSetting = function (_networkSetting) {
     return networkSettingProxy;
 };
 
-
-NetworkSettingProxy.prototype._ipV4Gateway = null;
+NetworkSettingProxy.prototype = new AbstractProxy();
+NetworkSettingProxy.prototype._ipv4 = null;
+NetworkSettingProxy.prototype._ipv6 = null;
 NetworkSettingProxy.prototype._dnsAddresses = null;
-NetworkSettingProxy.prototype._ipV6Gateway = null;
-
 
 Object.defineProperties(NetworkSettingProxy.prototype, {
 
     ipV4Gateway: {
-        set: function (_ipV4Gateway) {
-            if (typeof _ipV4Gateway === "string" && _ipV4Gateway !== this._ipV4Gateway) { //todo better checking
-                this._ipV4Gateway = _ipV4Gateway || null;
-            }
+        set: function (_ipv4) {
+            this._updateValue(NetworkSetting.prototype, "ipV4Gateway", _ipv4);
         },
         get: function () {
-            return this._ipV4Gateway;
+            return this._ipv4;
         },
         configurable: true
     },
 
     ipV6Gateway: {
-        set: function (_ipV6Gateway) {
-            if (typeof _ipV6Gateway === "string" && _ipV6Gateway !== this._ipV6Gateway) { //todo better checking
-                this._ipV6Gateway = _ipV6Gateway || null;
-            }
+        set: function (_ipv6) {
+            this._updateValue(NetworkSetting.prototype, "ipV6Gateway", _ipv6);
+
         },
         get: function () {
-            return this._ipV6Gateway;
+            return this._ipv6;
         },
         configurable: true
     },
@@ -69,6 +66,7 @@ Object.defineProperties(NetworkSettingProxy.prototype, {
 NetworkSettingProxy.prototype.addDNSAddress = function (_dnsAddress) {
     if (typeof _dnsAddress === "string" && _dnsAddress.length && this._dnsAddresses.indexOf(_dnsAddress) === -1) { //todo better checking
         this._dnsAddresses.push(_dnsAddress);
+        this.isDirty = true;
 
         return true;
     }
@@ -82,6 +80,7 @@ NetworkSettingProxy.prototype.removeDNSAddress = function (_dnsAddress) {
 
     if (typeof _dnsAddress === "string" && (index = this._dnsAddresses.indexOf(_dnsAddress)) > -1) {
         this._dnsAddresses.splice(index, 1);
+        this.isDirty = true;
 
         return true;
     }

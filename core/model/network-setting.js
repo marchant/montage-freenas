@@ -32,7 +32,7 @@ Object.defineProperties(NetworkSetting.prototype, {
     ipV4Gateway: {
         set: function (_ipv4) {
             if (typeof _ipv4 === "string" && this._ipv4 !== _ipv4) {
-                this._ipv4 = _ipv4;
+                this._ipv4 = _ipv4 || null;
             }
         },
         get: function () {
@@ -43,7 +43,7 @@ Object.defineProperties(NetworkSetting.prototype, {
     ipV6Gateway: {
         set: function (_ipv6) {
             if (typeof _ipv6 === "string" && this._ipv6 !== _ipv6) {
-                this._ipv6 = _ipv6;
+                this._ipv6 = _ipv6 || null;
             }
         },
         get: function () {
