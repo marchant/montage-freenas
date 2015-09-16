@@ -85,8 +85,10 @@ exports.LoginController = {
 
     updateSessionToken: {
         value: function (_timestamp) {
-            this.currentLoggedUser.tokenExpiredTime = _timestamp + this.currentLoggedUser.tokenValidTime * 1000;
-            this._saveSessionCookie(this.currentLoggedUser.token, this.currentLoggedUser.tokenExpiredTime);
+            if (_timestamp > 0) {
+                this.currentLoggedUser.tokenExpiredTime = _timestamp + this.currentLoggedUser.tokenValidTime * 1000;
+                this._saveSessionCookie(this.currentLoggedUser.token, this.currentLoggedUser.tokenExpiredTime);
+            }
         }
     },
 
