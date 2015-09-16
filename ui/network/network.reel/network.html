@@ -72,7 +72,7 @@
                 "element": {"#": "apply"}
             },
             "bindings": {
-                "enabled": {"<-": "@owner.networkSettingProxy.isDirty || @owner.systemInfoProxy.isDirty"}
+                "enabled": {"<-": "@owner.networkSettingProxy.isValid && @owner.systemInfoProxy.isValid && (@owner.networkSettingProxy.isDirty || @owner.systemInfoProxy.isDirty)"}
             }
         },
 
