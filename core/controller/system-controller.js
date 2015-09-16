@@ -2,6 +2,7 @@ var ManagementConnectionSettingProxy = require("core/proxy/management-connection
     OperatingSystemSettingProxy = require("core/proxy/operating-system-setting-proxy").OperatingSystemSettingProxy,
     ConsoleSettingProxy = require("core/proxy/console-setting-proxy").ConsoleSettingProxy,
     SystemInfoProxy = require("core/proxy/system-info-proxy").SystemInfoProxy,
+    MessageCommand = require("core/backend/message-command").MessageCommand,
     SystemSetting = require("core/model/system-setting").SystemSetting,
     System = require("core/model/system").System;
 
@@ -21,6 +22,26 @@ exports.SystemController = {
             return this.getSystemInfo().then(function (_systemInfo) {
                 return _systemInfo ? new SystemInfoProxy(_systemInfo.hostname) : null;
             });
+        }
+    },
+
+    updateSystemInfo: {
+        value: function (_systemInfoProxy) {
+            if (_systemInfoProxy instanceof SystemInfoProxy) {
+                var self = this;
+
+                var messageCommand = new MessageCommand("rpc", "call", {
+                    method: "task.submit",
+                    args: ["system.general.configure", [_systemInfoProxy.toRawObject()]]
+                });
+
+                //fixme: seems to break the server.
+                //return this._backend.send(messageCommand).then((function (response) {
+                //    debugger
+                //}));
+            }
+
+            return Promise.reject("wrong parameters given");
         }
     },
 
