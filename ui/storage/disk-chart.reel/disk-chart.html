@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="disk-chart.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "pieCanvas": {"#": "pie"}
+            }
+        },
+        "parity": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "parity"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.formattedParity"}
+            }
+        },
+        "usable": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "usable"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.formattedUsable"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="DiskChart">
+        <div class="DiskChart-parity">
+            <span class="DiskChart-parity-label">Parity</span>
+            <span data-montage-id="parity" class="DiskChart-parity-value"></span>
+        </div>
+        <canvas data-montage-id="pie" width="52" height="52" class="DiskChart-pie"></canvas>
+        <div class="DiskChart-usable">
+            <span class="DiskChart-usable-label">Usable</span>
+            <span data-montage-id="usable" class="DiskChart-usable-value"></span>
+        </div>
+    </div>
+</body>
+</html>

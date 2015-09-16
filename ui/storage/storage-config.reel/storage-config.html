@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="storage-config.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "storageRepetition": {"@": "storageRepetition"},
+                "topology": {"@": "topology"}
+            },
+            "bindings": {
+                "storageRepetitionLength": {"<-": "@storageRepetition.contentController.content.length"}
+            }
+        },
+        "topology": {
+            "prototype": "core/model/topology"
+        },
+        "volumeName": {
+            "prototype": "montage/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "volumeName"}
+            }
+        },
+        "volumeChart": {
+            "prototype": "../disk-chart.reel",
+            "properties": {
+                "element": {"#": "volumeChart"},
+                "color1": "#bbb",
+                "color2": "#eee",
+                "_pieWidth": 39
+            },
+            "bindings": {
+                "usable": {"<-": "@owner.usable"},
+                "parity": {"<-": "@owner.parity"}
+            }
+        },
+        "cacheContainer": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "cacheContainer"},
+                "isSsdOnly": true,
+                "_allOptions": [
+                    {
+                        "label": "Stripe",
+                        "value": "stripe"
+                    },
+                    {
+                        "label": "Mirror",
+                        "value": "mirror"
+                    }
+                ]
+            },
+            "bindings": {
+                "disks": {"<-": "@owner.topology.cache"}
+            }
+        },
+        "logContainer": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "logContainer"},
+                "isSsdOnly": true,
+                "_allOptions": [
+                    {
+                        "label": "Stripe",
+                        "value": "stripe"
+                    },
+                    {
+                        "label": "Mirror",
+                        "value": "mirror"
+                    }
+                ]
+            },
+            "bindings": {
+                "disks": {"<-": "@owner.topology.log"}
+            }
+        },
+        "storageRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "storageRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.topology.storage"}
+            }
+        },
+        "storageContainer": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "storageContainer"},
+                "isChartVisible": true
+            },
+            "bindings": {
+                "disks": {"<-": "@storageRepetition:iteration.object"},
+                "type": {"<-": "@owner.topology.storageType[@storageRepetition:iteration.index]"}
+            }
+        },
+        "sparesContainer": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "sparesContainer"},
+                "isHeaderHidden": true
+            },
+            "bindings": {
+                "disks": {"<-": "@owner.topology.spares"}
+            }
+        },
+        "cancel": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "cancel"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="StorageConfig Disk-isRemovable">
+        <div class="StorageConfig-wrapper">
+            <div class="StorageConfig-header">
+                <input data-montage-id="volumeName" class="StorageConfig-volumeName" required>
+                <span class="StorageConfig-volumeName-label">Volume Name</span>
+                <div data-montage-id="volumeChart" class="StorageConfig-volumeCapacity"></div>
+            </div>
+            <div class="StorageConfig-body">
+                <div class="StorageConfig-cache">
+                    <div class="StorageConfig-label">Cache</div>
+                    <div data-montage-id="cacheContainer" class="StorageConfig-container"></div>
+                </div>
+                <div class="StorageConfig-log">
+                    <div class="StorageConfig-label">Log</div>
+                    <div data-montage-id="logContainer" class="StorageConfig-container"></div>
+                </div>
+                <div class="StorageConfig-storage">
+                    <div class="StorageConfig-label">Storage</div>
+                    <div data-montage-id="storageRepetition" class="StorageConfig-containerRepetition">
+                        <div data-montage-id="storageContainer" class="StorageConfig-container"></div>
+                    </div>
+                </div>
+                <div class="StorageConfig-spares">
+                    <div class="StorageConfig-label">Spares</div>
+                    <div data-montage-id="sparesContainer" class="StorageConfig-container"></div>
+                </div>
+            </div>
+            <div class="StorageConfig-footer">
+                <div data-montage-id="submit" class="Freenas-submit-button StorageConfig-submit">Submit</div>
+                <div data-montage-id="cancel" class="Freenas-button StorageConfig-cancel">Cancel</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="storage-panel.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "preset": {"<-": "@preset.selectedValue"}
+            }
+        },
+        "topologizer": {
+            "prototype": "../topologizer.reel",
+            "properties": {
+                "element": {"#": "topologizer"}
+            },
+            "bindings": {
+                "topology": {"<-": "@owner.topology"}
+            }
+        },
+        "reset": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "reset"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "preset": {
+            "prototype": "ui/shared/select.reel",
+            "properties": {
+                "element": {"#": "preset"},
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    },
+                    {
+                        "value": "optimal",
+                        "label": "Optimal"
+                    },
+                    {
+                        "value": "virtualization",
+                        "label": "Virtualization"
+                    },
+                    {
+                        "value": "backups",
+                        "label": "Backups"
+                    },
+                    {
+                        "value": "media",
+                        "label": "Media"
+                    }
+                ],
+                "selectedValue": "none"
+            }
+        },
+        "ssdGroupRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "ssdGroupRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.topology.availableDisks.ssds"}
+            }
+        },
+        "ssdGroupTitle": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "ssdGroupTitle"}
+            },
+            "bindings": {
+                "label": {"<-": "@ssdGroupRepetition:iteration.object.group + ' (' + @ssdGroupRepetition:iteration.object.disks.length + ')'"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "ssdGroupDisks": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "ssdGroupDisks"},
+                "isHeaderHidden": true,
+                "isOrigin": true
+            },
+            "bindings": {
+                "disks": {"<-": "@ssdGroupRepetition:iteration.object.disks"}
+            }
+        },
+        "hddGroupRepetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "hddGroupRepetition"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.topology.availableDisks.hdds"}
+            }
+        },
+        "hddGroupTitle": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "hddGroupTitle"}
+            },
+            "bindings": {
+                "label": {"<-": "@hddGroupRepetition:iteration.object.group + ' (' + @hddGroupRepetition:iteration.object.disks.length + ')'"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "hddGroupDisks": {
+            "prototype": "../container.reel",
+            "properties": {
+                "element": {"#": "hddGroupDisks"},
+                "isHeaderHidden": true,
+                "isOrigin": true
+
+            },
+            "bindings": {
+                "disks": {"<-": "@hddGroupRepetition:iteration.object.disks"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="StoragePanel">
+        <div class="StoragePanel-title">
+            <span>Modify Pool Topology</span>
+        </div>
+        <div data-montage-id="topologizer" class="StoragePanel-topologizer"></div>
+        <div data-montage-id="reset" class="Freenas-button StoragePanel-reset">Reset Pool Topology</div>
+        <div class="StoragePanel-title">
+            <span>Preset Configuration</span>
+        </div>
+        <div data-montage-id="preset" class="StoragePanel-preset"></div>
+        <div class="StoragePanel-preset-descripition">
+            Select a ZFS topology layout to automatically assign drives to your pool, or use the topologizer tool to customize your layout.
+        </div>
+        <div class="StoragePanel-title">
+            <span>Available SSDs</span>
+        </div>
+        <div data-montage-id="ssdGroupRepetition" class="StoragePanel-groupRepetition">
+            <div data-montage-id="ssdGroup" class="StoragePanel-group">
+                <div data-montage-id="ssdGroupTitle" class="StoragePanel-group-title"></div>
+                <div data-montage-id="ssdGroupDisks" class="StoragePanel-group-disks"></div>
+            </div>
+        </div>
+        <div class="StoragePanel-title">
+            <span>Available Disks</span>
+        </div>
+        <div data-montage-id="hddGroupRepetition" class="StoragePanel-groupRepetition">
+            <div data-montage-id="hddGroup" class="StoragePanel-group">
+                <div data-montage-id="hddGroupTitle" class="StoragePanel-group-title"></div>
+                <div data-montage-id="hddGroupDisks" class="StoragePanel-group-disks"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

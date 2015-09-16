@@ -1,0 +1,122 @@
+.StoragePanel {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.StoragePanel-title {
+    padding-top: 21px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 15px;
+}
+
+.StoragePanel-title span {
+    display: block;
+    float: left;
+    font-weight: 300;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #777;
+    padding-right: 11px;
+}
+
+.StoragePanel-title:after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    overflow: hidden;
+    margin-top: .5em;
+}
+
+.StoragePanel-reset {
+    margin: 15px 15px 0 15px;
+}
+
+.StoragePanel-preset {
+    margin: 0 15px 0 15px;
+    display: block !important;
+    position: relative;
+}
+
+.StoragePanel-preset .Select-selected {
+    display: block;
+    width: 100%;
+    border: none;
+    background: linear-gradient(to bottom, #0196d8, #0184bf);
+    color: white;
+}
+
+.StoragePanel-preset .Select-selected:focus {
+    background: linear-gradient(to bottom, #0184bf, #0196d8);
+}
+
+.StoragePanel-preset .Select-selected:hover {
+    background: #0184bf;
+}
+
+.StoragePanel-preset .Select-selected:after {
+    text-shadow: none;
+    color: rgba(255, 255, 255, .5);
+}
+
+.StoragePanel-preset-descripition {
+    padding: 15px 30px;
+    font-weight: 300;
+}
+
+.StoragePanel-groupRepetition {
+
+}
+
+.StoragePanel-groupRepetition .Container-disk {
+    margin-left: 9px;
+}
+
+.StoragePanel-groupRepetition .Container-repetition:before {
+    content: none;
+}
+
+.StoragePanel-groupRepetition .Container-repetition {
+    padding-right: 0;
+}
+
+.StoragePanel-group {
+    margin: 0 15px;
+}
+
+.StoragePanel-group-title {
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.StoragePanel-group-title:before {
+    content: "▼";
+    left: 0;
+    bottom: 7px;
+    position: absolute;
+    font-size: 9px;
+    transition: all .2s ease-in-out;
+    transform: rotateZ(-90deg);
+}
+
+.StoragePanel-group-title.StoragePanel-isExpanded:before {
+    transform: rotateZ(0);
+}
+
+.StoragePanel-isExpanded + .StoragePanel-group-disks {
+    display: block;
+}
+
+.StoragePanel-group-disks {
+    display: none;
+}

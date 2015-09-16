@@ -1,0 +1,85 @@
+.DiskChart {
+    float: left;
+    display: none;
+    position: relative;
+    height: 34px;
+    line-height: 41px;
+    box-sizing: border-box;
+    padding-top: 7px;
+    margin-left: 10px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.DiskChart-isVisible {
+    display: inline-block;
+}
+
+.DiskChart-pie {
+    float: left;
+    width: 26px;
+    height: 26px;
+    margin: 0 5px 0 6px;
+}
+
+.DiskChart-usable {
+    float: left;
+    height: 40px;
+    color: #4a7126;
+}
+
+.DiskChart-usable-label,
+.DiskChart-parity-label {
+    display: block;
+    line-height: 11px;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+.DiskChart-usable-value,
+.DiskChart-parity-value {
+    display: block;
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.DiskChart-parity {
+    float: left;
+    height: 40px;
+    text-align: right;
+    color: #7dab50
+}
+
+.StorageConfig-volumeCapacity .DiskChart-usable {
+    color: #eee;
+}
+
+.StorageConfig-volumeCapacity .DiskChart-parity {
+    color: #bbb;
+}
+
+.StorageConfig-volumeCapacity .DiskChart-pie {
+    width: 39px;
+    height: 39px;
+    margin: 0 8px 0 8px;
+}
+
+.StorageConfig-volumeCapacity.DiskChart {
+    opacity: .85;
+    height: 51px;
+    line-height: 61px;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+}
+.StorageConfig-volumeCapacity .DiskChart-usable-label,
+.StorageConfig-volumeCapacity .DiskChart-parity-label {
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.StorageConfig-volumeCapacity .DiskChart-usable-value,
+.StorageConfig-volumeCapacity .DiskChart-parity-value {
+    line-height: 24px;
+    font-size: 21px;
+}

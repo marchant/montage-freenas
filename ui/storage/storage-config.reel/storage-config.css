@@ -1,0 +1,94 @@
+.StorageConfig {
+    padding: 25px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.StorageConfig-wrapper {
+    background-color: #3d3d3d;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+}
+
+.StorageConfig-header {
+    position: relative;
+    height: 70px;
+}
+
+.StorageConfig-footer {
+    height: 60px;
+}
+
+.StorageConfig-submit {
+    float: right;
+    margin-top: 16px;
+    margin-right: 16px;
+}
+
+.StorageConfig-cancel {
+    float: right;
+    margin-top: 16px;
+    margin-right: 5px;
+}
+
+.StorageConfig-cache,
+.StorageConfig-log {
+    width: 50%;
+    float: left;
+}
+
+.StorageConfig-body {
+    background: white;
+    padding: 10px 0 10px 15px;
+}
+
+.StorageConfig-label {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 14px;
+    color: #aaa;
+    padding: 10px 0 10px 0;
+    text-transform: uppercase;
+}
+
+.StorageConfig-storage {
+    clear: both;
+}
+
+.StorageConfig-container {
+    margin: 0 30px 20px 15px;
+}
+
+.StorageConfig-volumeName {
+    background: rgba(128, 128, 128, .5);
+    border: 1px solid rgba(0, 0, 0, .2);
+    color: white;
+    font-size: 25px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin: 15px;
+    font-family: inherit;
+    width: 220px;
+}
+
+.StorageConfig-volumeName:focus + .StorageConfig-volumeName-label:before {
+    color: white;
+}
+
+.StorageConfig-volumeName-label {
+    position: absolute;
+    top: 18px;
+    left: 28px;
+    color: #aaa;
+    font-size: 25px;
+    -webkit-transition: all ease-in-out .15s;
+    pointer-events: none;
+}
+
+.StorageConfig-volumeName:valid + .StorageConfig-volumeName-label,
+.StorageConfig-volumeName:focus + .StorageConfig-volumeName-label {
+    color: transparent;
+}

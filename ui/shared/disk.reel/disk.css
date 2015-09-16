@@ -1,0 +1,95 @@
+@keyframes enter {
+    from {
+        opacity: 0;
+        height: 0;
+    }
+}
+
+.Disk {
+    position: relative;
+    width: 72px;
+    height: 80px;
+}
+
+.Disk-enter {
+    animation-duration: .3s;
+    animation-name: enter;
+}
+
+.Disk-icon {
+    position: absolute;
+    width: 72px;
+    height: 80px;
+    background-size: auto 50px;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-image: url(../../../assets/images/hdd.png);
+}
+
+.Disk-isSsd .Disk-icon {
+    background-image: url(../../../assets/images/ssd.png);
+}
+
+.Disk-statusIndicator {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    background: #99cc20;
+    border-radius: 50%
+}
+
+.Disk-warning .Disk-statusIndicator {
+    background: #f1be0f;
+}
+
+.Disk-fail .Disk-statusIndicator {
+    background: #de232d;
+}
+
+.Disk-isRemovable .Disk-remove {
+    display: block;
+}
+
+.Disk-remove {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 58px;
+    font-weight: 100;
+    background: rgba(0, 0, 0, .1);
+    width: 14px;
+    height: 14px;;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    border-radius: 50%;
+    color: black;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+.Disk-remove:hover {
+    background: #c00;
+    color: white;
+}
+
+.Disk-capacity {
+    width: 72px;
+    margin-top: 52px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 16px;
+}
+
+.Disk-name {
+    width: 72px;
+    font-size: 11px;
+    line-height: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

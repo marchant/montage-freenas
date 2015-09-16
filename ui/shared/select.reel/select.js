@@ -1,7 +1,8 @@
 var Component = require("montage/ui/component").Component;
 
 /**
- * @class ContextualPanel
+ * @class Select
  * @extends Component
  */
-exports.ContextualPanel = Component.specialize();
+
+exports.Select = Component.specialize();

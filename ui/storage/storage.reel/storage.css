@@ -1,3 +1,94 @@
 .Storage {
 
 }
+
+.Storage-title {
+    float: left;
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 200;
+    padding: 25px 22px 0 25px;
+    background: white;
+}
+
+.Storage-title:after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    margin-top: -18px;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+
+.Storage-body {
+    position: relative;
+    clear: both;
+}
+
+.Storage-info {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 10px;
+    margin: 0 auto 25px auto;
+    width: 100%;
+    height: auto;
+    max-width: 550px;
+    padding: 15px;
+    opacity: 1;
+    box-sizing: border-box;
+    -webkit-transition: all ease-in-out .4s;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.Storage-info-image {
+    width: 122px;
+    height: 130px;
+    padding: 15px;
+    float: left;
+}
+
+.Storage-info-title {
+    margin: 20px 0 10px 0;
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 200;
+}
+
+.Storage-info-content {
+    font-weight: 300;
+    padding-bottom: 13px;
+}
+
+.Storage-isShowingConfig .Storage-info {
+    opacity: 0;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, -25px, 0);
+}
+
+.Storage-config {
+    -webkit-transition: all ease-in-out .4s;
+    opacity: 0;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, 25px, 0);
+}
+
+.Storage-isShowingConfig .Storage-config {
+    opacity: 1;
+    -webkit-pointer-events: auto;
+    -moz-pointer-events: auto;
+    -ms-pointer-events: auto;
+    -o-pointer-events: auto;
+    pointer-events: auto;
+    -webkit-transform: translate3d(0, 0, 0);
+}
