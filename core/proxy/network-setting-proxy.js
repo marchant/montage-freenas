@@ -12,8 +12,8 @@ NetworkSettingProxy.createFromNetworkSetting = function (_networkSetting) {
         dnsAddresses = _networkSetting.dnsAddresses,
         dnsAddressesProxy = networkSettingProxy.dnsAddresses;
 
-    networkSettingProxy.ipV4Gateway = _networkSetting.ipV4Gateway;
-    networkSettingProxy.ipV6Gateway = _networkSetting.ipV6Gateway;
+    networkSettingProxy._ipV4Gateway = _networkSetting.ipV4Gateway;
+    networkSettingProxy._ipV6Gateway = _networkSetting.ipV6Gateway;
 
     for (var i = 0, length = dnsAddresses.length; i < length; i++) {
         dnsAddressesProxy.push(dnsAddresses[i]);

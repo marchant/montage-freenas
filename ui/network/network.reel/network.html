@@ -9,8 +9,7 @@
             "properties": {
                 "element": {"#": "owner"},
                 "addDnsInput": {"#": "addDnsInput"},
-                "serverListComponent": {"@": "serverList"},
-                "hostname": "freenas.local"
+                "serverListComponent": {"@": "serverList"}
             },
             "listeners": [
                 {
@@ -25,7 +24,7 @@
                 "element": {"#": "hostname"}
             },
             "bindings": {
-                "value": {"<-": "@owner.hostname"}
+                "value": {"<->": "@owner.systemInfoProxy.hostname"}
             }
         },
         "ipV4defaultGateway": {
@@ -72,7 +71,7 @@
                 "element": {"#": "apply"}
             },
             "bindings": {
-                "enabled": {"<-": "@owner.networkSettingProxy.isDirty"}
+                "enabled": {"<-": "@owner.networkSettingProxy.isDirty || @owner.systemInfoProxy.isDirty"}
             }
         },
 
@@ -82,7 +81,7 @@
                 "element": {"#": "reset"}
             },
             "bindings": {
-                "enabled": {"<-": "@owner.networkSettingProxy.isDirty"}
+                "enabled": {"<-": "@owner.networkSettingProxy.isDirty || @owner.systemInfoProxy.isDirty"}
             }
         },
 

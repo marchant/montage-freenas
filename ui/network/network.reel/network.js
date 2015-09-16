@@ -18,12 +18,17 @@ exports.Network = Component.specialize({
         value: null
     },
 
+    systemInfoProxy: {
+        value: null
+    },
+
     enterDocument: {
         value: function (isFirstTime) {
             if (isFirstTime) {
                 // fixme: -> need to use a montage text-input component
                 // hitting the key enter raise an action event.
                 this.addDnsInput.addEventListener("keydown", this, false);
+                this._populateSystemInfo();
                 this._populateNetworkConfig();
                 this._populateNetworkInterface();
             }
@@ -44,6 +49,7 @@ exports.Network = Component.specialize({
         value: function () {
             // get a new NetworkSettingProxy with the latest saved config.
             this._populateNetworkConfig();
+            this._populateSystemInfo();
         }
     },
 
@@ -91,6 +97,16 @@ exports.Network = Component.specialize({
 
             return this.application.controller.getNetworkInterfaceList().then(function (_networkInterfaces) {
                 self.networkInterfaces = _networkInterfaces;
+            });
+        }
+    },
+
+    _populateSystemInfo: {
+        value: function () {
+            var self = this;
+
+            return this.application.controller.getSystemInfoProxy().then(function (_systemInfoProxy) {
+                self.systemInfoProxy = _systemInfoProxy;
             });
         }
     }

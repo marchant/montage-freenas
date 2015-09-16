@@ -1,6 +1,7 @@
 var ManagementConnectionSettingProxy = require("core/proxy/management-connection-setting-proxy").ManagementConnectionSettingProxy,
     OperatingSystemSettingProxy = require("core/proxy/operating-system-setting-proxy").OperatingSystemSettingProxy,
     ConsoleSettingProxy = require("core/proxy/console-setting-proxy").ConsoleSettingProxy,
+    SystemInfoProxy = require("core/proxy/system-info-proxy").SystemInfoProxy,
     SystemSetting = require("core/model/system-setting").SystemSetting,
     System = require("core/model/system").System;
 
@@ -9,8 +10,16 @@ exports.SystemController = {
 
     getSystemInfo: {
         value: function () {
-            return this._store.getModelObjectList(System.TYPE).then(function (data) {
-                return data[0];
+            return this._store.getModelObjectList(System.TYPE).then(function (_data) {
+                return _data && _data.constructor === Array && _data.length ? _data[0] : null;
+            });
+        }
+    },
+
+    getSystemInfoProxy: {
+        value: function () {
+            return this.getSystemInfo().then(function (_systemInfo) {
+                return _systemInfo ? new SystemInfoProxy(_systemInfo.hostname) : null;
             });
         }
     },
