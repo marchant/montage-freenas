@@ -34,7 +34,8 @@
                 "element": {"#": "ipV4defaultGateway"}
             },
             "bindings": {
-                "value": {"<->": "@owner.networkSettingProxy.ipV4Gateway"}
+                "value": {"<->": "@owner.networkSettingProxy.ipV4Gateway"},
+                "classList.has('isInvalid')": {"<-": "@owner.networkSettingProxy ? !@owner.networkSettingProxy.validity.isIPv4Valid : false"}
             }
         },
         "ipV6defaultGateway": {
@@ -43,7 +44,8 @@
                 "element": {"#": "ipV6defaultGateway"}
             },
             "bindings": {
-                "value": {"<->": "@owner.networkSettingProxy.ipV6Gateway"}
+                "value": {"<->": "@owner.networkSettingProxy.ipV6Gateway"},
+                "classList.has('isInvalid')": {"<-": "@owner.networkSettingProxy ? !@owner.networkSettingProxy.validity.isIPv6Valid : false"}
             }
         },
         "serverList": {

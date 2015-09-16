@@ -1,4 +1,5 @@
 var AbstractProxy = require("core/proxy/abstract-proxy").AbstractProxy,
+    NetworkUtility = require("core/utility/network-utility.js").NetworkUtility,
     NetworkSetting = require("core/model/network-setting").NetworkSetting;
 
 /**
@@ -41,7 +42,6 @@ Object.defineProperties(NetworkSettingProxy.prototype, {
     ipV6Gateway: {
         set: function (_ipv6) {
             this._updateValue(NetworkSetting.prototype, "ipV6Gateway", _ipv6);
-
         },
         get: function () {
             return this._ipv6;
@@ -64,7 +64,7 @@ Object.defineProperties(NetworkSettingProxy.prototype, {
 
 
 NetworkSettingProxy.prototype.addDNSAddress = function (_dnsAddress) {
-    if (typeof _dnsAddress === "string" && _dnsAddress.length && this._dnsAddresses.indexOf(_dnsAddress) === -1) { //todo better checking
+    if (typeof _dnsAddress === "string" && _dnsAddress.length && NetworkUtility.isIPv4(_dnsAddress) && this._dnsAddresses.indexOf(_dnsAddress) === -1) {
         this._dnsAddresses.push(_dnsAddress);
         this.isDirty = true;
 
@@ -91,17 +91,17 @@ NetworkSettingProxy.prototype.removeDNSAddress = function (_dnsAddress) {
 NetworkSettingProxy.prototype.toNetworkSettingRawObject = function () {
     var networkConfig = {};
 
-    if (this._ipV4Gateway) {
+    if (this.ipV4Gateway) {
         networkConfig.gateway = {};
-        networkConfig.gateway.ipv4 = this._ipV4Gateway;
+        networkConfig.gateway.ipv4 = this.ipV4Gateway;
     }
 
-    if (this._ipV6Gateway) {
+    if (this.ipV6Gateway) {
         if (!networkConfig.gateway) {
             networkConfig.gateway = {};
         }
 
-        networkConfig.gateway.ipv6 = this._ipV6Gateway;
+        networkConfig.gateway.ipv6 = this.ipV6Gateway;
     }
 
     if (this._dnsAddresses && this._dnsAddresses.length) {
@@ -109,4 +109,14 @@ NetworkSettingProxy.prototype.toNetworkSettingRawObject = function () {
     }
 
     return networkConfig;
+};
+
+
+NetworkSettingProxy.prototype.checkValidity = function (key) {
+    if (key === "ipV4Gateway") {
+        this.validity.isIPv4Valid = this.ipV4Gateway ? NetworkUtility.isIPv4(this.ipV4Gateway) : true;
+
+    } else if (key === "ipV6Gateway") {
+        this.validity.isIPv6Valid = this.ipV6Gateway ? NetworkUtility.isIPv4(this.ipV6Gateway) : true;
+    }
 };
