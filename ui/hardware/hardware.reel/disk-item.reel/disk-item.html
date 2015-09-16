@@ -31,23 +31,14 @@
             }
         },
 
-        "partitionSize": {
-            "prototype": "montage/ui/text.reel",
+        "disk": {
+            "prototype": "ui/shared/disk.reel",
             "properties": {
-                "element": {"#": "partition-size"}
+                "element": {"#": "disk"},
+                "enabled": false
             },
             "bindings": {
-                "value": {"<-": "@diskPartitions:iteration.object.humanReadableSize"}
-            }
-        },
-
-        "diskPath": {
-            "prototype": "montage/ui/text.reel",
-            "properties": {
-                "element": {"#": "disk-path"}
-            },
-            "bindings": {
-                "value": {"<-": "@diskPartitions:iteration.object.path"}
+                "disk": {"<-": "{name: @diskPartitions:iteration.object.path, capacity: @diskPartitions:iteration.object.size}"}
             }
         }
     }
@@ -57,11 +48,7 @@
     <div data-montage-id="owner" class="DiskItem">
         <span data-montage-id="vendorName" class="disk-item-title"></span><br />
         <div data-montage-id="disk-partitions" class="disk-item-partitions well">
-            <div>
-                <div data-montage-id="disk-item-partition" class="disk-item-partition"></div>
-                <div data-montage-id="partition-size"></div>
-                <div data-montage-id="disk-path"></div>
-            </div>
+            <div data-montage-id="disk"></div>
         </div>
     </div>
 </body>
