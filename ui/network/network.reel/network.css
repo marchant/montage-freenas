@@ -1,8 +1,10 @@
 .Network {
-    padding-top: 15px;
+    padding: 15px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-.Network input:not([type]) {
+/*.Network input:not([type]) {
     display: block;
     width: 100%;
     -webkit-appearance: textfield;
@@ -21,17 +23,27 @@
 .Network input:not([type]):focus {
     border-color: #0196d8;
     box-shadow: 0 0 6px rgba(1, 150, 216, .5);
-}
+}*/
 
 .Network input.isInvalid {
     color: #ff341e;
+}
+
+.network-config {
+    display: flex;
+    margin-right: -20px;
+}
+
+.network-config > div {
+    flex: 1;
+    margin-right: 20px;
 }
 
 .Network-title {
     color: #333;
     font-size: 24px;
     line-height: 26.4px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     margin-top: 20px;
     text-align: center;
     font-weight: 200;
@@ -39,7 +51,6 @@
 
 .Network-addresses {
     box-sizing: border-box;
-    padding: 0 15px;
 }
 
 .Network-addresses:after {
@@ -51,25 +62,23 @@
 }
 
 .Network-addresses-label {
-    padding: 0 15px;
     box-sizing: border-box;
     color: #333;
 }
 
 .Network-addresses-value {
     position: relative;
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     height: 45px;
     box-sizing: border-box;
 }
 
-.Network-dnsServers {
+/*.Network-dnsServers {
     box-sizing: border-box;
     padding: 0 15px 15px 15px;
-}
+}*/
 
 .Network-dnsServers-title {
-    padding: 10px 15px;
     color: #333;
     font-weight: 200;
     font-size: 14px;
@@ -84,7 +93,7 @@
     overflow-y: scroll;
 }
 
-input.Network-addDns {
+/*input.Network-addDns {
     margin-left: 15px;
     width: 75%;
     max-width: 250px;
@@ -97,14 +106,24 @@ input.Network-addDns {
     margin-left: 28px;
     line-height: 32px;
     color: #aaa;
-}
+}*/
 
-input.Network-addDns:valid,
+/*input.Network-addDns:valid,
 input.Network-addDns:focus {
     background: white;
+}*/
+
+.Network .buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
 }
 
-.Network-applyButton,
+.Network .buttons .btn + .btn {
+    margin-left: 10px;
+}
+
+/*.Network-applyButton,
 .Network-resetButton {
     float: right;
     margin-right: 15px;
@@ -152,16 +171,15 @@ input.Network-addDns:focus {
 
 .Network-resetButton:hover {
     background: white;
-}
+}*/
 
 .Network-interfaces {
-    clear: both;
     border-top: 1px solid #dedede;
     padding-left: 14px;
     padding-top: 14px;
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
     .Network-addresses,
     .Network-dnsServers {
         float: left;
@@ -189,4 +207,4 @@ input.Network-addDns:focus {
         float: left;
         width: 58%;
     }
-}
+}*/

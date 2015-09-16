@@ -94,9 +94,9 @@
     background: white;
 }
 
-.Interface-staticIp.montage--disabled {
+/*.Interface-staticIp.montage--disabled {
     background: #eee;
-}
+}*/
 
 .Interface-enableDhcpLabel {
     display: block;

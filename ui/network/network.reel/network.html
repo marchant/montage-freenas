@@ -110,19 +110,19 @@
 <body>
     <div data-montage-id="owner" class="Network">
         <h3 class="Network-title">Network Configuration</h3>
-        <div>
+        <div class="network-config">
             <div class="Network-addresses">
-                <div>
-                    <div class="Network-addresses-label">Hostname</div>
-                    <div class="Network-addresses-value"><input data-montage-id="hostname"></div>
+                <div class="form-group">
+                    <div class="Network-addresses-label control-label">Hostname</div>
+                    <input data-montage-id="hostname" class="form-control">
                 </div>
-                <div>
-                    <div class="Network-addresses-label">IPv4 Default Gateway</div>
-                    <div class="Network-addresses-value"><input data-montage-id="ipV4defaultGateway"></div>
+                <div class="form-group">
+                    <div class="Network-addresses-label control-label">IPv4 Default Gateway</div>
+                    <input data-montage-id="ipV4defaultGateway" class="form-control">
                 </div>
-                <div>
-                    <div class="Network-addresses-label">IPv6 Default Gateway</div>
-                    <div class="Network-addresses-value"><input data-montage-id="ipV6defaultGateway"></div>
+                <div class="form-group">
+                    <div class="Network-addresses-label control-label">IPv6 Default Gateway</div>
+                    <input data-montage-id="ipV6defaultGateway" class="form-control">
                 </div>
             </div>
             <div class="Network-dnsServers">
@@ -130,13 +130,16 @@
                 <div data-montage-id="serverList" class="Network-serverList">
                     <div data-montage-id="serverListItem"></div>
                 </div>
-                <span class="Network-addDns-label">Enter new DNS server</span>
-                <input data-montage-id="addDnsInput" class="Network-addDns" required>
+                <div class="form-group">
+                    <span class="Network-addDns-label control-label">Enter new DNS server</span>
+                    <input data-montage-id="addDnsInput" class="Network-addDns form-control" required>
+                </div>
             </div>
         </div>
-        <div>
-            <div data-montage-id="apply" class="Network-applyButton">Apply</div>
-            <div data-montage-id="reset" class="Network-resetButton">Reset</div>
+        <div class="buttons">
+            <div data-montage-id="reset" class="Network-resetButton btn btn-default">Reset</div>
+            <div data-montage-id="apply" class="Network-applyButton btn btn-primary">Apply</div>
+
         </div>
         <div data-montage-id="interfaces" class="Network-interfaces">
             <div data-montage-id="interface"></div>
