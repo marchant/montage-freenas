@@ -31,7 +31,7 @@ SystemInfoProxy.prototype.checkValidity = function (key) {
         this.validity.isHostnameValid = this.hostname ? NetworkUtility.isHostName(this.hostname) : true;
     }
 
-    return this.validity.isHostnameValid;
+    return typeof this.validity.isHostnameValid === "boolean" ? this.validity.isHostnameValid : true;
 };
 
 SystemInfoProxy.prototype.toRawObject = function () {

@@ -78,7 +78,7 @@ OperatingSystemSetting.prototype._autotuneEnabled = false;
 OperatingSystemSetting.prototype._consoleCLIEnabled = false;
 OperatingSystemSetting.prototype._powerdEnabled = false;
 OperatingSystemSetting.prototype._autoUploadCrashEnabled = false;
-OperatingSystemSetting.prototype._swapOnDrive = 0;
+OperatingSystemSetting.prototype._swapOnDrive = null;
 
 
 Object.defineProperties(OperatingSystemSetting.prototype, {
@@ -137,10 +137,8 @@ Object.defineProperties(OperatingSystemSetting.prototype, {
 
     swapOnDrive: {
         set: function (_swapOnDrive) {
-            _swapOnDrive = +_swapOnDrive;
-
-            if (!isNaN(_swapOnDrive) && this._swapOnDrive !== _swapOnDrive) {
-                this._swapOnDrive = _swapOnDrive;
+            if (this._swapOnDrive !== _swapOnDrive) {
+                this._swapOnDrive = _swapOnDrive || null;
             }
         },
         get: function () {
@@ -237,8 +235,8 @@ Object.defineProperties(ManagementConnectionSetting.prototype, {
 
     httpPort: {
         set: function (_httpPort) {
-            if (!isNaN(_httpPort) && this._httpPort !== _httpPort) {
-                this._httpPort = _httpPort;
+            if (this._httpPort !== _httpPort) {
+                this._httpPort = _httpPort || null;
             }
         },
         get: function () {
@@ -248,8 +246,8 @@ Object.defineProperties(ManagementConnectionSetting.prototype, {
 
     httpsPort: {
         set: function (_httpsPort) {
-            if (!isNaN(_httpsPort) && this._httpsPort !== _httpsPort) {
-                this._httpsPort = _httpsPort;
+            if (this._httpsPort !== _httpsPort) {
+                this._httpsPort = _httpsPort || null;
             }
         },
         get: function () {

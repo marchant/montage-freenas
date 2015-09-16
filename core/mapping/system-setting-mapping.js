@@ -37,11 +37,11 @@ exports.SystemSettingMapping = DataMapping.specialize({
                 var managementConnectionSetting = new ManagementConnectionSetting(),
                     protocol = managementConnection.webui_protocol;
 
-                managementConnectionSetting.serial_console = managementConnection.webui_http_port;
-                managementConnectionSetting.serial_console = managementConnection.webui_http_redirect_https;
-                managementConnectionSetting.serial_console = managementConnection.webui_https_certificate;
-                managementConnectionSetting.serial_console = managementConnection.webui_https_port;
-                managementConnectionSetting.serial_console = protocol && protocol.length ? protocol[0] : null;
+                managementConnectionSetting.httpPort = managementConnection.webui_http_port;
+                managementConnectionSetting.isRedirectHypertextTransferProtocols = managementConnection.webui_http_redirect_https;
+                managementConnectionSetting.httpsCertificate = managementConnection.webui_https_certificate;
+                managementConnectionSetting.httpsPort = managementConnection.webui_https_port;
+                managementConnectionSetting.currentHypertextTransferProtocol = protocol && protocol.length ? protocol[0] : null;
 
                 systemSetting.managementConnectionSetting = managementConnectionSetting;
             }

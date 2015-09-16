@@ -120,5 +120,8 @@ NetworkSettingProxy.prototype.checkValidity = function (key) {
         this.validity.isIPv6Valid = this.ipV6Gateway ? NetworkUtility.isIPv4(this.ipV6Gateway) : true;
     }
 
-    return this.validity.isIPv6Valid && this.validity.isIPv4Valid;
+    var isIPv6Valid = typeof this.validity.isIPv6Valid === "boolean" ? this.validity.isIPv6Valid : true,
+        isIPv4Valid = typeof this.validity.isIPv4Valid === "boolean" ? this.validity.isIPv4Valid : true;
+
+    return isIPv6Valid && isIPv4Valid;
 };

@@ -105,7 +105,7 @@ Object.defineProperties(System.prototype, {
     hostname: {
         set: function (_hostname) {
             if (typeof _hostname === "string" && this._hostname !== _hostname) {
-                this._hostname = _hostname;
+                this._hostname = _hostname || null;
             }
         },
         get: function () {

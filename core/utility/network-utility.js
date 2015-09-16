@@ -18,6 +18,12 @@ exports.NetworkUtility = {
 
     isIPAddressValid: function (_ip) {
         return this.isIPv4(_ip) || this.isIPv6(_ip);
+    },
+
+    isPortValid: function (_port) {
+        _port = +_port;
+
+        return !isNaN(_port) && _port > 0 && _port < 65535;
     }
 
 };
