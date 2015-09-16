@@ -4,8 +4,10 @@ var AbstractDataService = require("core/service/abstract-data-service").Abstract
     SystemService = require("core/service/system-service").SystemService,
     DiskService = require("core/service/disk-service").DiskService,
     NetworkSettingService = require("core/service/network-setting-service").NetworkSettingService,
+    SystemSettingService = require("core/service/system-setting-service").SystemSettingService,
     NetworkInterfaceService = require("core/service/network-interface-service").NetworkInterfaceService,
     NetworkInterface = require("core/model/network-interface").NetworkInterface,
+    SystemSetting = require("core/model/system-setting").SystemSetting,
     NetworkSetting = require("core/model/network-setting").NetworkSetting,
     System = require("core/model/system").System,
     Group = require("core/model/group").Group,
@@ -30,6 +32,7 @@ exports.FreeNasService = AbstractDataService.specialize(/** @lends FreeNasServic
             this.childServices.set(NetworkSetting.TYPE, new NetworkSettingService().initWithBackendBridge(_backendBridge));
             this.childServices.set(NetworkInterface.TYPE, new NetworkInterfaceService().initWithBackendBridge(_backendBridge));
             this.childServices.set(Disk.TYPE, new DiskService().initWithBackendBridge(_backendBridge));
+            this.childServices.set(SystemSetting.TYPE, new SystemSettingService().initWithBackendBridge(_backendBridge));
 
             return this;
         }

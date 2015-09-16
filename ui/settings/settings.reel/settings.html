@@ -31,7 +31,7 @@
                 "element": {"#": "httpPort"}
             },
             "bindings": {
-                "value": {"<->": "null"}
+                "value": {"<->": "@owner.systemSetting.managementConnectionSettingProxy.httpPort"}
             }
         },
 
@@ -41,7 +41,7 @@
                 "element": {"#": "httpsPort"}
             },
             "bindings": {
-                "value": {"<->": "null"}
+                "value": {"<->": "@owner.systemSetting.managementConnectionSettingProxy.httpsPort"}
             }
         },
 
@@ -49,6 +49,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "redirect"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.managementConnectionSettingProxy.isRedirectHypertextTransferProtocols"}
             }
         },
 
@@ -56,6 +59,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "allowAccess"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.managementConnectionSettingProxy.currentHypertextTransferProtocol"}
             }
         },
 
@@ -77,6 +83,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "enableAutotune"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.operatingSystemSettingProxy.isAutotuneEnabled"}
             }
         },
 
@@ -84,6 +93,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "enableConsole"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.operatingSystemSettingProxy.isConsoleCLIEnabled"}
             }
         },
 
@@ -91,6 +103,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "enablePowerd"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.operatingSystemSettingProxy.isPowerdEnabled"}
             }
         },
 
@@ -98,6 +113,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "autoUploadCrash"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.operatingSystemSettingProxy.isAutoUploadCrashEnabled"}
             }
         },
 
@@ -107,7 +125,7 @@
                 "element": {"#": "defaultSwap"}
             },
             "bindings": {
-                "value": {"<->": "null"}
+                "value": {"<->": "@owner.systemSetting.operatingSystemSettingProxy.swapOnDrive"}
             }
         },
 
@@ -143,6 +161,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "enableConsoleScreensaver"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.consoleSettingProxy.isConsoleScreenSaverEnabled"}
             }
         },
 
@@ -150,6 +171,9 @@
             "prototype": "montage/ui/checkbox.reel",
             "properties": {
                 "element": {"#": "enableSerialConsole"}
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.systemSetting.consoleSettingProxy.isSerialConsoleEnabled"}
             }
         },
 
