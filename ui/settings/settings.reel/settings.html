@@ -135,17 +135,23 @@
             }
         },
 
-        "operatingResetButton": {
+        "resetOperatingSystemSetting": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "operatingReset"}
+            },
+            "bindings": {
+                "enabled": {"<-": "@owner.systemSetting.operatingSystemSettingProxy.isDirty"}
             }
         },
 
-        "operatingApplyButton": {
+        "applyOperatingSystemSetting": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "operatingApply"}
+            },
+            "bindings": {
+                "enabled": {"<-": "@owner.systemSetting.operatingSystemSettingProxy.isDirty"}
             }
         },
 

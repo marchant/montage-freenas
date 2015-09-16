@@ -67,6 +67,27 @@ Object.defineProperties(SystemSetting.prototype, {
 
 });
 
+SystemSetting.prototype.updateConsoleSetting = function (_consoleSettingProxy) {
+    //fixme: temporary logic
+    if (this.consoleSetting) {
+        this.consoleSetting._serialConsoleEnabled = _consoleSettingProxy._serialConsoleEnabled;
+        this.consoleSetting._consoleScreenSaverEnabled = _consoleSettingProxy._consoleScreenSaverEnabled;
+        this.consoleSetting._serialPort = _consoleSettingProxy._serialPort;
+        this.consoleSetting._serialSpeed = _consoleSettingProxy._serialSpeed;
+    }
+};
+
+SystemSetting.prototype.updateOperatingSystemSetting = function (_operatingSystemSettingProxy) {
+    //fixme: temporary logic
+    if (this.consoleSetting) {
+        this.operatingSystemSetting._autotuneEnabled = _operatingSystemSettingProxy._autotuneEnabled;
+        this.operatingSystemSetting._consoleCLIEnabled = _operatingSystemSettingProxy._consoleCLIEnabled;
+        this.operatingSystemSetting._powerdEnabled = _operatingSystemSettingProxy._powerdEnabled;
+        this.operatingSystemSetting._autoUploadCrashEnabled = _operatingSystemSettingProxy._autoUploadCrashEnabled;
+        this.operatingSystemSetting._swapOnDrive = _operatingSystemSettingProxy._swapOnDrive;
+    }
+};
+
 
 /**
  * @class OperatingSystemSetting
@@ -80,7 +101,7 @@ OperatingSystemSetting.prototype._powerdEnabled = false;
 OperatingSystemSetting.prototype._autoUploadCrashEnabled = false;
 OperatingSystemSetting.prototype._swapOnDrive = null;
 
-
+//fixme: temporary logic
 Object.defineProperties(OperatingSystemSetting.prototype, {
 
     isAutotuneEnabled: {

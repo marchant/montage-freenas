@@ -32,7 +32,7 @@ exports.Settings = Component.specialize({
         value: function () {
             var self = this;
 
-            this.application.controller.getConsoleConfigProxy().then(function (_consoleSettingProxy) {
+            this.application.controller.getConsoleSettingProxy().then(function (_consoleSettingProxy) {
                 self.systemSetting.consoleSettingProxy = _consoleSettingProxy;
             });
         }
@@ -41,6 +41,22 @@ exports.Settings = Component.specialize({
     handleApplyConsoleSettingAction: {
         value: function () {
             this.application.controller.updateConsoleSetting(this.systemSetting.consoleSettingProxy);
+        }
+    },
+
+    handleResetOperatingSystemSettingAction: {
+        value: function () {
+            var self = this;
+
+            this.application.controller.getOperatingSystemSettingProxy().then(function (_operatingSystemSettingProxy) {
+                self.systemSetting.operatingSystemSettingProxy = _operatingSystemSettingProxy;
+            });
+        }
+    },
+
+    handleApplyOperatingSystemSettingAction: {
+        value: function () {
+            this.application.controller.updateOperatingSystemSetting(this.systemSetting.operatingSystemSettingProxy);
         }
     }
 

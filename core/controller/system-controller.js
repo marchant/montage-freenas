@@ -45,25 +45,6 @@ exports.SystemController = {
         }
     },
 
-    updateConsoleSetting: {
-        value: function (_consoleSettingInfoProxy) {
-            if (_consoleSettingInfoProxy instanceof ConsoleSettingProxy) {
-                var self = this;
-
-                var messageCommand = new MessageCommand("rpc", "call", {
-                    method: "task.submit",
-                    args: ["system.advanced.configure", [_consoleSettingInfoProxy.toRawObject()]]
-                });
-
-                return this._backend.send(messageCommand).then((function (response) {
-                    //todo need investigating -> subscribe to task events?
-                }));
-            }
-
-            return Promise.reject("wrong parameters given");
-        }
-    },
-
     getSystemSetting: {
         value: function () {
             var self = this;
@@ -78,7 +59,7 @@ exports.SystemController = {
         }
     },
 
-    getConsoleConfigProxy: {
+    getConsoleSettingProxy: {
         value: function () {
             var self = this;
 
@@ -88,7 +69,7 @@ exports.SystemController = {
         }
     },
 
-    getOperatingSystemConfigProxy: {
+    getOperatingSystemSettingProxy: {
         value: function () {
             var self = this;
 
@@ -111,6 +92,67 @@ exports.SystemController = {
     getLocalizationConfig: {
         value: function () {
             //todo
+        }
+    },
+
+    updateConsoleSetting: {
+        value: function (_consoleSettingProxy) {
+            if (_consoleSettingProxy instanceof ConsoleSettingProxy) {
+                var self = this;
+
+                return this._updateAdvancedSystemSetting(_consoleSettingProxy).then(function () {
+                    //fixme: demo purpose
+                    self._updateConsoleSetting(_consoleSettingProxy); // update business object
+                });
+            }
+
+            return Promise.reject("wrong parameters given");
+        }
+    },
+
+    updateOperatingSystemSetting: {
+        value: function (_operatingSystemSettingProxy) {
+            if (_operatingSystemSettingProxy instanceof OperatingSystemSettingProxy) {
+                var self = this;
+
+                return this._updateAdvancedSystemSetting(_operatingSystemSettingProxy).then(function () {
+                    //fixme: demo purpose
+                    self._updateOperatingSystemSetting(_operatingSystemSettingProxy); // update business object
+                });
+            }
+
+            return Promise.reject("wrong parameters given");
+        }
+    },
+
+    _updateAdvancedSystemSetting: {
+        value: function (_advancedSystemProxy) {
+            var messageCommand = new MessageCommand("rpc", "call", {
+                method: "task.submit",
+                args: ["system.advanced.configure", [_advancedSystemProxy.toRawObject()]]
+            });
+
+            return this._backend.send(messageCommand).then((function (response) {
+                //fixme: demo purpose -> better catching
+                _advancedSystemProxy.isDirty = false;
+                //todo need investigating -> subscribe to task events?
+            }));
+        }
+    },
+
+    _updateConsoleSetting: {
+        value: function (_consoleSettingProxy) {
+            this._getSystemSetting().then(function (_systemSetting) {
+                _systemSetting.updateConsoleSetting(_consoleSettingProxy);
+            });
+        }
+    },
+
+    _updateOperatingSystemSetting: {
+        value: function (_operatingSystemSettingProxy) {
+            this._getSystemSetting().then(function (_systemSetting) {
+                _systemSetting.updateOperatingSystemSetting(_operatingSystemSettingProxy);
+            });
         }
     },
 
