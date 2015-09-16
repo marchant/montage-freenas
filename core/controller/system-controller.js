@@ -45,6 +45,25 @@ exports.SystemController = {
         }
     },
 
+    updateConsoleSetting: {
+        value: function (_consoleSettingInfoProxy) {
+            if (_consoleSettingInfoProxy instanceof ConsoleSettingProxy) {
+                var self = this;
+
+                var messageCommand = new MessageCommand("rpc", "call", {
+                    method: "task.submit",
+                    args: ["system.advanced.configure", [_consoleSettingInfoProxy.toRawObject()]]
+                });
+
+                return this._backend.send(messageCommand).then((function (response) {
+                    //todo need investigating -> subscribe to task events?
+                }));
+            }
+
+            return Promise.reject("wrong parameters given");
+        }
+    },
+
     getSystemSetting: {
         value: function () {
             var self = this;
@@ -59,26 +78,32 @@ exports.SystemController = {
         }
     },
 
-    getConsoleConfig: {
+    getConsoleConfigProxy: {
         value: function () {
-            this.getSystemSetting().then(function (_systemSetting) {
-                return this._getConsoleSettingProxy(_systemSetting.consoleSetting);
+            var self = this;
+
+            return this._getSystemSetting().then(function (_systemSetting) {
+                return self._getConsoleSettingProxy(_systemSetting.consoleSetting);
             });
         }
     },
 
-    getOperatingSystemConfig: {
+    getOperatingSystemConfigProxy: {
         value: function () {
-            this.getSystemSetting().then(function (_systemSetting) {
-                return this._getOperatingSystemSettingProxy(_systemSetting.operatingSystemSetting);
+            var self = this;
+
+            return this._getSystemSetting().then(function (_systemSetting) {
+                return self._getOperatingSystemSettingProxy(_systemSetting.operatingSystemSetting);
             });
         }
     },
 
-   getManagementConnectionSetting: {
+   getManagementConnectionSettingProxy: {
         value: function () {
-            this.getSystemSetting().then(function (_systemSetting) {
-                return this._getManagementConnectionSettingProxy(_systemSetting.managementConnectionSetting);
+            var self = this;
+
+            return this._getSystemSetting().then(function (_systemSetting) {
+                return self._getManagementConnectionSettingProxy(_systemSetting.managementConnectionSetting);
             });
         }
     },

@@ -8,7 +8,13 @@
         "owner": {
             "properties": {
                 "element": {"#": "owner"}
-            }
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         },
         "sectionButtonGroup": {
             "prototype": "ui/shared/button-group.reel",
@@ -177,17 +183,23 @@
             }
         },
 
-        "consoleResetButton": {
+        "resetConsoleSetting": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "consoleReset"}
+            },
+            "bindings": {
+                "enabled": {"<-": "@owner.systemSetting.consoleSettingProxy.isDirty"}
             }
         },
 
-        "consoleApplyButton": {
+        "applyConsoleSetting": {
             "prototype": "montage/ui/button.reel",
             "properties": {
                 "element": {"#": "consoleApply"}
+            },
+            "bindings": {
+                "enabled": {"<-": "@owner.systemSetting.consoleSettingProxy.isDirty"}
             }
         }
     }
@@ -893,8 +905,8 @@
                             <select type="select" label="Console Keymap" class="form-control"></select>
                         </div>
                         <div class="buttons" role="toolbar">
-                            <button data-montage-id="consoleReset" disabled="" type="button" class="btn btn-default">Reset</button>
-                            <button data-montage-id="consoleApply" disabled="" type="button" class="btn btn-primary">Apply</button>
+                            <button data-montage-id="consoleReset" type="button" class="btn btn-default">Reset</button>
+                            <button data-montage-id="consoleApply" type="button" class="btn btn-primary">Apply</button>
                         </div>
                     </form>
                 </div>
