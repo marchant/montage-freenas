@@ -2,7 +2,7 @@
     "name": "montage-freenas",
     "version": "0.1.0",
     "dependencies": {
-        "montage": "git+http://github.com:montagejs/montage.git#master",
+        "montage": "montagejs/montage.git",
         "montage-data": "montagestudio/montage-data"
     },
     "devDependencies": {
