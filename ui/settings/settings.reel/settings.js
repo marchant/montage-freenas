@@ -9,7 +9,7 @@ exports.Settings = Component.specialize({
     enterDocument: {
         value: function (firstTime) {
             if (firstTime) {
-                this.populateConsoleConfigForm();
+                this.populateSystemSettingForm();
             }
         }
     },
@@ -18,7 +18,7 @@ exports.Settings = Component.specialize({
         value: null
     },
 
-    populateConsoleConfigForm: {
+    populateSystemSettingForm: {
         value: function () {
             var self = this;
 
