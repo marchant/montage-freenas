@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "dependencies": {
         "montage": "montagejs/montage.git",
-        "montage-data": "montagestudio/montage-data",
+        "montage-data": "montagestudio/montage-data#877b1495cfdc43961b1e41d375fda71d454417c7",
         "collections": "~1.2.2"
     },
     "devDependencies": {
