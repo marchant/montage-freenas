@@ -50,7 +50,8 @@
             },
             "bindings": {
                 "value": {"<->": "@owner.interface.staticIpAddress"},
-                "enabled": {"<-": "!@owner.interface.isDhcpEnabled"}
+                "enabled": {"<-": "!@owner.interface.isDhcpEnabled"},
+                "classList.has('isInvalid')": {"<-": "@owner.interface && @staticIp.enabled ? !@owner.interface.validity.isStaticIPValid : false"}
             }
         },
         "enableDhcpCheckbox": {

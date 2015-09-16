@@ -1,4 +1,5 @@
-var NetworkInterface = require("core/model/network-interface").NetworkInterface,
+var AbstractProxy = require("core/proxy/abstract-proxy").AbstractProxy,
+    NetworkInterface = require("core/model/network-interface").NetworkInterface,
     NetworkUtility = require("core/utility/network-utility.js").NetworkUtility;
 
 /**
@@ -10,12 +11,12 @@ NetworkInterfaceProxy.createFromNetworkInterface = function (_networkInterface) 
     if (_networkInterface instanceof NetworkInterface) {
         var networkInterfaceProxy = new NetworkInterfaceProxy();
 
-        networkInterfaceProxy.id = _networkInterface.id;
-        networkInterfaceProxy.isEnabled = _networkInterface.isEnabled;
-        networkInterfaceProxy.staticIpAddress = _networkInterface.staticIpAddress;
+        networkInterfaceProxy._enabled = _networkInterface.isEnabled;
+        networkInterfaceProxy._staticIpAddress = _networkInterface.staticIpAddress;
+        networkInterfaceProxy._dhcp = _networkInterface.isDhcpEnabled;
 
         // read-only properties
-        networkInterfaceProxy.isDhcpEnabled = _networkInterface.isDhcpEnabled;
+        networkInterfaceProxy.id = _networkInterface.id;
         networkInterfaceProxy.macAddress = _networkInterface.macAddress;
         networkInterfaceProxy.aliases = _networkInterface.aliases;
         networkInterfaceProxy.ethernetAdapterSpeed = _networkInterface.ethernetAdapterSpeed;
@@ -24,7 +25,7 @@ NetworkInterfaceProxy.createFromNetworkInterface = function (_networkInterface) 
     }
 };
 
-
+NetworkInterfaceProxy.prototype = new AbstractProxy();
 NetworkInterfaceProxy.prototype._enabled = true;
 NetworkInterfaceProxy.prototype._dhcp = true;
 NetworkInterfaceProxy.prototype._staticIpAddress = null;
@@ -38,11 +39,7 @@ Object.defineProperties(NetworkInterfaceProxy.prototype, {
 
     isEnabled: {
         set: function (_enabled) {
-            _enabled = !!_enabled;
-
-            if (_enabled !== this._enabled) {
-                this._enabled = _enabled;
-            }
+            this._updateValue(NetworkInterface.prototype, "isEnabled", _enabled);
         },
         get: function () {
             return this._enabled;
@@ -52,9 +49,8 @@ Object.defineProperties(NetworkInterfaceProxy.prototype, {
 
     staticIpAddress: {
         set: function (_staticIpAddress) {
-            if (typeof _staticIpAddress === "string" && _staticIpAddress !== this._staticIpAddress && NetworkUtility.isIPv4WithNetmask(_staticIpAddress)) {
-                this._staticIpAddress = _staticIpAddress;
-            }
+            this._updateValue(NetworkInterface.prototype, "staticIpAddress", _staticIpAddress);
+
         },
         get: function () {
             return this._staticIpAddress;
@@ -64,11 +60,7 @@ Object.defineProperties(NetworkInterfaceProxy.prototype, {
 
     isDhcpEnabled: {
         set: function (_dhcp) {
-            _dhcp = !!_dhcp;
-
-            if (_dhcp !== this._dhcp) {
-                this._dhcp = _dhcp;
-            }
+            this._updateValue(NetworkInterface.prototype, "isDhcpEnabled", _dhcp);
         },
         get: function () {
             return this._dhcp;
@@ -77,3 +69,9 @@ Object.defineProperties(NetworkInterfaceProxy.prototype, {
     }
 
 });
+
+NetworkInterfaceProxy.prototype.checkValidity = function (key) {
+    if (key === "staticIpAddress") {
+        this.validity.isStaticIPValid = this._staticIpAddress ? NetworkUtility.isIPv4WithNetmask(this._staticIpAddress) : true;
+    }
+};
