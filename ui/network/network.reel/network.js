@@ -56,6 +56,7 @@ exports.Network = Component.specialize({
     handleApplyAction: {
         value: function () {
             this.application.controller.updateNetworkSetting(this.networkSettingProxy);
+            this.application.controller.updateSystemInfo(this.systemInfoProxy);
         }
     },
 

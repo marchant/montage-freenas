@@ -24,7 +24,8 @@
                 "element": {"#": "hostname"}
             },
             "bindings": {
-                "value": {"<->": "@owner.systemInfoProxy.hostname"}
+                "value": {"<->": "@owner.systemInfoProxy.hostname"},
+                "classList.has('isInvalid')": {"<-": "@owner.systemInfoProxy ? !@owner.systemInfoProxy.validity.isHostnameValid : false"}
             }
         },
         "ipV4defaultGateway": {

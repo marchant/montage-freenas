@@ -1,4 +1,5 @@
 var AbstractProxy = require("core/proxy/abstract-proxy").AbstractProxy,
+    NetworkUtility = require("core/utility/network-utility.js").NetworkUtility,
     System = require("core/model/system").System;
 
 /**
@@ -26,5 +27,15 @@ Object.defineProperties(SystemInfoProxy.prototype, {
 });
 
 SystemInfoProxy.prototype.checkValidity = function (key) {
-    //todo
+    if (key === "hostname") {
+        this.validity.isHostnameValid = this.hostname ? NetworkUtility.isHostName(this.hostname) : true;
+    }
+
+    return this.validity.isHostnameValid;
+};
+
+SystemInfoProxy.prototype.toRawObject = function () {
+    return {
+        hostname: this.hostname
+    };
 };

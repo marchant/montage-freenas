@@ -22,7 +22,7 @@ exports.NetworkSettingController = {
                     if (self._shouldUpdateNetworkSetting(_networkSetting, _networkSettingProxy)) {
                         var messageCommand = new MessageCommand("rpc", "call", {
                             method: "task.submit",
-                            args: [ "network.configure", [_networkSettingProxy.toNetworkSettingRawObject()]]
+                            args: [ "network.configure", [_networkSettingProxy.toRawObject()]]
                         });
 
                         //fixme: seems to break the server.

@@ -1,8 +1,13 @@
 var AbstractProxy = exports.AbstractProxy = function AbstractProxy () {};
 
 AbstractProxy.prototype.isDirty = false;
+AbstractProxy.prototype.isValid = true;
 AbstractProxy.prototype._validity = null;
-AbstractProxy.prototype.checkValidity = Function.noop;
+AbstractProxy.prototype.toRawObject = Function.noop;
+
+AbstractProxy.prototype.checkValidity = function () {
+    return true;
+};
 
 Object.defineProperties(AbstractProxy.prototype,  {
 
@@ -16,7 +21,7 @@ Object.defineProperties(AbstractProxy.prototype,  {
                 this.isDirty = true;
             }
 
-            this.checkValidity(key);
+            this.isValid = this.checkValidity(key);
         }
     },
 

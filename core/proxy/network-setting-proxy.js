@@ -88,7 +88,7 @@ NetworkSettingProxy.prototype.removeDNSAddress = function (_dnsAddress) {
     return false;
 };
 
-NetworkSettingProxy.prototype.toNetworkSettingRawObject = function () {
+NetworkSettingProxy.prototype.toRawObject = function () {
     var networkConfig = {};
 
     if (this.ipV4Gateway) {
@@ -119,4 +119,6 @@ NetworkSettingProxy.prototype.checkValidity = function (key) {
     } else if (key === "ipV6Gateway") {
         this.validity.isIPv6Valid = this.ipV6Gateway ? NetworkUtility.isIPv4(this.ipV6Gateway) : true;
     }
+
+    return this.validity.isIPv6Valid && this.validity.isIPv4Valid;
 };

@@ -74,4 +74,6 @@ NetworkInterfaceProxy.prototype.checkValidity = function (key) {
     if (key === "staticIpAddress") {
         this.validity.isStaticIPValid = this._staticIpAddress ? NetworkUtility.isIPv4WithNetmask(this._staticIpAddress) : true;
     }
+
+    return this.validity.isStaticIPValid;
 };
